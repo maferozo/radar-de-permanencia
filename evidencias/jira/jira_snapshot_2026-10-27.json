@@ -1,0 +1,723 @@
+[
+ {
+  "key": "SCRUM-4",
+  "type": "Subtask",
+  "status": "Por hacer",
+  "summary": "Subtarea 2.1",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-21T17:05:55.404-0500",
+  "created": "2026-09-21",
+  "assignee": null,
+  "other": {}
+ },
+ {
+  "key": "SCRUM-5",
+  "type": "Epic",
+  "status": "Por hacer",
+  "summary": "People Analytics – Rotación y Desempeño",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T15:39:44.205-0500",
+  "created": "2026-09-22",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-6",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-01 · Información unificada y confiable",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-24",
+  "resolved": null,
+  "catchg": "2026-09-22T15:43:03.133-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-7",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-02 · Definición única de renuncia temprana",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-24",
+  "resolved": null,
+  "catchg": "2026-09-22T15:44:45.269-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-8",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-03 · Evolución de la rotación temprana",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-25",
+  "resolved": null,
+  "catchg": "2026-09-22T15:48:31.111-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-9",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-08 · Prueba técnica y permanencia",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T15:50:15.391-0500",
+  "created": "2026-09-22",
+  "assignee": "Maria Fernanda Rozo Ramirez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-10",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-07 · Retención por supervisor",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T15:52:02.540-0500",
+  "created": "2026-09-22",
+  "assignee": "Maria Fernanda Rozo Ramirez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-11",
+  "type": "Historia",
+  "status": "Finalizado",
+  "summary": "[DUPLICADO - ver SCRUM-21] HU6 - Estimar permanencia de un candidato",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-5",
+  "resolved": "2026-10-06T19:32:33.586-0500",
+  "catchg": "2026-10-06T19:32:33.608-0500",
+  "created": "2026-09-22",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-12",
+  "type": "Tarea",
+  "status": "Finalizado",
+  "summary": "Configurar y validar el tablero Scrum",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": "2026-10-06T18:59:07.694-0500",
+  "catchg": "2026-10-06T18:59:07.717-0500",
+  "created": "2026-09-22",
+  "assignee": "Maria Fernanda Rozo Ramirez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-13",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Documentar matriz de riesgos",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:04:20.444-0500",
+  "created": "2026-09-22",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-14",
+  "type": "Tarea",
+  "status": "En curso",
+  "summary": "Definir criterios de Definition of Done",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-10-06T18:59:16.482-0500",
+  "created": "2026-09-22",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-15",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Validar y organizar historias de usuario",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:05:21.308-0500",
+  "created": "2026-09-22",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-16",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Definir alcance del MVP",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:06:49.408-0500",
+  "created": "2026-09-22",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-17",
+  "type": "Tarea",
+  "status": "En revisión",
+  "summary": "Definir arquitectura y stack tecnológico",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T18:23:02.539-0500",
+  "created": "2026-09-22",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-18",
+  "type": "Tarea",
+  "status": "Finalizado",
+  "summary": "Construir diccionario de datos",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": "2026-10-06T19:09:17.126-0500",
+  "catchg": "2026-10-06T19:09:17.142-0500",
+  "created": "2026-09-22",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-20",
+  "type": "Tarea",
+  "status": "En curso",
+  "summary": "Diseñar wireframe del dashboard",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T18:28:43.527-0500",
+  "created": "2026-09-22",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-21",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-12 · Semáforo de riesgo del candidato",
+  "sprint": [
+   "SCRUM Sprint 3"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-10-06T18:58:51.609-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-22",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-06 · Filtros del dashboard",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T17:11:32.810-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-23",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-11 · Resumen de causas y recomendaciones",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-09-22T17:11:35.947-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-24",
+  "type": "Epic",
+  "status": "Por hacer",
+  "summary": "E1: Información confiable",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:17:55.168-0500",
+  "created": "2026-09-22",
+  "assignee": null,
+  "other": {}
+ },
+ {
+  "key": "SCRUM-25",
+  "type": "Epic",
+  "status": "Por hacer",
+  "summary": "E2: ¿Qué está pasando?",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:17:58.129-0500",
+  "created": "2026-09-22",
+  "assignee": null,
+  "other": {}
+ },
+ {
+  "key": "SCRUM-26",
+  "type": "Epic",
+  "status": "Por hacer",
+  "summary": "E3: ¿Por qué se van?",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:18:00.653-0500",
+  "created": "2026-09-22",
+  "assignee": null,
+  "other": {}
+ },
+ {
+  "key": "SCRUM-27",
+  "type": "Epic",
+  "status": "Por hacer",
+  "summary": "E4: Apoyo a la contratación",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:18:03.216-0500",
+  "created": "2026-09-22",
+  "assignee": null,
+  "other": {}
+ },
+ {
+  "key": "SCRUM-28",
+  "type": "Epic",
+  "status": "Por hacer",
+  "summary": "E5: Uso justo y legal",
+  "sprint": [],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-22T17:18:06.384-0500",
+  "created": "2026-09-22",
+  "assignee": null,
+  "other": {}
+ },
+ {
+  "key": "SCRUM-29",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Centralizar y validar información de contratación, desempeño y retiros",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-24",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:09.325-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-30",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Definir la definición de renuncia temprana",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-24",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:12.667-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-31",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Analizar la evolución de la rotación temprana",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-25",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:15.742-0500",
+  "created": "2026-09-22",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-32",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Identificar el mes crítico de renuncia",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-25",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:19.257-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-33",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Calcular el costo de la rotación temprana",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-25",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:23.356-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-34",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Implementar filtros del dashboard",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:26.644-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-35",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Comparar la retención por supervisor",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:29.578-0500",
+  "created": "2026-09-22",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-36",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Analizar la relación entre pruebas técnicas y permanencia",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:32.404-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-37",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Identificar perfiles con mayor rotación",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:35.165-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-38",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Analizar los motivos declarados de renuncia",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:39.217-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-39",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Generar resumen de causas y recomendaciones",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:42.922-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-40",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Implementar semáforo de riesgo del candidato",
+  "sprint": [
+   "SCRUM Sprint 3"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:46.437-0500",
+  "created": "2026-09-22",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-41",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Mostrar explicación del riesgo del candidato",
+  "sprint": [
+   "SCRUM Sprint 3"
+  ],
+  "parent": "SCRUM-28",
+  "resolved": null,
+  "catchg": "2026-09-22T17:19:49.487-0500",
+  "created": "2026-09-22",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-42",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Registro de Suposiciones de Negocio",
+  "sprint": [
+   "Sprint 0 -Discovery & Planning"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-09-29T16:50:09.930-0500",
+  "created": "2026-09-29",
+  "assignee": "SANTIAGO ROJAS PULGARIN",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-43",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Validar la confiabilidad de la herramienta",
+  "sprint": [
+   "SCRUM Sprint 3"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-09-29T17:36:32.559-0500",
+  "created": "2026-09-29",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-44",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Verificar que la herramienta no discrimine",
+  "sprint": [
+   "SCRUM Sprint 4"
+  ],
+  "parent": "SCRUM-28",
+  "resolved": null,
+  "catchg": "2026-09-29T17:36:33.135-0500",
+  "created": "2026-09-29",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-45",
+  "type": "Tarea",
+  "status": "Por hacer",
+  "summary": "Implementar protección de datos personales",
+  "sprint": [
+   "SCRUM Sprint 4"
+  ],
+  "parent": "SCRUM-28",
+  "resolved": null,
+  "catchg": "2026-09-29T17:36:33.727-0500",
+  "created": "2026-09-29",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-46",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-05 · Costo de la rotación temprana",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": "SCRUM-25",
+  "resolved": null,
+  "catchg": "2026-10-06T19:37:21.738-0500",
+  "created": "2026-10-06",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-47",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-09 · Perfiles con mayor rotación",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-26",
+  "resolved": null,
+  "catchg": "2026-10-06T19:37:24.655-0500",
+  "created": "2026-10-06",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-48",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-10 · Motivos declarados de renuncia",
+  "sprint": [
+   "SCRUM Sprint 2"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-10-06T19:37:36.155-0500",
+  "created": "2026-10-06",
+  "assignee": "MANUEL ALEJANDRO HERNANDEZ LIZCANO",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-49",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-14 · Confiabilidad de la herramienta",
+  "sprint": [
+   "SCRUM Sprint 3"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-10-06T19:37:40.546-0500",
+  "created": "2026-10-06",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-50",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-15 · Uso justo del modelo (sin discriminación)",
+  "sprint": [
+   "SCRUM Sprint 4"
+  ],
+  "parent": "SCRUM-28",
+  "resolved": null,
+  "catchg": "2026-10-06T19:37:43.900-0500",
+  "created": "2026-10-06",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-51",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-16 · Protección de datos personales",
+  "sprint": [
+   "SCRUM Sprint 4"
+  ],
+  "parent": "SCRUM-28",
+  "resolved": null,
+  "catchg": "2026-10-06T19:37:46.930-0500",
+  "created": "2026-10-06",
+  "assignee": "luis fernando rendon lopez",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-52",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-13 · Explicación del riesgo del candidato",
+  "sprint": [
+   "SCRUM Sprint 3"
+  ],
+  "parent": "SCRUM-27",
+  "resolved": null,
+  "catchg": "2026-10-06T19:50:57.199-0500",
+  "created": "2026-10-06",
+  "assignee": "NICOLAS RAIGOZA TABORDA",
+  "other": {}
+ },
+ {
+  "key": "SCRUM-53",
+  "type": "Historia",
+  "status": "Por hacer",
+  "summary": "HU-04 · Mes crítico de renuncia",
+  "sprint": [
+   "SCRUM Sprint 1"
+  ],
+  "parent": null,
+  "resolved": null,
+  "catchg": "2026-10-06T20:10:11.261-0500",
+  "created": "2026-10-06",
+  "assignee": null,
+  "other": {}
+ }
+]

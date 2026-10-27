@@ -1,0 +1,433 @@
+{
+  "config": "{\"version\": \"5.43\", \"themeCollection\": {}, \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true, \"settings\": {\"useStylableVisualContainerHeader\": true}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Panorama",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720,
+      "name": "ReportSection0",
+      "ordinal": 0,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 1240,
+          "height": 55,
+          "config": "{\"name\": \"fd8cc801f89e47af92d4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 1240, \"height\": 55}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Panorama · ¿Qué está pasando?\", \"textStyle\": {\"fontWeight\": \"bold\", \"fontSize\": \"18pt\"}}]}, {\"textRuns\": [{\"value\": \"Datos ficticios de demostración (sección 4.2 del documento técnico). Solo datos agregados; sin nombres ni documentos.\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 60,
+          "config": "{\"name\": \"1f028b31459c4c1282c9\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_cohorte.cohorte_ingreso\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d65\", \"Entity\": \"dim_cohorte\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d65\"}}, \"Property\": \"cohorte_ingreso\"}, \"Name\": \"dim_cohorte.cohorte_ingreso\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Cohorte de ingreso'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 60,
+          "config": "{\"name\": \"54555b00d1724fbf8865\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_campana.campana\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d48\", \"Entity\": \"dim_campana\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d48\"}}, \"Property\": \"campana\"}, \"Name\": \"dim_campana.campana\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Campaña'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 60,
+          "config": "{\"name\": \"f6014c3dc8d747b6a6d5\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_supervisor.id_supervisor\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d19\", \"Entity\": \"dim_supervisor\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d19\"}}, \"Property\": \"id_supervisor\"}, \"Name\": \"dim_supervisor.id_supervisor\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Supervisor'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 145,
+          "z": 0,
+          "width": 240,
+          "height": 110,
+          "config": "{\"name\": \"cdbc67ef38134a96bb25\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 145, \"z\": 0, \"width\": 240, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Contratados\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Contratados\"}, \"Name\": \"Medidas.Contratados\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Personas contratadas (ventana completa)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 270,
+          "y": 145,
+          "z": 0,
+          "width": 240,
+          "height": 110,
+          "config": "{\"name\": \"8418719f157e47818671\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 270, \"y\": 145, \"z\": 0, \"width\": 240, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Renuncias tempranas\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Renuncias tempranas\"}, \"Name\": \"Medidas.Renuncias tempranas\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Renuncias tempranas'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 520,
+          "y": 145,
+          "z": 0,
+          "width": 240,
+          "height": 110,
+          "config": "{\"name\": \"3f83f68639ae4116bc22\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 520, \"y\": 145, \"z\": 0, \"width\": 240, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Tasa rotación temprana\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Tasa de rotación temprana'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 770,
+          "y": 145,
+          "z": 0,
+          "width": 240,
+          "height": 110,
+          "config": "{\"name\": \"680341cc24ee44a79429\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 770, \"y\": 145, \"z\": 0, \"width\": 240, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Mes crítico\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Mes crítico\"}, \"Name\": \"Medidas.Mes crítico\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Mes crítico de renuncia'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1020,
+          "y": 145,
+          "z": 0,
+          "width": 240,
+          "height": 110,
+          "config": "{\"name\": \"1e149ff3ea4a4a3583b0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1020, \"y\": 145, \"z\": 0, \"width\": 240, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Costo estimado\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Costo estimado\"}, \"Name\": \"Medidas.Costo estimado\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Costo estimado (supuestos simulados)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 270,
+          "z": 0,
+          "width": 620,
+          "height": 420,
+          "config": "{\"name\": \"b123045f834e4024b8e6\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 270, \"z\": 0, \"width\": 620, \"height\": 420}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"dim_cohorte.cohorte_ingreso\", \"active\": true}], \"Y\": [{\"queryRef\": \"Medidas.Tasa rotación temprana\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d65\", \"Entity\": \"dim_cohorte\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d65\"}}, \"Property\": \"cohorte_ingreso\"}, \"Name\": \"dim_cohorte.cohorte_ingreso\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Tasa de rotación temprana por cohorte de ingreso'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 660,
+          "y": 270,
+          "z": 0,
+          "width": 600,
+          "height": 420,
+          "config": "{\"name\": \"1350e8b1e06b4c9cbb7f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 660, \"y\": 270, \"z\": 0, \"width\": 600, \"height\": 420}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"dim_mes_antiguedad.etiqueta\", \"active\": true}], \"Y\": [{\"queryRef\": \"Medidas.Renuncias tempranas\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d76\", \"Entity\": \"dim_mes_antiguedad\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d76\"}}, \"Property\": \"etiqueta\"}, \"Name\": \"dim_mes_antiguedad.etiqueta\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Renuncias tempranas\"}, \"Name\": \"Medidas.Renuncias tempranas\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Renuncias tempranas por mes de antigüedad'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "width": 1280
+    },
+    {
+      "config": "{}",
+      "displayName": "Causas",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720,
+      "name": "ReportSection1",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 1240,
+          "height": 55,
+          "config": "{\"name\": \"46dcf439d02c40cea7fd\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 1240, \"height\": 55}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Causas · ¿Por qué se van?\", \"textStyle\": {\"fontWeight\": \"bold\", \"fontSize\": \"18pt\"}}]}, {\"textRuns\": [{\"value\": \"Asociación, no causalidad. Supervisores con menos de 30 personas no se comparan (quedan en blanco).\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 60,
+          "config": "{\"name\": \"9bff8571283e4624b1e5\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_cohorte.cohorte_ingreso\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d65\", \"Entity\": \"dim_cohorte\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d65\"}}, \"Property\": \"cohorte_ingreso\"}, \"Name\": \"dim_cohorte.cohorte_ingreso\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Cohorte de ingreso'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 60,
+          "config": "{\"name\": \"2b984f5dd2d84650b262\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_campana.campana\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d48\", \"Entity\": \"dim_campana\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d48\"}}, \"Property\": \"campana\"}, \"Name\": \"dim_campana.campana\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Campaña'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 70,
+          "z": 0,
+          "width": 300,
+          "height": 60,
+          "config": "{\"name\": \"46588de34a9048b1b743\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 70, \"z\": 0, \"width\": 300, \"height\": 60}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_supervisor.id_supervisor\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d19\", \"Entity\": \"dim_supervisor\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d19\"}}, \"Property\": \"id_supervisor\"}, \"Name\": \"dim_supervisor.id_supervisor\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Supervisor'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 145,
+          "z": 0,
+          "width": 400,
+          "height": 560,
+          "config": "{\"name\": \"d0351ee421fe4b089194\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 145, \"z\": 0, \"width\": 400, \"height\": 560}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"dim_supervisor.id_supervisor\", \"active\": true}], \"Y\": [{\"queryRef\": \"Medidas.Tasa (grupos comparables)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d19\", \"Entity\": \"dim_supervisor\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d19\"}}, \"Property\": \"id_supervisor\"}, \"Name\": \"dim_supervisor.id_supervisor\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa (grupos comparables)\"}, \"Name\": \"Medidas.Tasa (grupos comparables)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Rotación temprana por supervisor (n ≥ 30)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 430,
+          "y": 145,
+          "z": 0,
+          "width": 410,
+          "height": 270,
+          "config": "{\"name\": \"d308be6ec44541868634\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 430, \"y\": 145, \"z\": 0, \"width\": 410, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fact_contrataciones.rango_puntaje\", \"active\": true}], \"Y\": [{\"queryRef\": \"Medidas.Tasa rotación temprana\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"rango_puntaje\"}, \"Name\": \"fact_contrataciones.rango_puntaje\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Rotación por puntaje de la prueba técnica'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 850,
+          "y": 145,
+          "z": 0,
+          "width": 410,
+          "height": 270,
+          "config": "{\"name\": \"190da133eacd410e955e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 850, \"y\": 145, \"z\": 0, \"width\": 410, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fact_contrataciones.rango_distancia\", \"active\": true}], \"Y\": [{\"queryRef\": \"Medidas.Tasa rotación temprana\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"rango_distancia\"}, \"Name\": \"fact_contrataciones.rango_distancia\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Rotación por distancia'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 430,
+          "y": 425,
+          "z": 0,
+          "width": 410,
+          "height": 280,
+          "config": "{\"name\": \"e3105c1012604e0599b8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 430, \"y\": 425, \"z\": 0, \"width\": 410, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"fact_contrataciones.turno\", \"active\": true}, {\"queryRef\": \"Medidas.Contratados\"}, {\"queryRef\": \"Medidas.Tasa rotación temprana\"}, {\"queryRef\": \"Medidas.Diferencia vs. promedio\"}, {\"queryRef\": \"Medidas.Grupo comparable\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"turno\"}, \"Name\": \"fact_contrataciones.turno\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Contratados\"}, \"Name\": \"Medidas.Contratados\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Diferencia vs. promedio\"}, \"Name\": \"Medidas.Diferencia vs. promedio\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Grupo comparable\"}, \"Name\": \"Medidas.Grupo comparable\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Perfil: turno'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 850,
+          "y": 425,
+          "z": 0,
+          "width": 410,
+          "height": 280,
+          "config": "{\"name\": \"fa78e62189eb4ee09613\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 850, \"y\": 425, \"z\": 0, \"width\": 410, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"projections\": {\"Category\": [{\"queryRef\": \"fact_contrataciones.motivo_retiro\", \"active\": true}], \"Y\": [{\"queryRef\": \"Medidas.% del motivo\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"motivo_retiro\"}, \"Name\": \"fact_contrataciones.motivo_retiro\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"% del motivo\"}, \"Name\": \"Medidas.% del motivo\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Motivos declarados de renuncia (encuesta simulada)'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "width": 1280
+    },
+    {
+      "config": "{}",
+      "displayName": "Resumen y acciones",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720,
+      "name": "ReportSection2",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 1240,
+          "height": 140,
+          "config": "{\"name\": \"c46c9d1e893d41dbaa6f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 1240, \"height\": 140}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Resumen y acciones · ¿Qué hacemos?\", \"textStyle\": {\"fontWeight\": \"bold\", \"fontSize\": \"18pt\"}}]}, {\"textRuns\": [{\"value\": \"Ejemplos simulados, no hallazgos comprobados. Factores ordenados por diferencia frente al promedio (regla del documento, sección 14.2):\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}, {\"textRuns\": [{\"value\": \"5 factores: > 15 km (+12.8 p.p.); SUP-03 (+12.7 p.p.); 0–59 (+9.2 p.p.); Redes sociales (+8.2 p.p.); Sin experiencia (+7.5 p.p.)\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}, {\"textRuns\": [{\"value\": \"Recomendaciones: auxilio de transporte y turnos compatibles (distancia); acompañamiento al supervisor SUP-03; nivelación técnica (puntaje bajo); revisar el canal redes sociales; mentor para personas sin experiencia.\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 160,
+          "z": 0,
+          "width": 620,
+          "height": 270,
+          "config": "{\"name\": \"3cad97c0ab644d77bb59\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 160, \"z\": 0, \"width\": 620, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"fact_contrataciones.rango_distancia\", \"active\": true}, {\"queryRef\": \"Medidas.Contratados\"}, {\"queryRef\": \"Medidas.Tasa rotación temprana\"}, {\"queryRef\": \"Medidas.Diferencia vs. promedio\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"rango_distancia\"}, \"Name\": \"fact_contrataciones.rango_distancia\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Contratados\"}, \"Name\": \"Medidas.Contratados\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Diferencia vs. promedio\"}, \"Name\": \"Medidas.Diferencia vs. promedio\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Evidencia: distancia'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 160,
+          "z": 0,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"3e47d5b6186a4babafeb\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 160, \"z\": 0, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"dim_supervisor.id_supervisor\", \"active\": true}, {\"queryRef\": \"Medidas.Contratados\"}, {\"queryRef\": \"Medidas.Tasa rotación temprana\"}, {\"queryRef\": \"Medidas.Diferencia vs. promedio\"}, {\"queryRef\": \"Medidas.Grupo comparable\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"d19\", \"Entity\": \"dim_supervisor\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"d19\"}}, \"Property\": \"id_supervisor\"}, \"Name\": \"dim_supervisor.id_supervisor\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Contratados\"}, \"Name\": \"Medidas.Contratados\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Diferencia vs. promedio\"}, \"Name\": \"Medidas.Diferencia vs. promedio\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Grupo comparable\"}, \"Name\": \"Medidas.Grupo comparable\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Evidencia: supervisor'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 440,
+          "z": 0,
+          "width": 620,
+          "height": 270,
+          "config": "{\"name\": \"4b0ea90a0bfa48029b6c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 440, \"z\": 0, \"width\": 620, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"fact_contrataciones.canal_reclutamiento\", \"active\": true}, {\"queryRef\": \"Medidas.Contratados\"}, {\"queryRef\": \"Medidas.Tasa rotación temprana\"}, {\"queryRef\": \"Medidas.Diferencia vs. promedio\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"canal_reclutamiento\"}, \"Name\": \"fact_contrataciones.canal_reclutamiento\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Contratados\"}, \"Name\": \"Medidas.Contratados\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Diferencia vs. promedio\"}, \"Name\": \"Medidas.Diferencia vs. promedio\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Evidencia: canal de reclutamiento'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 650,
+          "y": 440,
+          "z": 0,
+          "width": 610,
+          "height": 270,
+          "config": "{\"name\": \"e0fa64e11e1649688fc4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 440, \"z\": 0, \"width\": 610, \"height\": 270}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"fact_contrataciones.rango_experiencia\", \"active\": true}, {\"queryRef\": \"Medidas.Contratados\"}, {\"queryRef\": \"Medidas.Tasa rotación temprana\"}, {\"queryRef\": \"Medidas.Diferencia vs. promedio\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"f85\", \"Entity\": \"fact_contrataciones\", \"Type\": 0}, {\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"f85\"}}, \"Property\": \"rango_experiencia\"}, \"Name\": \"fact_contrataciones.rango_experiencia\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Contratados\"}, \"Name\": \"Medidas.Contratados\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Tasa rotación temprana\"}, \"Name\": \"Medidas.Tasa rotación temprana\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Diferencia vs. promedio\"}, \"Name\": \"Medidas.Diferencia vs. promedio\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Evidencia: experiencia previa'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "width": 1280
+    },
+    {
+      "config": "{}",
+      "displayName": "Semáforo",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720,
+      "name": "ReportSection3",
+      "ordinal": 3,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 10,
+          "z": 0,
+          "width": 1240,
+          "height": 55,
+          "config": "{\"name\": \"fa6e358120344d1b8451\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 10, \"z\": 0, \"width\": 1240, \"height\": 55}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Semáforo · ¿Se quedará?\", \"textStyle\": {\"fontWeight\": \"bold\", \"fontSize\": \"18pt\"}}]}, {\"textRuns\": [{\"value\": \"Semáforo oficial: plan B (reglas de alerta, sección 13.10). El modelo no se publica (CU-09 A1). No se guardan los datos del candidato.\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 75,
+          "z": 0,
+          "width": 300,
+          "height": 80,
+          "config": "{\"name\": \"a1b1f7b7d1a347b58b15\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 75, \"z\": 0, \"width\": 300, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Campaña.campana\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e85\", \"Entity\": \"Entrada Campaña\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e85\"}}, \"Property\": \"campana\"}, \"Name\": \"Entrada Campaña.campana\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Campaña'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 75,
+          "z": 0,
+          "width": 300,
+          "height": 80,
+          "config": "{\"name\": \"b46fc744915842928c2f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 75, \"z\": 0, \"width\": 300, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Turno.Turno\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e35\", \"Entity\": \"Entrada Turno\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e35\"}}, \"Property\": \"Turno\"}, \"Name\": \"Entrada Turno.Turno\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Turno'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 75,
+          "z": 0,
+          "width": 300,
+          "height": 80,
+          "config": "{\"name\": \"bad5a1b08ce3435fa0b4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 75, \"z\": 0, \"width\": 300, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Nivel educativo.Nivel educativo\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e85\", \"Entity\": \"Entrada Nivel educativo\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e85\"}}, \"Property\": \"Nivel educativo\"}, \"Name\": \"Entrada Nivel educativo.Nivel educativo\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Nivel educativo'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 950,
+          "y": 75,
+          "z": 0,
+          "width": 310,
+          "height": 80,
+          "config": "{\"name\": \"ce1a6ae33bd84455a33b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 950, \"y\": 75, \"z\": 0, \"width\": 310, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Canal.Canal\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e46\", \"Entity\": \"Entrada Canal\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e46\"}}, \"Property\": \"Canal\"}, \"Name\": \"Entrada Canal.Canal\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Canal de reclutamiento'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 165,
+          "z": 0,
+          "width": 410,
+          "height": 80,
+          "config": "{\"name\": \"60d03e20a20f4d3ebe61\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 165, \"z\": 0, \"width\": 410, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Distancia.Distancia km\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e46\", \"Entity\": \"Entrada Distancia\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e46\"}}, \"Property\": \"Distancia km\"}, \"Name\": \"Entrada Distancia.Distancia km\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Distancia vivienda–trabajo (km)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 440,
+          "y": 165,
+          "z": 0,
+          "width": 410,
+          "height": 80,
+          "config": "{\"name\": \"67c3701737034eb2afa9\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 440, \"y\": 165, \"z\": 0, \"width\": 410, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Experiencia.Experiencia meses\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e41\", \"Entity\": \"Entrada Experiencia\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e41\"}}, \"Property\": \"Experiencia meses\"}, \"Name\": \"Entrada Experiencia.Experiencia meses\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Experiencia previa (meses)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 860,
+          "y": 165,
+          "z": 0,
+          "width": 400,
+          "height": 80,
+          "config": "{\"name\": \"e9d6f0cb2af0448da07c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 165, \"z\": 0, \"width\": 400, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"projections\": {\"Values\": [{\"queryRef\": \"Entrada Puntaje.Puntaje\", \"active\": true}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"e11\", \"Entity\": \"Entrada Puntaje\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"e11\"}}, \"Property\": \"Puntaje\"}, \"Name\": \"Entrada Puntaje.Puntaje\"}]}, \"drillFilterOtherVisuals\": true, \"objects\": {\"selection\": [{\"properties\": {\"singleSelect\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}}}], \"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Puntaje prueba técnica (0–100)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 260,
+          "z": 0,
+          "width": 610,
+          "height": 120,
+          "config": "{\"name\": \"cdfc2bb7dcaf4d4e88d1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 260, \"z\": 0, \"width\": 610, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Semáforo (plan B)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Semáforo (plan B)\"}, \"Name\": \"Medidas.Semáforo (plan B)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Resultado del semáforo'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 260,
+          "z": 0,
+          "width": 620,
+          "height": 120,
+          "config": "{\"name\": \"717db64ff6c5412ab8ea\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 260, \"z\": 0, \"width\": 620, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Reglas activadas\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Reglas activadas\"}, \"Name\": \"Medidas.Reglas activadas\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Reglas que se activaron'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 390,
+          "z": 0,
+          "width": 610,
+          "height": 110,
+          "config": "{\"name\": \"bf0d626cef544794be0c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 390, \"z\": 0, \"width\": 610, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Acción sugerida\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Acción sugerida\"}, \"Name\": \"Medidas.Acción sugerida\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Acción sugerida'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 390,
+          "z": 0,
+          "width": 620,
+          "height": 110,
+          "config": "{\"name\": \"bf158b8d03a3425ba5b8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 390, \"z\": 0, \"width\": 620, \"height\": 110}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Probabilidad modelo (no publicado)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Probabilidad modelo (no publicado)\"}, \"Name\": \"Medidas.Probabilidad modelo (no publicado)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Probabilidad del modelo (solo comparación, no usar para decidir)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 510,
+          "z": 0,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"5397edf9ab7f4c92995b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 510, \"z\": 0, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Recall plan B\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Recall plan B\"}, \"Name\": \"Medidas.Recall plan B\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Renuncias detectadas (recall)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 330,
+          "y": 510,
+          "z": 0,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"44b9d81301f343bc806e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 330, \"y\": 510, \"z\": 0, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Precisión plan B\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Precisión plan B\"}, \"Name\": \"Medidas.Precisión plan B\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Alertas acertadas (precisión)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 510,
+          "z": 0,
+          "width": 300,
+          "height": 100,
+          "config": "{\"name\": \"6ebd4457575d4c90aecd\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 510, \"z\": 0, \"width\": 300, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Falsas alarmas plan B\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Falsas alarmas plan B\"}, \"Name\": \"Medidas.Falsas alarmas plan B\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Falsas alarmas'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 950,
+          "y": 510,
+          "z": 0,
+          "width": 310,
+          "height": 100,
+          "config": "{\"name\": \"d82d5c4575cd48c0a5aa\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 950, \"y\": 510, \"z\": 0, \"width\": 310, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Brecha máxima de equidad plan B (p.p.)\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Brecha máxima de equidad plan B (p.p.)\"}, \"Name\": \"Medidas.Brecha máxima de equidad plan B (p.p.)\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Brecha máxima entre grupos (p.p.)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 20,
+          "y": 620,
+          "z": 0,
+          "width": 1240,
+          "height": 80,
+          "config": "{\"name\": \"f5d8c7a3d0484229a449\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 620, \"z\": 0, \"width\": 1240, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"Medidas.Aviso decisión humana\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m48\", \"Entity\": \"Medidas\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m48\"}}, \"Property\": \"Aviso decisión humana\"}, \"Name\": \"Medidas.Aviso decisión humana\"}]}, \"drillFilterOtherVisuals\": true}}",
+          "filters": "[]"
+        }
+      ],
+      "width": 1280
+    }
+  ]
+}

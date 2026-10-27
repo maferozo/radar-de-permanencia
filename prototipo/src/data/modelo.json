@@ -1,0 +1,647 @@
+{
+"estado": "DEMOSTRACIÓN – entrenado con datos ficticios; no validado con datos del cliente",
+"fecha_corte": "2026-09-30",
+"particion": {
+"tipo": "temporal",
+"train": "2024-07..2025-10",
+"test": "2025-11..2026-04",
+"n_train": 1906,
+"n_test": 622,
+"tasa_train": 0.305,
+"tasa_test": 0.32
+},
+"C": 0.1,
+"variables_entrada": [
+"distancia_km",
+"experiencia_previa_meses",
+"puntaje_prueba_tecnica",
+"turno",
+"nivel_educativo",
+"canal_reclutamiento",
+"campana"
+],
+"variables_excluidas": {
+"fuga": [
+"id_supervisor",
+"cumplimiento",
+"ausencias",
+"motivo_retiro",
+"fechas de retiro"
+],
+"equidad": [
+"edad",
+"sexo",
+"estado_civil",
+"estrato",
+"barrio/dirección (no recolectadas)"
+]
+},
+"evaluacion_ampliada": {
+"n": 2528,
+"plan_b": {
+"modelo": "Plan B: reglas de alerta (todas las cohortes)",
+"recall": 0.164,
+"precision": 0.452,
+"f1": 0.241,
+"auc": null,
+"tasa_falsos_positivos": 0.089,
+"vp": 128,
+"fp": 155,
+"fn": 652,
+"vn": 1593
+},
+"plan_b_brechas": [
+{
+"atributo": "sexo",
+"brecha_recall_pp": 0.4,
+"brecha_fp_pp": 0.7,
+"cumple": true
+},
+{
+"atributo": "rango_edad",
+"brecha_recall_pp": 1.8,
+"brecha_fp_pp": 3.3,
+"cumple": true
+},
+{
+"atributo": "estado_civil",
+"brecha_recall_pp": 4.5,
+"brecha_fp_pp": 0.8,
+"cumple": true
+},
+{
+"atributo": "estrato_grupo",
+"brecha_recall_pp": 1.1,
+"brecha_fp_pp": 2.1,
+"cumple": true
+}
+],
+"plan_b_cumple_equidad": true,
+"modelo_oof": {
+"modelo": "Regresión logística (validación cruzada, fuera de muestra)",
+"recall": 0.59,
+"precision": 0.401,
+"f1": 0.477,
+"auc": 0.643,
+"tasa_falsos_positivos": 0.393,
+"vp": 460,
+"fp": 687,
+"fn": 320,
+"vn": 1061
+},
+"modelo_oof_brechas": [
+{
+"atributo": "sexo",
+"brecha_recall_pp": 2.0,
+"brecha_fp_pp": 2.3,
+"cumple": true
+},
+{
+"atributo": "rango_edad",
+"brecha_recall_pp": 4.2,
+"brecha_fp_pp": 4.2,
+"cumple": true
+},
+{
+"atributo": "estado_civil",
+"brecha_recall_pp": 12.3,
+"brecha_fp_pp": 10.7,
+"cumple": false
+},
+{
+"atributo": "estrato_grupo",
+"brecha_recall_pp": 5.9,
+"brecha_fp_pp": 6.6,
+"cumple": true
+}
+],
+"modelo_oof_cumple_equidad": false
+},
+"semaforo_oficial": "Plan B: reglas de alerta",
+"metricas": [
+{
+"modelo": "Regresión logística",
+"recall": 0.533,
+"precision": 0.4,
+"f1": 0.457,
+"auc": 0.619,
+"tasa_falsos_positivos": 0.376,
+"vp": 106,
+"fp": 159,
+"fn": 93,
+"vn": 264
+},
+{
+"modelo": "Referencia (todos se quedan)",
+"recall": 0.0,
+"precision": 0.0,
+"f1": 0.0,
+"auc": 0.5,
+"tasa_falsos_positivos": 0.0,
+"vp": 0,
+"fp": 0,
+"fn": 199,
+"vn": 423
+},
+{
+"modelo": "Árbol de decisión (comparación)",
+"recall": 0.497,
+"precision": 0.398,
+"f1": 0.442,
+"auc": 0.609,
+"tasa_falsos_positivos": 0.355,
+"vp": 99,
+"fp": 150,
+"fn": 100,
+"vn": 273
+},
+{
+"modelo": "Semáforo: alerta = rojo",
+"recall": 0.281,
+"precision": 0.448,
+"f1": 0.346,
+"auc": null,
+"tasa_falsos_positivos": 0.163,
+"vp": 56,
+"fp": 69,
+"fn": 143,
+"vn": 354
+},
+{
+"modelo": "Semáforo: alerta = rojo o amarillo",
+"recall": 0.623,
+"precision": 0.399,
+"f1": 0.486,
+"auc": null,
+"tasa_falsos_positivos": 0.442,
+"vp": 124,
+"fp": 187,
+"fn": 75,
+"vn": 236
+}
+],
+"plan_b": {
+"modelo": "Plan B: reglas de alerta",
+"recall": 0.156,
+"precision": 0.492,
+"f1": 0.237,
+"auc": null,
+"tasa_falsos_positivos": 0.076,
+"vp": 31,
+"fp": 32,
+"fn": 168,
+"vn": 391
+},
+"plan_b_brechas": [
+{
+"atributo": "estado_civil",
+"brecha_recall_pp": 3.8,
+"brecha_fp_pp": 0.6,
+"cumple": true
+},
+{
+"atributo": "estrato_grupo",
+"brecha_recall_pp": 1.9,
+"brecha_fp_pp": 3.3,
+"cumple": true
+},
+{
+"atributo": "rango_edad",
+"brecha_recall_pp": 4.0,
+"brecha_fp_pp": 8.2,
+"cumple": true
+},
+{
+"atributo": "sexo",
+"brecha_recall_pp": 13.0,
+"brecha_fp_pp": 0.8,
+"cumple": false
+}
+],
+"plan_b_supera_referencia": true,
+"plan_b_cumple_equidad": false,
+"umbrales": {
+"amarillo": 0.4721,
+"rojo": 0.5971
+},
+"equidad": [
+{
+"atributo": "sexo",
+"grupo": "Femenino",
+"n": 390,
+"positivos": 128,
+"recall": 0.477,
+"tasa_fp": 0.374,
+"suficiente": true
+},
+{
+"atributo": "sexo",
+"grupo": "Masculino",
+"n": 232,
+"positivos": 71,
+"recall": 0.634,
+"tasa_fp": 0.379,
+"suficiente": true
+},
+{
+"atributo": "rango_edad",
+"grupo": "18–24",
+"n": 309,
+"positivos": 94,
+"recall": 0.457,
+"tasa_fp": 0.363,
+"suficiente": true
+},
+{
+"atributo": "rango_edad",
+"grupo": "25–34",
+"n": 302,
+"positivos": 101,
+"recall": 0.594,
+"tasa_fp": 0.378,
+"suficiente": true
+},
+{
+"atributo": "rango_edad",
+"grupo": "35+",
+"n": 11,
+"positivos": 4,
+"recall": 0.75,
+"tasa_fp": 0.714,
+"suficiente": false
+},
+{
+"atributo": "estado_civil",
+"grupo": "Casado/a o unión libre",
+"n": 200,
+"positivos": 64,
+"recall": 0.5,
+"tasa_fp": 0.331,
+"suficiente": true
+},
+{
+"atributo": "estado_civil",
+"grupo": "Otro",
+"n": 32,
+"positivos": 12,
+"recall": 0.5,
+"tasa_fp": 0.4,
+"suficiente": false
+},
+{
+"atributo": "estado_civil",
+"grupo": "Soltero/a",
+"n": 390,
+"positivos": 123,
+"recall": 0.553,
+"tasa_fp": 0.397,
+"suficiente": true
+},
+{
+"atributo": "estrato_grupo",
+"grupo": "1–2",
+"n": 355,
+"positivos": 113,
+"recall": 0.558,
+"tasa_fp": 0.38,
+"suficiente": true
+},
+{
+"atributo": "estrato_grupo",
+"grupo": "3",
+"n": 185,
+"positivos": 59,
+"recall": 0.475,
+"tasa_fp": 0.405,
+"suficiente": true
+},
+{
+"atributo": "estrato_grupo",
+"grupo": "4–6",
+"n": 82,
+"positivos": 27,
+"recall": 0.556,
+"tasa_fp": 0.291,
+"suficiente": false
+}
+],
+"brechas": [
+{
+"atributo": "estado_civil",
+"brecha_recall_pp": 5.3,
+"brecha_fp_pp": 6.6,
+"cumple": true
+},
+{
+"atributo": "estrato_grupo",
+"brecha_recall_pp": 8.3,
+"brecha_fp_pp": 2.5,
+"cumple": true
+},
+{
+"atributo": "rango_edad",
+"brecha_recall_pp": 13.7,
+"brecha_fp_pp": 1.5,
+"cumple": false
+},
+{
+"atributo": "sexo",
+"brecha_recall_pp": 15.7,
+"brecha_fp_pp": 0.5,
+"cumple": false
+}
+],
+"auc_con_sensibles_diagnostico": 0.621,
+"proxy_max": [
+{
+"variable": "canal_reclutamiento",
+"sensible": "rango_edad",
+"v_cramer": 0.046,
+"supera_0_5": false
+},
+{
+"variable": "distancia_km",
+"sensible": "sexo",
+"v_cramer": 0.045,
+"supera_0_5": false
+},
+{
+"variable": "canal_reclutamiento",
+"sensible": "estado_civil",
+"v_cramer": 0.043,
+"supera_0_5": false
+},
+{
+"variable": "puntaje_prueba_tecnica",
+"sensible": "estado_civil",
+"v_cramer": 0.043,
+"supera_0_5": false
+},
+{
+"variable": "puntaje_prueba_tecnica",
+"sensible": "estrato_grupo",
+"v_cramer": 0.04,
+"supera_0_5": false
+}
+],
+"criterios": {
+"supera_referencia": true,
+"meta_recall": 0.6,
+"cumple_meta_recall": false,
+"equidad_max_pp": 10.0,
+"cumple_equidad": false,
+"sin_aproximaciones": true,
+"publicable_en_demo": false,
+"n_min_grupo_equidad": 30
+},
+"coeficientes": [
+{
+"variable": "distancia_km",
+"coeficiente": 0.3129734963255686,
+"media": 9.821983210912904,
+"escala": 6.469749971387454,
+"imputacion": 8.2
+},
+{
+"variable": "experiencia_previa_meses",
+"coeficiente": -0.16928879478218953,
+"media": 10.126967471143757,
+"escala": 11.935100689742123,
+"imputacion": 7.0
+},
+{
+"variable": "puntaje_prueba_tecnica",
+"coeficiente": -0.2323151504305261,
+"media": 72.27339979013641,
+"escala": 11.927346548236152,
+"imputacion": 72.2
+},
+{
+"variable": "turno=Mañana",
+"coeficiente": -0.13896267760627312,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "turno=Noche",
+"coeficiente": 0.24809665513980794,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "turno=Rotativo",
+"coeficiente": -0.04926787006210302,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "turno=Tarde",
+"coeficiente": -0.07740796618294303,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "nivel_educativo=Bachiller",
+"coeficiente": 0.1300339279376899,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "nivel_educativo=Profesional",
+"coeficiente": 0.08951858329664572,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "nivel_educativo=Tecnólogo",
+"coeficiente": -0.1332264551082864,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "nivel_educativo=Técnico",
+"coeficiente": -0.10386791483756026,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "canal_reclutamiento=Feria",
+"coeficiente": 0.19167558492852632,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "canal_reclutamiento=Portal de empleo",
+"coeficiente": 0.04009334550472374,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "canal_reclutamiento=Redes sociales",
+"coeficiente": 0.2454498126998459,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "canal_reclutamiento=Referido",
+"coeficiente": -0.49476060184460746,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "campana=Campaña A · Telecomunicaciones",
+"coeficiente": 0.22399548415273038,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "campana=Campaña B · Banca",
+"coeficiente": -0.30678651580918964,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "campana=Campaña C · Salud",
+"coeficiente": 0.19054307982432137,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "campana=Campaña D · Retail",
+"coeficiente": -0.12529390687937245,
+"media": null,
+"escala": null,
+"imputacion": null
+},
+{
+"variable": "intercepto",
+"coeficiente": -0.030864351414522186,
+"media": null,
+"escala": null,
+"imputacion": null
+}
+],
+"imputacion_categorica": {
+"turno": "Mañana",
+"nivel_educativo": "Bachiller",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña A · Telecomunicaciones"
+},
+"consistencia": [
+{
+"distancia_km": 5.8,
+"experiencia_previa_meses": 11.0,
+"puntaje_prueba_tecnica": 65.2,
+"turno": "Tarde",
+"nivel_educativo": "Bachiller",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña A · Telecomunicaciones",
+"p_python": 0.5539581890127895
+},
+{
+"distancia_km": 8.3,
+"experiencia_previa_meses": 0.0,
+"puntaje_prueba_tecnica": 64.1,
+"turno": "Rotativo",
+"nivel_educativo": "Profesional",
+"canal_reclutamiento": "Referido",
+"campana": "Campaña B · Banca",
+"p_python": 0.3628658703315032
+},
+{
+"distancia_km": 9.3,
+"experiencia_previa_meses": 5.0,
+"puntaje_prueba_tecnica": 59.5,
+"turno": "Mañana",
+"nivel_educativo": "Bachiller",
+"canal_reclutamiento": "Referido",
+"campana": "Campaña D · Retail",
+"p_python": 0.4100925371746695
+},
+{
+"distancia_km": 22.9,
+"experiencia_previa_meses": 4.0,
+"puntaje_prueba_tecnica": 89.5,
+"turno": "Mañana",
+"nivel_educativo": "Bachiller",
+"canal_reclutamiento": "Feria",
+"campana": "Campaña A · Telecomunicaciones",
+"p_python": 0.681331980702278
+},
+{
+"distancia_km": 12.2,
+"experiencia_previa_meses": 21.0,
+"puntaje_prueba_tecnica": 75.0,
+"turno": "Mañana",
+"nivel_educativo": "Técnico",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña B · Banca",
+"p_python": 0.34690230919233817
+},
+{
+"distancia_km": 24.8,
+"experiencia_previa_meses": 1.0,
+"puntaje_prueba_tecnica": 63.3,
+"turno": "Rotativo",
+"nivel_educativo": "Bachiller",
+"canal_reclutamiento": "Redes sociales",
+"campana": "Campaña A · Telecomunicaciones",
+"p_python": 0.8246455857124115
+},
+{
+"distancia_km": 3.7,
+"experiencia_previa_meses": 0.0,
+"puntaje_prueba_tecnica": 73.9,
+"turno": "Mañana",
+"nivel_educativo": "Tecnólogo",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña D · Retail",
+"p_python": 0.36067296799029985
+},
+{
+"distancia_km": 5.2,
+"experiencia_previa_meses": 0.0,
+"puntaje_prueba_tecnica": 70.4,
+"turno": "Mañana",
+"nivel_educativo": "Tecnólogo",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña A · Telecomunicaciones",
+"p_python": 0.4794063057555903
+},
+{
+"distancia_km": 8.8,
+"experiencia_previa_meses": 21.0,
+"puntaje_prueba_tecnica": 75.9,
+"turno": "Mañana",
+"nivel_educativo": "Profesional",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña D · Retail",
+"p_python": 0.39178652292246746
+},
+{
+"distancia_km": 30.7,
+"experiencia_previa_meses": 0.0,
+"puntaje_prueba_tecnica": 73.7,
+"turno": "Tarde",
+"nivel_educativo": "Profesional",
+"canal_reclutamiento": "Portal de empleo",
+"campana": "Campaña B · Banca",
+"p_python": 0.6985453325341455
+}
+]
+}

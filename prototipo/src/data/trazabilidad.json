@@ -1,0 +1,220 @@
+[
+ {
+  "id": "RF-01",
+  "req": "Integrar fuentes en una base única con identificador anónimo",
+  "hu": "HU-01",
+  "donde": "pipeline/02_etl.py (bronce → plata → oro)",
+  "estado": "Implementado con datos ficticios",
+  "pruebas": [
+   "PT-08-01",
+   "PT-08-05"
+  ]
+ },
+ {
+  "id": "RF-02",
+  "req": "Validar calidad (duplicados, fechas imposibles, nulos) y generar reporte",
+  "hu": "HU-01",
+  "donde": "pipeline/02_etl.py · Seguimiento › Calidad de datos",
+  "estado": "Implementado con datos ficticios",
+  "pruebas": [
+   "PT-08-01",
+   "PT-08-02",
+   "PT-08-03",
+   "PT-08-04",
+   "PT-08-08"
+  ]
+ },
+ {
+  "id": "RF-03",
+  "req": "Calcular renuncia_temprana y marcar cohortes con ventana completa",
+  "hu": "HU-02",
+  "donde": "pipeline/02_etl.py · tarjetas del Panorama",
+  "estado": "Implementado con datos ficticios",
+  "pruebas": [
+   "PT-08-06",
+   "PT-08-07"
+  ]
+ },
+ {
+  "id": "RF-04",
+  "req": "Tasa y cantidad por cohorte con tendencia",
+  "hu": "HU-03",
+  "donde": "Panorama › gráfico de línea por cohorte",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-01",
+   "PF-03"
+  ]
+ },
+ {
+  "id": "RF-05",
+  "req": "Distribución por mes de antigüedad 1–6 y mes crítico resaltado",
+  "hu": "HU-04",
+  "donde": "Panorama › barras por mes",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-01"
+  ]
+ },
+ {
+  "id": "RF-06",
+  "req": "Costo con supuestos parametrizables",
+  "hu": "HU-05",
+  "donde": "Panorama › tarjeta de costo",
+  "estado": "Implementado con costos simulados",
+  "pruebas": [
+   "PF-02",
+   "PU-19"
+  ]
+ },
+ {
+  "id": "RF-07",
+  "req": "Filtros por período, campaña y supervisor, en todos los visuales, y limpiar",
+  "hu": "HU-06",
+  "donde": "Barra de filtros (pantallas 1 a 3)",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-04",
+   "PF-05",
+   "PF-06"
+  ]
+ },
+ {
+  "id": "RF-08",
+  "req": "Retención por supervisor con n y exclusión de grupos menores al mínimo",
+  "hu": "HU-07",
+  "donde": "Causas › supervisor",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-07",
+   "PU-04"
+  ]
+ },
+ {
+  "id": "RF-09",
+  "req": "Rotación por rango de puntaje y conclusión explícita",
+  "hu": "HU-08",
+  "donde": "Causas › prueba técnica",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-07"
+  ]
+ },
+ {
+  "id": "RF-10",
+  "req": "Comparar perfiles y resaltar los 3 con mayor rotación",
+  "hu": "HU-09",
+  "donde": "Causas › perfil y top 3",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-08"
+  ]
+ },
+ {
+  "id": "RF-11",
+  "req": "Top 5 motivos de retiro y contraste",
+  "hu": "HU-10",
+  "donde": "Causas › motivos",
+  "estado": "Implementado con encuesta simulada",
+  "pruebas": [
+   "PF-09",
+   "PU-18"
+  ]
+ },
+ {
+  "id": "RF-12",
+  "req": "Resumen con 3 a 5 factores, evidencia y recomendación",
+  "hu": "HU-11",
+  "donde": "Resumen y acciones",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-10",
+   "PF-11",
+   "PU-05"
+  ]
+ },
+ {
+  "id": "RF-13",
+  "req": "Ingresar candidato y calcular probabilidad y nivel",
+  "hu": "HU-12",
+  "donde": "Semáforo › formulario",
+  "estado": "Implementado: plan B oficial; modelo no publicado",
+  "pruebas": [
+   "PF-12",
+   "PF-14",
+   "PF-15",
+   "PF-16",
+   "PF-17",
+   "PF-19"
+  ]
+ },
+ {
+  "id": "RF-14",
+  "req": "3 factores principales y acción sugerida",
+  "hu": "HU-13",
+  "donde": "Semáforo › resultado",
+  "estado": "Implementado en modo demostración",
+  "pruebas": [
+   "PF-13",
+   "PU-10"
+  ]
+ },
+ {
+  "id": "RF-15",
+  "req": "Métricas de confiabilidad frente a la referencia",
+  "hu": "HU-14",
+  "donde": "Semáforo › confiabilidad",
+  "estado": "Implementado con métricas simuladas",
+  "pruebas": [
+   "PF-20"
+  ]
+ },
+ {
+  "id": "RF-16",
+  "req": "Sin variables sensibles; reporte de equidad por grupo",
+  "hu": "HU-15",
+  "donde": "pipeline/03_modelo.py · Semáforo › detalle",
+  "estado": "Implementado; plan B cumple equidad, modelo no",
+  "pruebas": [
+   "PT-09-01",
+   "PT-09-04",
+   "PT-09-07",
+   "PU-08"
+  ]
+ },
+ {
+  "id": "RF-17",
+  "req": "Aviso visible de decisión final del reclutador",
+  "hu": "HU-12, HU-15",
+  "donde": "Semáforo › resultado",
+  "estado": "Implementado",
+  "pruebas": [
+   "PF-12",
+   "PF-19",
+   "PU-20"
+  ]
+ },
+ {
+  "id": "RF-18",
+  "req": "Solo datos agregados, sin nombres ni documentos",
+  "hu": "HU-16",
+  "donde": "Todas las pantallas; exportación 04",
+  "estado": "Implementado",
+  "pruebas": [
+   "PU-16",
+   "PT-08-05",
+   "PF-18",
+   "PT-10-01"
+  ]
+ },
+ {
+  "id": "RF-19",
+  "req": "Reprocesar y reentrenar de forma manual y reproducible",
+  "hu": "HU-01, HU-12",
+  "donde": "pipeline/ 01 a 04 (semilla 42)",
+  "estado": "Implementado con datos ficticios",
+  "pruebas": [
+   "PT-09-05"
+  ]
+ }
+]

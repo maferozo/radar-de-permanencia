@@ -1,0 +1,12 @@
+atributo,grupo,n,positivos,recall,tasa_fp,suficiente
+sexo,Femenino,390,128,0.477,0.374,True
+sexo,Masculino,232,71,0.634,0.379,True
+rango_edad,18–24,309,94,0.457,0.363,True
+rango_edad,25–34,302,101,0.594,0.378,True
+rango_edad,35+,11,4,0.75,0.714,False
+estado_civil,Casado/a o unión libre,200,64,0.5,0.331,True
+estado_civil,Otro,32,12,0.5,0.4,False
+estado_civil,Soltero/a,390,123,0.553,0.397,True
+estrato_grupo,1–2,355,113,0.558,0.38,True
+estrato_grupo,3,185,59,0.475,0.405,True
+estrato_grupo,4–6,82,27,0.556,0.291,False

@@ -1,0 +1,213 @@
+{
+ "fecha": "2026-10-27T20:38:06.997Z",
+ "entorno": "Node v22.23.4",
+ "resultados": [
+  {
+   "id": "PU-01",
+   "cu": "CU-01",
+   "nombre": "Tasa con cohortes de ventana completa",
+   "entrada": "Dataset demo completo",
+   "esperado": "Tasa = renuncias ÷ contratados solo con ventana observada",
+   "observado": "780/2528 = 30.85 %; 714 excluidos sin ventana",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-02",
+   "cu": "CU-01",
+   "nombre": "Cohortes sin 180 días no aparecen en la tendencia",
+   "entrada": "Cohortes 2026-05 a 2026-09",
+   "esperado": "No se grafican",
+   "observado": "última cohorte graficada: 2026-04",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-03",
+   "cu": "CU-02 (A1)",
+   "nombre": "Filtro sin registros",
+   "entrada": "Supervisor SUP-01 con campaña D · Retail",
+   "esperado": "0 personas → estado «sin datos»",
+   "observado": "contratados = 0; tasa = null",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-04",
+   "cu": "CU-03 (A1)",
+   "nombre": "Grupo pequeño no se compara",
+   "entrada": "SUP-15 (n < 30)",
+   "esperado": "suficiente = false",
+   "observado": "SUP-15 n = 8; comparable = false",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-05",
+   "cu": "CU-04",
+   "nombre": "Resumen con 3 a 5 factores ordenados",
+   "entrada": "Dataset demo completo, mínimo 30",
+   "esperado": "Entre 3 y 5 factores en orden descendente de diferencia",
+   "observado": "5 factores: > 15 km (+12.8 p.p.); SUP-03 (+12.7 p.p.); 0–59 (+9.2 p.p.); Redes sociales (+8.2 p.p.); Sin experiencia (+7.5 p.p.)",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-06",
+   "cu": "CU-05 (A2)",
+   "nombre": "Puntaje de prueba superior a 100",
+   "entrada": "puntaje = 120",
+   "esperado": "Error de rango; no se calcula",
+   "observado": "«Puntaje de la prueba técnica» debe estar entre 0 y 100; se recibió 120.",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-07",
+   "cu": "CU-05 (A1)",
+   "nombre": "Campos obligatorios vacíos",
+   "entrada": "turno y distancia vacíos",
+   "esperado": "Indica cuáles faltan",
+   "observado": "Falta el campo obligatorio «Turno». | Falta el campo obligatorio «Distancia».",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-08",
+   "cu": "CU-05 / HU-15",
+   "nombre": "Intento de introducir variables sensibles",
+   "entrada": "Entrada con edad, sexo y estrato",
+   "esperado": "Se rechazan con mensaje",
+   "observado": "3 errores: «edad» es una variable sensible o identificable y no puede usarse para evaluar candidatos (HU-15).",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-09",
+   "cu": "CU-05 / sec. 17",
+   "nombre": "Consistencia del semáforo Python vs. prototipo",
+   "entrada": "10 candidatos de prueba",
+   "esperado": "Diferencia de probabilidad < 1e-9",
+   "observado": "diferencia máxima = 1.11e-16 en 10 candidatos",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-10",
+   "cu": "CU-06",
+   "nombre": "Explicación: 3 factores con signo",
+   "entrada": "Candidato de ejemplo",
+   "esperado": "3 contribuciones ordenadas por |β·x|",
+   "observado": "80.7 % (rojo); Distancia ▲, Puntaje de la prueba técnica ▲, Turno ▲",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-11",
+   "cu": "CU-05",
+   "nombre": "Umbrales configurables",
+   "entrada": "Mismo candidato con umbrales 0,90/0,95",
+   "esperado": "Cambia el color sin cambiar la probabilidad",
+   "observado": "rojo → verde",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-12",
+   "cu": "Burndown",
+   "nombre": "Línea ideal y trabajo restante",
+   "entrada": "Sprint 1: 22 pts, registro de 0 aceptados al cierre",
+   "esperado": "Ideal de 22 a 0; real = 22; estado atrasado",
+   "observado": "10 días hábiles; ideal 22→0; atrasado",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-13",
+   "cu": "Burndown",
+   "nombre": "Sin registros no se inventa la línea real",
+   "entrada": "Sprint 3 sin registros",
+   "esperado": "real = null en todos los días; estado «sin datos»",
+   "observado": "sin línea real",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-14",
+   "cu": "DORA",
+   "nombre": "Sin despliegues",
+   "entrada": "Registro vacío",
+   "esperado": "Todas las métricas nulas",
+   "observado": "Sin despliegues medidos",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-15",
+   "cu": "DORA",
+   "nombre": "Fórmulas con ejemplo",
+   "entrada": "2 despliegues, 1 con fallo de 2 h, en 2 semanas",
+   "esperado": "1/semana; 50 %; 2 h",
+   "observado": "1/sem; lead 24 h; fallos 50 %; MTTR 2 h",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-16",
+   "cu": "RF-18",
+   "nombre": "Sin datos identificables en el prototipo",
+   "entrada": "hechos.json",
+   "esperado": "No contiene id_empleado, nombre ni documento",
+   "observado": "ninguna columna o valor identificable",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-18",
+   "cu": "CU-03 / HU-10",
+   "nombre": "Top 5 motivos y contraste",
+   "entrada": "Encuesta simulada",
+   "esperado": "5 motivos que suman ≤ 100 % y contraste por motivo",
+   "observado": "Horario 25.1 %; Salario 24.4 %; Otro 21.8 %; Clima laboral 18.5 %; Estudio 10.3 %",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-19",
+   "cu": "HU-05",
+   "nombre": "Costo = renuncias × costo por reemplazo",
+   "entrada": "780 renuncias × COP 2.550.000",
+   "esperado": "COP 1.989.000.000; sin supuestos = null",
+   "observado": "1.989.000.000",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-20",
+   "cu": "CU-09 (A1) / 13.10",
+   "nombre": "Reglas del plan B",
+   "entrada": "Tres candidatos tipo",
+   "esperado": "rojo, amarillo y verde sin reglas duplicadas",
+   "observado": "rojo (2 reglas), amarillo, verde",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-21",
+   "cu": "CU-03",
+   "nombre": "Ranking de factores con diferencia y tamaño de grupo",
+   "entrada": "Dataset demo, mínimo 30",
+   "esperado": "Una fila por variable; prioritario > 5 p.p.; diferencia = tasa del grupo − promedio",
+   "observado": "8 variables; 1.º Distancia vivienda–trabajo: > 15 km (+12.8 p.p.); 6 prioritarios",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-22",
+   "cu": "CU-05 / 13.10",
+   "nombre": "Condiciones evaluadas y justificación de cada regla",
+   "entrada": "Candidato de ejemplo (18 km, Noche, 0 meses, 58)",
+   "esperado": "4 condiciones; cada regla activada con datos que la justifican y acción",
+   "observado": "4 de 4 condiciones; Distancia 18 km (> 15) y turno Noche. | 0 meses de experiencia y puntaje 58 (< 60).",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-23",
+   "cu": "CU-04 / HU-11",
+   "nombre": "Plan de acción completo por factor",
+   "entrada": "Factores del resumen",
+   "esperado": "Cada factor tiene recomendación, responsable sugerido e indicador",
+   "observado": "5 factores con plan completo",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-17",
+   "cu": "CU-02",
+   "nombre": "Limpiar filtros vuelve a la vista completa",
+   "entrada": "Filtros vacíos",
+   "esperado": "Mismo número de filas que el dataset",
+   "observado": "3242 de 3242",
+   "estado": "Aprobada"
+  }
+ ]
+}

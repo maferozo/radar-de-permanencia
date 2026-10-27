@@ -1,0 +1,150 @@
+{
+ "fecha": "2026-10-27T15:35:33",
+ "entorno": "Python 3.13.18 · pandas 3.0.5 · Linux-6.18.44-fc-v165-x86_64-with-glibc2.39",
+ "resultados": [
+  {
+   "id": "PT-08-01",
+   "cu": "CU-08",
+   "nombre": "Datos duplicados",
+   "entrada": "empleados.csv con 15 filas duplicadas exactas",
+   "esperado": "Se eliminan; id_empleado queda único",
+   "observado": "15 duplicados en bronce; plata con ids únicos = True",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-02",
+   "cu": "CU-08",
+   "nombre": "Fechas de retiro anteriores al ingreso",
+   "entrada": "6 retiros con fecha 10 días antes del ingreso",
+   "esperado": "Se excluyen y se reportan",
+   "observado": "Reportados 6; quedan 0 con fecha imposible",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-03",
+   "cu": "CU-08",
+   "nombre": "Retiros huérfanos (integridad referencial)",
+   "entrada": "3 retiros con ids inexistentes",
+   "esperado": "Se excluyen y se reportan",
+   "observado": "Reportados 3",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-04",
+   "cu": "CU-08",
+   "nombre": "Puntaje fuera de dominio",
+   "entrada": "Puntajes 105, 130 y −4",
+   "esperado": "Se marcan como nulo",
+   "observado": "Marcados 3; quedan 0 fuera de rango",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-05",
+   "cu": "CU-08 / HU-16",
+   "nombre": "Anonimización con hash y sal",
+   "entrada": "Columnas nombre, documento e id_empleado",
+   "esperado": "Sin nombre ni documento; id de 64 caracteres; hash distinto con otra sal",
+   "observado": "sin PII=True; 64 caracteres=True; hash cambia con la sal=True",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-06",
+   "cu": "CU-08 / HU-02",
+   "nombre": "Definición de renuncia temprana",
+   "entrada": "Renuncia día 180, renuncia día 181, despido día 30, activo",
+   "esperado": "1, 0, 0 (despido aparte), 0",
+   "observado": "día 180 → 1; día 181 → 0; despidos tempranos aparte = 1",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-07",
+   "cu": "CU-08 / RF-03",
+   "nombre": "Cohorte sin 180 días de observación",
+   "entrada": "Ingreso 2026-06-01, corte 2026-09-30 (121 días)",
+   "esperado": "ventana_observada = False; no entra en tasas ni en el dataset del modelo",
+   "observado": "ventana_observada = False; filas en dataset del modelo = 4",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-08-08",
+   "cu": "CU-08 (A1)",
+   "nombre": "Reporte de calidad que no cumple",
+   "entrada": "30 % de nulos en distancia_km",
+   "esperado": "El proceso se detiene y no escribe plata ni oro",
+   "observado": "código de salida 1; capa oro creada = False",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-01",
+   "cu": "CU-09 / HU-15",
+   "nombre": "Intento de usar variables sensibles en el modelo",
+   "entrada": "Revisión de coeficientes exportados",
+   "esperado": "Ninguna variable de edad, sexo, estado civil, estrato, barrio o dirección",
+   "observado": "19 coeficientes; sensibles encontrados = []",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-02",
+   "cu": "CU-09 / HU-14",
+   "nombre": "Evaluación con datos no usados para entrenar",
+   "entrada": "Partición temporal",
+   "esperado": "Cohortes de prueba posteriores y disjuntas de las de entrenamiento",
+   "observado": "entrenamiento 2024-07..2025-10 (n=1906); prueba 2025-11..2026-04 (n=622)",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-03",
+   "cu": "CU-09 (A1)",
+   "nombre": "Modelo que no supera la referencia",
+   "entrada": "Recall 0 y AUC 0,50 (igual a «todos se quedan»)",
+   "esperado": "No se publica; se activa el plan B",
+   "observado": "No publicar; activar plan B (reglas de alerta)",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-04",
+   "cu": "CU-09 (A1) / HU-15",
+   "nombre": "Modelo que incumple equidad",
+   "entrada": "Modelo demo: brechas por sexo y edad > 10 p.p.",
+   "esperado": "No se publica; se activa el plan B",
+   "observado": "brechas de recall (p.p.) = {'estado_civil': 5.3, 'estrato_grupo': 8.3, 'rango_edad': 13.7, 'sexo': 15.7}; publicable = False",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-05",
+   "cu": "CU-09 / RNF-09",
+   "nombre": "Reproducibilidad del entrenamiento",
+   "entrada": "Segunda ejecución con random_state = 42",
+   "esperado": "Coeficientes idénticos",
+   "observado": "diferencia máxima entre ejecuciones = 0.00e+00",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-06",
+   "cu": "CU-09 / RNF-06",
+   "nombre": "Meta de recall propuesta (≥ 0,60)",
+   "entrada": "Métricas sobre el conjunto de prueba",
+   "esperado": "Se informa si se alcanza; no se presenta como lograda si no se alcanza",
+   "observado": "recall = 0.533 → meta no alcanzada (registrado correctamente)",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-09-07",
+   "cu": "CU-09 (A1) / 13.10",
+   "nombre": "Plan B: referencia y equidad",
+   "entrada": "Reglas fijas sobre todas las cohortes con ventana",
+   "esperado": "Supera la referencia y cumple ≤ 10 p.p. en los 4 atributos",
+   "observado": "recall 0.164 vs 0; brechas (p.p.) {'sexo': 0.7, 'rango_edad': 3.3, 'estado_civil': 4.5, 'estrato_grupo': 2.1}; oficial: Plan B: reglas de alerta",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PT-10-01",
+   "cu": "Power BI / RF-18",
+   "nombre": "Exportación a Power BI",
+   "entrada": "pipeline/05_exportar_powerbi.py",
+   "esperado": "CSV sin identificadores, totales iguales a la capa oro, JSON válidos y medidas del informe definidas",
+   "observado": "2528 personas / 780 renuncias; 22 medidas; 35 campos usados en 4 páginas, 0 sin definir; 3 roles RLS",
+   "estado": "Aprobada"
+  }
+ ]
+}

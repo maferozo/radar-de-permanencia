@@ -1,0 +1,2 @@
+DATOS FICTICIOS DE DEMOSTRACIÓN generados con semilla 42 por pipeline/01_generar_datos_demo.py.
+No representan personas ni resultados reales del cliente. costos.csv y motivo_retiro también son simulados (HU-05, HU-10).

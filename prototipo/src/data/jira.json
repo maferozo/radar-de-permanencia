@@ -1,0 +1,530 @@
+[
+{
+"key": "SCRUM-4",
+"type": "Subtask",
+"status": "Por hacer",
+"summary": "Subtarea 2.1",
+"sprint": [],
+"catchg": "2026-09-21",
+"created": "2026-09-21"
+},
+{
+"key": "SCRUM-5",
+"type": "Epic",
+"status": "Por hacer",
+"summary": "People Analytics – Rotación y Desempeño",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-6",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-01 · Información unificada y confiable",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-7",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-02 · Definición única de renuncia temprana",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-8",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-03 · Evolución de la rotación temprana",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-9",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-08 · Prueba técnica y permanencia",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-10",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-07 · Retención por supervisor",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-11",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "[DUPLICADO - ver SCRUM-21] HU6 - Estimar permanencia de un candidato",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-06",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-12",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Configurar y validar el tablero Scrum",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-06",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-13",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Documentar matriz de riesgos",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-14",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Definir criterios de Definition of Done",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-15",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Validar y organizar historias de usuario",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-16",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Definir alcance del MVP",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-17",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Definir arquitectura y stack tecnológico",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-18",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Construir diccionario de datos",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-06",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-20",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Diseñar wireframe del dashboard",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-21",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-12 · Semáforo de riesgo del candidato",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-22",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-06 · Filtros del dashboard",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-23",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-11 · Resumen de causas y recomendaciones",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-24",
+"type": "Epic",
+"status": "Por hacer",
+"summary": "E1: Información confiable",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-25",
+"type": "Epic",
+"status": "Por hacer",
+"summary": "E2: ¿Qué está pasando?",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-26",
+"type": "Epic",
+"status": "Por hacer",
+"summary": "E3: ¿Por qué se van?",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-27",
+"type": "Epic",
+"status": "Por hacer",
+"summary": "E4: Apoyo a la contratación",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-28",
+"type": "Epic",
+"status": "Por hacer",
+"summary": "E5: Uso justo y legal",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-29",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Centralizar y validar información de contratación, desempeño y retiros",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-30",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Definir la definición de renuncia temprana",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-31",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Analizar la evolución de la rotación temprana",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-32",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Identificar el mes crítico de renuncia",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-33",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Calcular el costo de la rotación temprana",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-34",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Implementar filtros del dashboard",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-35",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Comparar la retención por supervisor",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-36",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Analizar la relación entre pruebas técnicas y permanencia",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-37",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Identificar perfiles con mayor rotación",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-38",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Analizar los motivos declarados de renuncia",
+"sprint": [],
+"catchg": "2026-09-22",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-39",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Generar resumen de causas y recomendaciones",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-40",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Implementar semáforo de riesgo del candidato",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-41",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Mostrar explicación del riesgo del candidato",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-22"
+},
+{
+"key": "SCRUM-42",
+"type": "Tarea",
+"status": "Finalizado",
+"summary": "Registro de Suposiciones de Negocio",
+"sprint": [
+"Sprint 0 -Discovery & Planning"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-29"
+},
+{
+"key": "SCRUM-43",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Validar la confiabilidad de la herramienta",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-29"
+},
+{
+"key": "SCRUM-44",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Verificar que la herramienta no discrimine",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-29"
+},
+{
+"key": "SCRUM-45",
+"type": "Tarea",
+"status": "En revisión",
+"summary": "Implementar protección de datos personales",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-09-29"
+},
+{
+"key": "SCRUM-46",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-05 · Costo de la rotación temprana",
+"sprint": [],
+"catchg": "2026-10-06",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-47",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-09 · Perfiles con mayor rotación",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-48",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-10 · Motivos declarados de renuncia",
+"sprint": [],
+"catchg": "2026-10-06",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-49",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-14 · Confiabilidad de la herramienta",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-50",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-15 · Uso justo del modelo (sin discriminación)",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-51",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-16 · Protección de datos personales",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-52",
+"type": "Historia",
+"status": "En revisión",
+"summary": "HU-13 · Explicación del riesgo del candidato",
+"sprint": [
+"SCRUM Sprint 3"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-53",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "HU-04 · Mes crítico de renuncia",
+"sprint": [
+"Sprint 1 - Datos y panorama"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-06"
+},
+{
+"key": "SCRUM-54",
+"type": "Historia",
+"status": "Finalizado",
+"summary": "Dataset del modelo (capa oro, train/test)",
+"sprint": [
+"Sprint 2 - Causas"
+],
+"catchg": "2026-10-27",
+"created": "2026-10-27"
+}
+]

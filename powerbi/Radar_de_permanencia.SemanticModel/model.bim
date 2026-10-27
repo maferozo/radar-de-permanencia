@@ -1,0 +1,793 @@
+{
+  "name": "Radar_de_permanencia",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "es-CO",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "es-CO",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "tables": [
+      {
+        "name": "fact_contrataciones",
+        "columns": [
+          {
+            "name": "cohorte_ingreso",
+            "dataType": "string",
+            "sourceColumn": "cohorte_ingreso",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fecha_ingreso",
+            "dataType": "string",
+            "sourceColumn": "fecha_ingreso",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "campana",
+            "dataType": "string",
+            "sourceColumn": "campana",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "turno",
+            "dataType": "string",
+            "sourceColumn": "turno",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "id_supervisor",
+            "dataType": "string",
+            "sourceColumn": "id_supervisor",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "distancia_km",
+            "dataType": "double",
+            "sourceColumn": "distancia_km",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "experiencia_previa_meses",
+            "dataType": "double",
+            "sourceColumn": "experiencia_previa_meses",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "nivel_educativo",
+            "dataType": "string",
+            "sourceColumn": "nivel_educativo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "canal_reclutamiento",
+            "dataType": "string",
+            "sourceColumn": "canal_reclutamiento",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "puntaje_prueba_tecnica",
+            "dataType": "double",
+            "sourceColumn": "puntaje_prueba_tecnica",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rango_puntaje",
+            "dataType": "string",
+            "sourceColumn": "rango_puntaje",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rango_distancia",
+            "dataType": "string",
+            "sourceColumn": "rango_distancia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rango_experiencia",
+            "dataType": "string",
+            "sourceColumn": "rango_experiencia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ventana_observada",
+            "dataType": "boolean",
+            "sourceColumn": "ventana_observada",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "renuncia_temprana",
+            "dataType": "int64",
+            "sourceColumn": "renuncia_temprana",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "despido_temprano",
+            "dataType": "int64",
+            "sourceColumn": "despido_temprano",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "mes_antiguedad_retiro",
+            "dataType": "int64",
+            "sourceColumn": "mes_antiguedad_retiro",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "antiguedad_dias",
+            "dataType": "int64",
+            "sourceColumn": "antiguedad_dias",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "motivo_retiro",
+            "dataType": "string",
+            "sourceColumn": "motivo_retiro",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_contrataciones",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(RutaDatos & \"fact_contrataciones.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),",
+                "    Tipos = Table.TransformColumnTypes(Encabezados, {{\"cohorte_ingreso\", type text}, {\"fecha_ingreso\", type text}, {\"campana\", type text}, {\"turno\", type text}, {\"id_supervisor\", type text}, {\"distancia_km\", type number}, {\"experiencia_previa_meses\", type number}, {\"nivel_educativo\", type text}, {\"canal_reclutamiento\", type text}, {\"puntaje_prueba_tecnica\", type number}, {\"rango_puntaje\", type text}, {\"rango_distancia\", type text}, {\"rango_experiencia\", type text}, {\"ventana_observada\", type logical}, {\"renuncia_temprana\", Int64.Type}, {\"despido_temprano\", Int64.Type}, {\"mes_antiguedad_retiro\", Int64.Type}, {\"antiguedad_dias\", Int64.Type}, {\"motivo_retiro\", type text}}, \"en-US\")",
+                "in",
+                "    Tipos"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_cohorte",
+        "columns": [
+          {
+            "name": "cohorte_ingreso",
+            "dataType": "string",
+            "sourceColumn": "cohorte_ingreso",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "anio",
+            "dataType": "int64",
+            "sourceColumn": "anio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "mes",
+            "dataType": "int64",
+            "sourceColumn": "mes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ventana_completa",
+            "dataType": "boolean",
+            "sourceColumn": "ventana_completa",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_cohorte",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(RutaDatos & \"dim_cohorte.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),",
+                "    Tipos = Table.TransformColumnTypes(Encabezados, {{\"cohorte_ingreso\", type text}, {\"anio\", Int64.Type}, {\"mes\", Int64.Type}, {\"ventana_completa\", type logical}}, \"en-US\")",
+                "in",
+                "    Tipos"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_supervisor",
+        "columns": [
+          {
+            "name": "id_supervisor",
+            "dataType": "string",
+            "sourceColumn": "id_supervisor",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "campana",
+            "dataType": "string",
+            "sourceColumn": "campana",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_supervisor",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(RutaDatos & \"dim_supervisor.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),",
+                "    Tipos = Table.TransformColumnTypes(Encabezados, {{\"id_supervisor\", type text}, {\"campana\", type text}}, \"en-US\")",
+                "in",
+                "    Tipos"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_campana",
+        "columns": [
+          {
+            "name": "campana",
+            "dataType": "string",
+            "sourceColumn": "campana",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_campana",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(RutaDatos & \"dim_campana.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),",
+                "    Tipos = Table.TransformColumnTypes(Encabezados, {{\"campana\", type text}}, \"en-US\")",
+                "in",
+                "    Tipos"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_mes_antiguedad",
+        "columns": [
+          {
+            "name": "mes",
+            "dataType": "int64",
+            "sourceColumn": "mes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "etiqueta",
+            "dataType": "string",
+            "sourceColumn": "etiqueta",
+            "summarizeBy": "none",
+            "sortByColumn": "mes"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_mes_antiguedad",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(RutaDatos & \"dim_mes_antiguedad.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),",
+                "    Tipos = Table.TransformColumnTypes(Encabezados, {{\"mes\", Int64.Type}, {\"etiqueta\", type text}}, \"en-US\")",
+                "in",
+                "    Tipos"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_costos",
+        "columns": [
+          {
+            "name": "costo_reclutamiento",
+            "dataType": "double",
+            "sourceColumn": "costo_reclutamiento",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "costo_formacion",
+            "dataType": "double",
+            "sourceColumn": "costo_formacion",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "costo_tiempo_improductivo",
+            "dataType": "double",
+            "sourceColumn": "costo_tiempo_improductivo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fuente",
+            "dataType": "string",
+            "sourceColumn": "fuente",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_costos",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Origen = Csv.Document(File.Contents(RutaDatos & \"dim_costos.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),",
+                "    Tipos = Table.TransformColumnTypes(Encabezados, {{\"costo_reclutamiento\", type number}, {\"costo_formacion\", type number}, {\"costo_tiempo_improductivo\", type number}, {\"fuente\", type text}}, \"en-US\")",
+                "in",
+                "    Tipos"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Campaña",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "campana",
+            "dataType": "string",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[campana]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Campaña",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "SELECTCOLUMNS(DISTINCT(dim_campana[campana]), \"campana\", dim_campana[campana])"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Turno",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "Turno",
+            "dataType": "string",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[Turno]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Turno",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "DATATABLE(\"Turno\", STRING, {{\"Mañana\"}, {\"Tarde\"}, {\"Noche\"}, {\"Rotativo\"}})"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Nivel educativo",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "Nivel educativo",
+            "dataType": "string",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[Nivel educativo]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Nivel educativo",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "DATATABLE(\"Nivel educativo\", STRING, {{\"Bachiller\"}, {\"Técnico\"}, {\"Tecnólogo\"}, {\"Profesional\"}})"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Canal",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "Canal",
+            "dataType": "string",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[Canal]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Canal",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "DATATABLE(\"Canal\", STRING, {{\"Referido\"}, {\"Portal de empleo\"}, {\"Redes sociales\"}, {\"Feria\"}})"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Distancia",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "Distancia km",
+            "dataType": "int64",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[Distancia km]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Distancia",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "SELECTCOLUMNS(GENERATESERIES(0, 100, 1), \"Distancia km\", [Value])"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Experiencia",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "Experiencia meses",
+            "dataType": "int64",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[Experiencia meses]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Experiencia",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "SELECTCOLUMNS(GENERATESERIES(0, 120, 1), \"Experiencia meses\", [Value])"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Entrada Puntaje",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "Puntaje",
+            "dataType": "int64",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[Puntaje]",
+            "isNameInferred": true,
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Entrada Puntaje",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "SELECTCOLUMNS(GENERATESERIES(0, 100, 1), \"Puntaje\", [Value])"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Medidas",
+        "isHidden": false,
+        "columns": [
+          {
+            "name": "x",
+            "dataType": "string",
+            "type": "calculatedTableColumn",
+            "sourceColumn": "[x]",
+            "isNameInferred": true,
+            "summarizeBy": "none",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Medidas",
+            "mode": "import",
+            "source": {
+              "type": "calculated",
+              "expression": "ROW(\"x\", \"\")"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Contratados",
+            "expression": "CALCULATE(COUNTROWS(fact_contrataciones), fact_contrataciones[ventana_observada] = TRUE())",
+            "displayFolder": "Panorama",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Renuncias tempranas",
+            "expression": "CALCULATE(SUM(fact_contrataciones[renuncia_temprana]), fact_contrataciones[ventana_observada] = TRUE())",
+            "displayFolder": "Panorama",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Despidos tempranos",
+            "expression": "CALCULATE(SUM(fact_contrataciones[despido_temprano]), fact_contrataciones[ventana_observada] = TRUE())",
+            "displayFolder": "Panorama",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Tasa rotación temprana",
+            "expression": "DIVIDE([Renuncias tempranas], [Contratados])",
+            "displayFolder": "Panorama",
+            "formatString": "0.0 %"
+          },
+          {
+            "name": "Mes crítico",
+            "expression": [
+              "VAR t = ADDCOLUMNS(VALUES(dim_mes_antiguedad[mes]), \"@r\", [Renuncias tempranas])",
+              "VAR top = TOPN(1, FILTER(t, [@r] > 0), [@r], DESC, dim_mes_antiguedad[mes], ASC)",
+              "RETURN IF(ISEMPTY(top), BLANK(), \"Mes \" & MAXX(top, dim_mes_antiguedad[mes]))"
+            ],
+            "displayFolder": "Panorama"
+          },
+          {
+            "name": "Costo por reemplazo",
+            "expression": "SUM(dim_costos[costo_reclutamiento]) + SUM(dim_costos[costo_formacion]) + SUM(dim_costos[costo_tiempo_improductivo])",
+            "displayFolder": "Panorama",
+            "formatString": "\\$ #,0"
+          },
+          {
+            "name": "Costo estimado",
+            "expression": "IF(ISBLANK([Costo por reemplazo]), BLANK(), [Renuncias tempranas] * [Costo por reemplazo])",
+            "displayFolder": "Panorama",
+            "formatString": "\\$ #,0"
+          },
+          {
+            "name": "Tasa promedio de la selección",
+            "expression": "CALCULATE([Tasa rotación temprana], ALLSELECTED(fact_contrataciones))",
+            "displayFolder": "Causas",
+            "formatString": "0.0 %"
+          },
+          {
+            "name": "Diferencia vs. promedio",
+            "expression": "[Tasa rotación temprana] - [Tasa promedio de la selección]",
+            "displayFolder": "Causas",
+            "formatString": "+0.0 %;-0.0 %"
+          },
+          {
+            "name": "Tasa (grupos comparables)",
+            "expression": "IF([Contratados] >= 30, [Tasa rotación temprana])",
+            "displayFolder": "Causas",
+            "formatString": "0.0 %"
+          },
+          {
+            "name": "Grupo comparable",
+            "expression": "IF([Contratados] >= 30, \"Sí\", \"No (n < 30)\")",
+            "displayFolder": "Causas"
+          },
+          {
+            "name": "Renuncias con motivo",
+            "expression": "CALCULATE([Renuncias tempranas], NOT ISBLANK(fact_contrataciones[motivo_retiro]))",
+            "displayFolder": "Causas",
+            "formatString": "#,0"
+          },
+          {
+            "name": "% del motivo",
+            "expression": "DIVIDE([Renuncias con motivo], CALCULATE([Renuncias con motivo], ALLSELECTED(fact_contrataciones[motivo_retiro])))",
+            "displayFolder": "Causas",
+            "formatString": "0.0 %"
+          },
+          {
+            "name": "Semáforo (plan B)",
+            "expression": [
+              "VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])",
+              "VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])",
+              "VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])",
+              "VAR t = SELECTEDVALUE('Entrada Turno'[Turno])",
+              "VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])",
+              "VAR c = SELECTEDVALUE('Entrada Canal'[Canal])",
+              "VAR k = SELECTEDVALUE('Entrada Campaña'[campana])",
+              "VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)",
+              "VAR comb = (d > 15 && t IN {\"Noche\", \"Rotativo\"}) || (e = 0 && p < 60)",
+              "RETURN IF(NOT completo, \"Seleccione un valor en cada campo\", IF(comb, \"ROJO · riesgo alto\", IF(d > 15 || e = 0, \"AMARILLO · riesgo medio\", \"VERDE · riesgo bajo\")))"
+            ],
+            "displayFolder": "Semáforo"
+          },
+          {
+            "name": "Reglas activadas",
+            "expression": [
+              "VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])",
+              "VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])",
+              "VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])",
+              "VAR t = SELECTEDVALUE('Entrada Turno'[Turno])",
+              "VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])",
+              "VAR c = SELECTEDVALUE('Entrada Canal'[Canal])",
+              "VAR k = SELECTEDVALUE('Entrada Campaña'[campana])",
+              "VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)",
+              "VAR r1 = IF(d > 15 && t IN {\"Noche\", \"Rotativo\"}, \"Distancia > 15 km y turno nocturno o rotativo. \")",
+              "VAR r2 = IF(e = 0 && p < 60, \"Sin experiencia y puntaje < 60. \")",
+              "VAR r3 = IF(d > 15 && NOT (t IN {\"Noche\", \"Rotativo\"}), \"Distancia > 15 km. \")",
+              "VAR r4 = IF(e = 0 && p >= 60, \"Sin experiencia previa. \")",
+              "RETURN IF(NOT completo, BLANK(), COALESCE(r1 & r2 & r3 & r4, \"Ninguna regla activada.\"))"
+            ],
+            "displayFolder": "Semáforo"
+          },
+          {
+            "name": "Acción sugerida",
+            "expression": [
+              "VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])",
+              "VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])",
+              "VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])",
+              "VAR t = SELECTEDVALUE('Entrada Turno'[Turno])",
+              "VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])",
+              "VAR c = SELECTEDVALUE('Entrada Canal'[Canal])",
+              "VAR k = SELECTEDVALUE('Entrada Campaña'[campana])",
+              "VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)",
+              "RETURN IF(NOT completo, BLANK(), IF(d > 15, \"Informar el auxilio de transporte y explorar un turno compatible. \") & IF(t IN {\"Noche\", \"Rotativo\"}, \"Explicar las condiciones del turno. \") & IF(e = 0, \"Asignar mentor durante los primeros 60 días. \") & IF(p < 60, \"Ofrecer nivelación técnica.\"))"
+            ],
+            "displayFolder": "Semáforo"
+          },
+          {
+            "name": "Probabilidad modelo (no publicado)",
+            "expression": [
+              "VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])",
+              "VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])",
+              "VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])",
+              "VAR t = SELECTEDVALUE('Entrada Turno'[Turno])",
+              "VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])",
+              "VAR c = SELECTEDVALUE('Entrada Canal'[Canal])",
+              "VAR k = SELECTEDVALUE('Entrada Campaña'[campana])",
+              "VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)",
+              "VAR z = -0.0308643514 + 0.3129734963 * (d - 9.8219832109) / 6.4697499714 + -0.1692887948 * (e - 10.1269674711) / 11.9351006897 + -0.2323151504 * (p - 72.2733997901) / 11.9273465482 + SWITCH(t, \"Mañana\", -0.1389626776, \"Noche\", 0.2480966551, \"Rotativo\", -0.0492678701, \"Tarde\", -0.0774079662, 0) + SWITCH(n, \"Bachiller\", 0.1300339279, \"Profesional\", 0.0895185833, \"Tecnólogo\", -0.1332264551, \"Técnico\", -0.1038679148, 0) + SWITCH(c, \"Feria\", 0.1916755849, \"Portal de empleo\", 0.0400933455, \"Redes sociales\", 0.2454498127, \"Referido\", -0.4947606018, 0) + SWITCH(k, \"Campaña A · Telecomunicaciones\", 0.2239954842, \"Campaña B · Banca\", -0.3067865158, \"Campaña C · Salud\", 0.1905430798, \"Campaña D · Retail\", -0.1252939069, 0)",
+              "RETURN IF(completo, 1 / (1 + EXP(-z)))"
+            ],
+            "displayFolder": "Semáforo",
+            "formatString": "0.0 %"
+          },
+          {
+            "name": "Recall plan B",
+            "expression": "0.1640000000",
+            "displayFolder": "Semáforo",
+            "formatString": "0 %"
+          },
+          {
+            "name": "Precisión plan B",
+            "expression": "0.4520000000",
+            "displayFolder": "Semáforo",
+            "formatString": "0 %"
+          },
+          {
+            "name": "Falsas alarmas plan B",
+            "expression": "155",
+            "displayFolder": "Semáforo",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Brecha máxima de equidad plan B (p.p.)",
+            "expression": "4.5000000000",
+            "displayFolder": "Semáforo",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Aviso decisión humana",
+            "expression": "\"La herramienta apoya la decisión; la decisión final corresponde al reclutador.\"",
+            "displayFolder": "Semáforo"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "r_cohorte",
+        "fromTable": "fact_contrataciones",
+        "fromColumn": "cohorte_ingreso",
+        "toTable": "dim_cohorte",
+        "toColumn": "cohorte_ingreso"
+      },
+      {
+        "name": "r_supervisor",
+        "fromTable": "fact_contrataciones",
+        "fromColumn": "id_supervisor",
+        "toTable": "dim_supervisor",
+        "toColumn": "id_supervisor"
+      },
+      {
+        "name": "r_campana",
+        "fromTable": "fact_contrataciones",
+        "fromColumn": "campana",
+        "toTable": "dim_campana",
+        "toColumn": "campana"
+      },
+      {
+        "name": "r_mes",
+        "fromTable": "fact_contrataciones",
+        "fromColumn": "mes_antiguedad_retiro",
+        "toTable": "dim_mes_antiguedad",
+        "toColumn": "mes"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Gerencia RR. HH.",
+        "modelPermission": "read"
+      },
+      {
+        "name": "Operaciones - Campaña A",
+        "modelPermission": "read",
+        "tablePermissions": [
+          {
+            "name": "dim_campana",
+            "filterExpression": "[campana] = \"Campaña A · Telecomunicaciones\""
+          }
+        ]
+      },
+      {
+        "name": "Operaciones - Campaña B",
+        "modelPermission": "read",
+        "tablePermissions": [
+          {
+            "name": "dim_campana",
+            "filterExpression": "[campana] = \"Campaña B · Banca\""
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "RutaDatos",
+        "kind": "m",
+        "expression": [
+          "\"C:\\RadarPermanencia\\powerbi\\datos\\\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]"
+        ],
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ]
+  }
+}

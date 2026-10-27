@@ -1,0 +1,138 @@
+// Radar de permanencia · medidas DAX (tabla 'Medidas'). Generado por pipeline/05_exportar_powerbi.py
+
+// Carpeta: Panorama  · Formato: #,0
+[Contratados] =
+CALCULATE(COUNTROWS(fact_contrataciones), fact_contrataciones[ventana_observada] = TRUE())
+
+// Carpeta: Panorama  · Formato: #,0
+[Renuncias tempranas] =
+CALCULATE(SUM(fact_contrataciones[renuncia_temprana]), fact_contrataciones[ventana_observada] = TRUE())
+
+// Carpeta: Panorama  · Formato: #,0
+[Despidos tempranos] =
+CALCULATE(SUM(fact_contrataciones[despido_temprano]), fact_contrataciones[ventana_observada] = TRUE())
+
+// Carpeta: Panorama  · Formato: 0.0 %
+[Tasa rotación temprana] =
+DIVIDE([Renuncias tempranas], [Contratados])
+
+// Carpeta: Panorama
+[Mes crítico] =
+VAR t = ADDCOLUMNS(VALUES(dim_mes_antiguedad[mes]), "@r", [Renuncias tempranas])
+VAR top = TOPN(1, FILTER(t, [@r] > 0), [@r], DESC, dim_mes_antiguedad[mes], ASC)
+RETURN IF(ISEMPTY(top), BLANK(), "Mes " & MAXX(top, dim_mes_antiguedad[mes]))
+
+// Carpeta: Panorama  · Formato: \$ #,0
+[Costo por reemplazo] =
+SUM(dim_costos[costo_reclutamiento]) + SUM(dim_costos[costo_formacion]) + SUM(dim_costos[costo_tiempo_improductivo])
+
+// Carpeta: Panorama  · Formato: \$ #,0
+[Costo estimado] =
+IF(ISBLANK([Costo por reemplazo]), BLANK(), [Renuncias tempranas] * [Costo por reemplazo])
+
+// Carpeta: Causas  · Formato: 0.0 %
+[Tasa promedio de la selección] =
+CALCULATE([Tasa rotación temprana], ALLSELECTED(fact_contrataciones))
+
+// Carpeta: Causas  · Formato: +0.0 %;-0.0 %
+[Diferencia vs. promedio] =
+[Tasa rotación temprana] - [Tasa promedio de la selección]
+
+// Carpeta: Causas  · Formato: 0.0 %
+[Tasa (grupos comparables)] =
+IF([Contratados] >= 30, [Tasa rotación temprana])
+
+// Carpeta: Causas
+[Grupo comparable] =
+IF([Contratados] >= 30, "Sí", "No (n < 30)")
+
+// Carpeta: Causas  · Formato: #,0
+[Renuncias con motivo] =
+CALCULATE([Renuncias tempranas], NOT ISBLANK(fact_contrataciones[motivo_retiro]))
+
+// Carpeta: Causas  · Formato: 0.0 %
+[% del motivo] =
+DIVIDE([Renuncias con motivo], CALCULATE([Renuncias con motivo], ALLSELECTED(fact_contrataciones[motivo_retiro])))
+
+// Carpeta: Semáforo
+[Semáforo (plan B)] =
+VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])
+VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])
+VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])
+VAR t = SELECTEDVALUE('Entrada Turno'[Turno])
+VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])
+VAR c = SELECTEDVALUE('Entrada Canal'[Canal])
+VAR k = SELECTEDVALUE('Entrada Campaña'[campana])
+VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)
+VAR comb = (d > 15 && t IN {"Noche", "Rotativo"}) || (e = 0 && p < 60)
+RETURN IF(NOT completo, "Seleccione un valor en cada campo", IF(comb, "ROJO · riesgo alto", IF(d > 15 || e = 0, "AMARILLO · riesgo medio", "VERDE · riesgo bajo")))
+
+// Carpeta: Semáforo
+[Reglas activadas] =
+VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])
+VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])
+VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])
+VAR t = SELECTEDVALUE('Entrada Turno'[Turno])
+VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])
+VAR c = SELECTEDVALUE('Entrada Canal'[Canal])
+VAR k = SELECTEDVALUE('Entrada Campaña'[campana])
+VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)
+VAR r1 = IF(d > 15 && t IN {"Noche", "Rotativo"}, "Distancia > 15 km y turno nocturno o rotativo. ")
+VAR r2 = IF(e = 0 && p < 60, "Sin experiencia y puntaje < 60. ")
+VAR r3 = IF(d > 15 && NOT (t IN {"Noche", "Rotativo"}), "Distancia > 15 km. ")
+VAR r4 = IF(e = 0 && p >= 60, "Sin experiencia previa. ")
+RETURN IF(NOT completo, BLANK(), COALESCE(r1 & r2 & r3 & r4, "Ninguna regla activada."))
+
+// Carpeta: Semáforo
+[Acción sugerida] =
+VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])
+VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])
+VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])
+VAR t = SELECTEDVALUE('Entrada Turno'[Turno])
+VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])
+VAR c = SELECTEDVALUE('Entrada Canal'[Canal])
+VAR k = SELECTEDVALUE('Entrada Campaña'[campana])
+VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)
+RETURN IF(NOT completo, BLANK(), IF(d > 15, "Informar el auxilio de transporte y explorar un turno compatible. ") & IF(t IN {"Noche", "Rotativo"}, "Explicar las condiciones del turno. ") & IF(e = 0, "Asignar mentor durante los primeros 60 días. ") & IF(p < 60, "Ofrecer nivelación técnica."))
+
+// Carpeta: Semáforo  · Formato: 0.0 %
+[Probabilidad modelo (no publicado)] =
+VAR d = SELECTEDVALUE('Entrada Distancia'[Distancia km])
+VAR e = SELECTEDVALUE('Entrada Experiencia'[Experiencia meses])
+VAR p = SELECTEDVALUE('Entrada Puntaje'[Puntaje])
+VAR t = SELECTEDVALUE('Entrada Turno'[Turno])
+VAR n = SELECTEDVALUE('Entrada Nivel educativo'[Nivel educativo])
+VAR c = SELECTEDVALUE('Entrada Canal'[Canal])
+VAR k = SELECTEDVALUE('Entrada Campaña'[campana])
+VAR completo = NOT ISBLANK(d) && NOT ISBLANK(e) && NOT ISBLANK(p) && NOT ISBLANK(t) && NOT ISBLANK(n) && NOT ISBLANK(c) && NOT ISBLANK(k)
+VAR z = -0.0308643514 + 0.3129734963 * (d - 9.8219832109) / 6.4697499714 + -0.1692887948 * (e - 10.1269674711) / 11.9351006897 + -0.2323151504 * (p - 72.2733997901) / 11.9273465482 + SWITCH(t, "Mañana", -0.1389626776, "Noche", 0.2480966551, "Rotativo", -0.0492678701, "Tarde", -0.0774079662, 0) + SWITCH(n, "Bachiller", 0.1300339279, "Profesional", 0.0895185833, "Tecnólogo", -0.1332264551, "Técnico", -0.1038679148, 0) + SWITCH(c, "Feria", 0.1916755849, "Portal de empleo", 0.0400933455, "Redes sociales", 0.2454498127, "Referido", -0.4947606018, 0) + SWITCH(k, "Campaña A · Telecomunicaciones", 0.2239954842, "Campaña B · Banca", -0.3067865158, "Campaña C · Salud", 0.1905430798, "Campaña D · Retail", -0.1252939069, 0)
+RETURN IF(completo, 1 / (1 + EXP(-z)))
+
+// Carpeta: Semáforo  · Formato: 0 %
+[Recall plan B] =
+0.1640000000
+
+// Carpeta: Semáforo  · Formato: 0 %
+[Precisión plan B] =
+0.4520000000
+
+// Carpeta: Semáforo  · Formato: #,0
+[Falsas alarmas plan B] =
+155
+
+// Carpeta: Semáforo  · Formato: 0.0
+[Brecha máxima de equidad plan B (p.p.)] =
+4.5000000000
+
+// Carpeta: Semáforo
+[Aviso decisión humana] =
+"La herramienta apoya la decisión; la decisión final corresponde al reclutador."
+
+// Tablas calculadas del semáforo (Modelado > Nueva tabla)
+Entrada Campaña = SELECTCOLUMNS(DISTINCT(dim_campana[campana]), "campana", dim_campana[campana])
+Entrada Turno = DATATABLE("Turno", STRING, {{"Mañana"}, {"Tarde"}, {"Noche"}, {"Rotativo"}})
+Entrada Nivel educativo = DATATABLE("Nivel educativo", STRING, {{"Bachiller"}, {"Técnico"}, {"Tecnólogo"}, {"Profesional"}})
+Entrada Canal = DATATABLE("Canal", STRING, {{"Referido"}, {"Portal de empleo"}, {"Redes sociales"}, {"Feria"}})
+Entrada Distancia = SELECTCOLUMNS(GENERATESERIES(0, 100, 1), "Distancia km", [Value])
+Entrada Experiencia = SELECTCOLUMNS(GENERATESERIES(0, 120, 1), "Experiencia meses", [Value])
+Entrada Puntaje = SELECTCOLUMNS(GENERATESERIES(0, 100, 1), "Puntaje", [Value])

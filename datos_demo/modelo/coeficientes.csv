@@ -1,0 +1,21 @@
+variable,coeficiente,media,escala,imputacion
+distancia_km,0.3129734963255686,9.821983210912904,6.469749971387454,8.2
+experiencia_previa_meses,-0.16928879478218953,10.126967471143757,11.935100689742123,7.0
+puntaje_prueba_tecnica,-0.2323151504305261,72.27339979013641,11.927346548236152,72.2
+turno=Mañana,-0.13896267760627312,,,
+turno=Noche,0.24809665513980794,,,
+turno=Rotativo,-0.04926787006210302,,,
+turno=Tarde,-0.07740796618294303,,,
+nivel_educativo=Bachiller,0.1300339279376899,,,
+nivel_educativo=Profesional,0.08951858329664572,,,
+nivel_educativo=Tecnólogo,-0.1332264551082864,,,
+nivel_educativo=Técnico,-0.10386791483756026,,,
+canal_reclutamiento=Feria,0.19167558492852632,,,
+canal_reclutamiento=Portal de empleo,0.04009334550472374,,,
+canal_reclutamiento=Redes sociales,0.2454498126998459,,,
+canal_reclutamiento=Referido,-0.49476060184460746,,,
+campana=Campaña A · Telecomunicaciones,0.22399548415273038,,,
+campana=Campaña B · Banca,-0.30678651580918964,,,
+campana=Campaña C · Salud,0.19054307982432137,,,
+campana=Campaña D · Retail,-0.12529390687937245,,,
+intercepto,-0.030864351414522186,,,

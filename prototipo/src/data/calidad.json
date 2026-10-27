@@ -1,0 +1,111 @@
+{
+"fecha_corte": "2026-09-30",
+"fuente": "datos_demo/bronce/2026-09-30",
+"reglas": [
+{
+"regla": "Unicidad",
+"descripcion": "id_empleado único en empleados",
+"registros_afectados": 15,
+"accion": "Eliminados 15 duplicados exactos; 0 conflictos reportados y excluidos",
+"cumple_tras_accion": true
+},
+{
+"regla": "Integridad referencial",
+"descripcion": "Todo id en retiros existe en empleados",
+"registros_afectados": 3,
+"accion": "Excluidos y reportados",
+"cumple_tras_accion": true
+},
+{
+"regla": "Coherencia de fechas",
+"descripcion": "fecha_retiro >= fecha_ingreso y <= fecha_corte",
+"registros_afectados": 6,
+"accion": "Excluidos y reportados (empleado completo excluido para no sesgar la tasa)",
+"cumple_tras_accion": true
+},
+{
+"regla": "Coherencia de fechas (ingreso)",
+"descripcion": "fecha_ingreso <= fecha_corte",
+"registros_afectados": 0,
+"accion": "Excluidos",
+"cumple_tras_accion": true
+},
+{
+"regla": "Dominio",
+"descripcion": "puntaje_prueba_tecnica en [0, 100]",
+"registros_afectados": 3,
+"accion": "Marcados como nulo",
+"cumple_tras_accion": true
+},
+{
+"regla": "Dominio",
+"descripcion": "distancia_km en [0, 100]",
+"registros_afectados": 0,
+"accion": "Marcados como nulo",
+"cumple_tras_accion": true
+},
+{
+"regla": "Dominio",
+"descripcion": "turno en categorías definidas",
+"registros_afectados": 0,
+"accion": "Marcados como nulo",
+"cumple_tras_accion": true
+},
+{
+"regla": "Dominio",
+"descripcion": "nivel_educativo en categorías definidas",
+"registros_afectados": 0,
+"accion": "Marcados como nulo",
+"cumple_tras_accion": true
+},
+{
+"regla": "Dominio",
+"descripcion": "canal_reclutamiento en categorías definidas",
+"registros_afectados": 0,
+"accion": "Marcados como nulo",
+"cumple_tras_accion": true
+},
+{
+"regla": "Dominio",
+"descripcion": "motivo_retiro en categorías definidas",
+"registros_afectados": 0,
+"accion": "Marcados como nulo",
+"cumple_tras_accion": true
+},
+{
+"regla": "Completitud",
+"descripcion": "% de nulos por columna (< 20 % se imputa en el pipeline del modelo con mediana/moda)",
+"registros_afectados": 83,
+"accion": "{\"distancia_km\": 0.0, \"experiencia_previa_meses\": 1.54, \"puntaje_prueba_tecnica\": 0.09, \"turno\": 0.0, \"nivel_educativo\": 0.0, \"canal_reclutamiento\": 0.93, \"campana\": 0.0}",
+"cumple_tras_accion": true
+},
+{
+"regla": "Anonimización",
+"descripcion": "Plata y oro sin nombres ni documentos",
+"registros_afectados": 0,
+"accion": "Columnas nombre y documento eliminadas; ids con SHA-256 + sal",
+"cumple_tras_accion": true
+}
+],
+"estado": "OK",
+"filas_bronce": {
+"empleados": 3263,
+"retiros": 1248,
+"desempeno": 15335,
+"supervisores": 15
+},
+"nulos_pct": {
+"distancia_km": 0.0,
+"experiencia_previa_meses": 1.54,
+"puntaje_prueba_tecnica": 0.09,
+"turno": 0.0,
+"nivel_educativo": 0.0,
+"canal_reclutamiento": 0.93,
+"campana": 0.0
+},
+"filas_salida": {
+"fact_contrataciones": 3242,
+"cohortes_con_ventana": 2528,
+"renuncias_tempranas_ventana": 780
+}
+}

@@ -1,0 +1,105 @@
+{
+ "fecha": "2026-10-27T15:38:45",
+ "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v165 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
+ "filas": [
+  {
+   "prueba": "Carga inicial hasta ver los indicadores",
+   "umbral": null,
+   "registros": 3242,
+   "errores": 0,
+   "n": 10,
+   "min": 482.66149699998095,
+   "promedio": 522.0912963000046,
+   "mediana": 519.1719654999929,
+   "max": 576.7708150000317
+  },
+  {
+   "prueba": "Apertura de la pantalla «causas»",
+   "umbral": null,
+   "registros": 3242,
+   "errores": 0,
+   "n": 10,
+   "min": 79.3214130000024,
+   "promedio": 93.94474769999306,
+   "mediana": 93.42727099999593,
+   "max": 122.92160200001945
+  },
+  {
+   "prueba": "Apertura de la pantalla «resumen»",
+   "umbral": null,
+   "registros": 3242,
+   "errores": 0,
+   "n": 10,
+   "min": 44.571161000021675,
+   "promedio": 57.288889300014034,
+   "mediana": 56.93651400002864,
+   "max": 78.47444200001519
+  },
+  {
+   "prueba": "Apertura de la pantalla «semaforo»",
+   "umbral": null,
+   "registros": 3242,
+   "errores": 0,
+   "n": 10,
+   "min": 36.48284199994123,
+   "promedio": 44.99112499999001,
+   "mediana": 46.25297050000654,
+   "max": 52.230091999945216
+  },
+  {
+   "prueba": "Apertura de la pantalla «seguimiento»",
+   "umbral": null,
+   "registros": 3242,
+   "errores": 0,
+   "n": 10,
+   "min": 45.9638019999602,
+   "promedio": 63.04646580000508,
+   "mediana": 64.65597749996732,
+   "max": 72.98040400007721
+  },
+  {
+   "prueba": "Respuesta a un filtro (acción → visuales actualizados)",
+   "umbral": 3000,
+   "registros": 3242,
+   "errores": 0,
+   "n": 20,
+   "min": 16.981656000098155,
+   "promedio": 24.76366330000701,
+   "mediana": 25.21878349995177,
+   "max": 45.269909000012376
+  },
+  {
+   "prueba": "Semáforo oficial, plan B (clic en «Evaluar» → resultado visible)",
+   "umbral": 2000,
+   "registros": 1,
+   "errores": 0,
+   "n": 20,
+   "min": 35.83553099997516,
+   "promedio": 53.49508700000456,
+   "mediana": 56.10171600000058,
+   "max": 64.85246100010045
+  },
+  {
+   "prueba": "Recalcular visuales tras un filtro (50.000 registros) · cálculo interno",
+   "umbral": 3000,
+   "registros": 50000,
+   "n": 10,
+   "min": 9.6,
+   "promedio": 18.04,
+   "mediana": 12.35,
+   "max": 52.2,
+   "errores": 0
+  },
+  {
+   "prueba": "Generar dataset de 50.000 registros · cálculo interno",
+   "umbral": null,
+   "registros": 50000,
+   "n": 1,
+   "min": 3.0,
+   "promedio": 3.0,
+   "mediana": 3.0,
+   "max": 3.0,
+   "errores": 0
+  }
+ ]
+}
