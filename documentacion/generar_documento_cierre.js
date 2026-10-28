@@ -225,6 +225,7 @@ const FUNC = [
   ["Semáforo con condiciones evaluadas, justificación y limitaciones", "Sí", "Sí (PF-29, PU-22)", "Pendiente", "Validar reglas"],
   ["Matriz de pruebas filtrable, UAT separada y trazabilidad RF → HU → CU → prueba", "Sí", "Sí (PF-30, PF-31)", "Pendiente", "UAT con el cliente"],
   ["Ayudas contextuales, glosario y enlace «Saltar al contenido»", "Sí", "Sí (PF-27, PF-32)", "Pendiente", "—"],
+  ["Simulador de escenarios: meta de rotación, costo supuesto, comparación de hasta 3 escenarios y CSV", "Sí", "Sí (PF-33 a PF-38, PU-24 a PU-27)", "Pendiente", "Validar el costo por reemplazo"],
   ["Dashboard en Power BI (PBIP: 4 páginas, 22 medidas, 3 roles RLS)", "Sí (generado)", "Integridad (PT-10-01); no abierto en Desktop", "Pendiente", "Abrir y verificar en Windows"],
 ];
 const s10 = [H1("10. Estado del prototipo y sus funcionalidades"),
@@ -398,7 +399,8 @@ const anexoFG = [
     ["Resumen y acciones", "Plan de acción por factor: hallazgo, evidencia, interpretación, recomendación, responsable sugerido (según los interesados del documento técnico), plazo sugerido, indicador de seguimiento y estado «Pendiente: sin seguimiento registrado». Las acciones se presentan como hipótesis."],
     ["Semáforo", "Mensaje del plan B más corto, con el motivo de no usar el modelo desplegable; tabla de las 4 condiciones evaluadas con el valor del candidato; cada regla activada con los datos que la justifican y su acción; lista de limitaciones."],
     ["Seguimiento", "Introducción de cada pestaña. Burndown: fecha de corte, criterios explícitos del estado y explicación de variaciones por sprint. DORA: valor observado «Sin datos disponibles», fecha de medición y «Pendiente de instrumentación». Rendimiento: tipo de medición (cálculo interno o experiencia completa en pantalla). Pruebas: conteos, filtros, datos de entrada, evidencia y tabla de UAT separada. Calidad: tratamiento y resultado de cada regla. Trazabilidad: RF → HU → CU → funcionalidad → pruebas → estado, con filtro por cobertura."],
-    ["Pruebas", "10 pruebas nuevas (PU-21 a PU-23 y PF-26 a PF-32). La medición de rendimiento del semáforo ahora usa el semáforo oficial (plan B)."]], { size: 16 }),
+    ["Simulador de escenarios (nuevo)", "Pantalla que aplica una meta de rotación elegida por el usuario a la población filtrada: renuncias estimadas = redondeo(N × meta); costo = renuncias × costo supuesto por reemplazo; diferencias frente a lo observado. Respeta los filtros y la definición de renuncia temprana; valida entradas; compara hasta 3 escenarios y copia la comparación en CSV. No modifica datos ni otros módulos y se presenta como escenario hipotético, no como ahorro garantizado."],
+    ["Pruebas", "20 pruebas nuevas (PU-21 a PU-27 y PF-26 a PF-38). La medición de rendimiento del semáforo ahora usa el semáforo oficial (plan B)."]], { size: 16 }),
   H2("Anexo G. Guía breve para presentar el sistema en clase (10 a 12 minutos)"),
   tabla([700, 2300, 7080], [["#", "Pantalla", "Qué mostrar y qué decir"],
     ["1", "Panorama (2 min)", "Leer la «Lectura rápida»: 31 de cada 100 personas renuncian antes de 180 días, sobre todo en el mes 2. Señalar la etiqueta de datos ficticios. Aplicar el filtro de campaña y mostrar que cambian los indicadores y los chips de filtros activos; luego «Limpiar filtros». Abrir «¿Quiénes entran en el análisis?»."],

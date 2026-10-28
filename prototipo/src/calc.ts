@@ -359,3 +359,43 @@ export function ampliar(filas: Fila[], n: number, semilla = 42): Fila[] { // rem
   for (let i = 0; i < n; i++) out[i] = filas[Math.floor(rnd() * filas.length)];
   return out;
 }
+
+// ---------------- Simulador de escenarios (módulo de valor agregado) ----------------
+// N = personas de cohortes con ventana completa en la selección; R = renuncias tempranas observadas;
+// meta = tasa objetivo elegida por el usuario (fracción 0–1); C = costo supuesto por reemplazo (COP).
+// Renuncias estimadas = redondeo(N × meta). Si la meta, a un decimal, es igual a la tasa actual,
+// se usan las R observadas (evita diferencias de ±1 que solo produce el redondeo de la tasa mostrada).
+export type TipoEscenario = "menor rotación" | "mayor rotación" | "sin diferencia";
+export interface Escenario {
+  n: number; renuncias: number; tasaActual: number; meta: number; difPp: number; costoUnitario: number;
+  renunciasEstimadas: number; difRenuncias: number; costoReferencia: number; costoEscenario: number; difCosto: number; tipo: TipoEscenario;
+}
+export function simularEscenario(n: number, renuncias: number, meta: number, costoUnitario: number): Escenario | null {
+  if (!(n > 0) || renuncias < 0 || renuncias > n || !(meta >= 0 && meta <= 1) || !(costoUnitario >= 0)) return null;
+  const tasaActual = renuncias / n;
+  const igual = Math.round(meta * 1000) === Math.round(tasaActual * 1000);
+  const renunciasEstimadas = igual ? renuncias : Math.round(n * meta);
+  const difRenuncias = renuncias - renunciasEstimadas;
+  const costoReferencia = renuncias * costoUnitario, costoEscenario = renunciasEstimadas * costoUnitario;
+  return {
+    n, renuncias, tasaActual, meta, difPp: (tasaActual - meta) * 100, costoUnitario, renunciasEstimadas, difRenuncias,
+    costoReferencia, costoEscenario, difCosto: costoReferencia - costoEscenario,
+    tipo: difRenuncias > 0 ? "menor rotación" : difRenuncias < 0 ? "mayor rotación" : "sin diferencia",
+  };
+}
+// Entradas de texto del formulario (admite coma decimal). Devuelven el valor o un mensaje de error.
+export function validarMeta(txt: string): { valor: number } | { error: string } {
+  const t = txt.trim().replace(",", ".");
+  if (!t) return { error: "Ingrese la meta de rotación temprana (entre 0 y 100 %)." };
+  if (!/^\d+(\.\d+)?$/.test(t)) return { error: "La meta debe ser un número entre 0 y 100, sin símbolos." };
+  const v = Number(t);
+  if (v < 0 || v > 100) return { error: `La meta debe estar entre 0 y 100 %; se recibió ${txt.trim()}.` };
+  return { valor: v / 100 };
+}
+export function validarCosto(txt: string): { valor: number } | { error: string } {
+  const t = txt.trim().replace(/[.\s$]/g, "").replace(",", ".");
+  if (!t) return { error: "Ingrese el costo por reemplazo en pesos colombianos." };
+  if (/^-/.test(t)) return { error: "El costo por reemplazo no puede ser negativo." };
+  if (!/^\d+(\.\d+)?$/.test(t)) return { error: "El costo debe ser un número en pesos, por ejemplo 2550000." };
+  return { valor: Number(t) };
+}

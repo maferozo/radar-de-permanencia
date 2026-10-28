@@ -86,6 +86,8 @@ export const GLOSARIO: Record<string, string> = {
   "UAT": "User Acceptance Testing: prueba de aceptación en la que el cliente verifica los criterios de cada historia.",
   "HU / CU / RF / RNF": "Historia de usuario, caso de uso, requisito funcional y requisito no funcional del documento técnico.",
   "ETL": "Extracción, transformación y carga: proceso que limpia y une los datos antes de analizarlos.",
+  "Costo supuesto": "Valor estimado de reemplazar a una persona (reclutamiento, formación y tiempo improductivo). Es un supuesto del equipo hasta que el cliente lo valide; no es un costo contable real.",
+  "Escenario hipotético": "Resultado de aplicar una meta elegida por el usuario a la población actual. Sirve para dimensionar, no predice lo que ocurrirá ni garantiza ahorros.",
 };
 
 let ayudaId = 0;

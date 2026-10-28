@@ -24,7 +24,7 @@ export default function Resumen({ filas, nMin, ir }: Contexto) {
           En la selección actual, {pct(k.tasa)} de las personas contratadas renunció en sus primeros 180 días ({fmt(k.renuncias)} de {fmt(k.contratados)}), con el pico en el mes {k.mesCritico ?? "—"} de antigüedad.
           {f.length ? <> Los {f.length} factores siguientes concentran tasas por encima del promedio y están ordenados por su diferencia frente a él.</> : <> No hay factores con al menos {nMin} personas y 2 p.p. sobre el promedio.</>}
         </p>
-        <div className="row"><button className="btn" onClick={exportar} disabled={!f.length}>Copiar resumen (CSV)</button><span className="sub">Asociación no implica causalidad: valide cada factor antes de actuar. Diferencias en p.p. <Ayuda t="p.p." /></span></div>
+        <div className="row"><button className="btn" onClick={exportar} disabled={!f.length}>Copiar resumen (CSV)</button><button className="btn" onClick={() => ir("simulador")} data-testid="resumen-ir-simulador">Explorar metas en el simulador →</button><span className="sub">Asociación no implica causalidad: valide cada factor antes de actuar. Diferencias en p.p. <Ayuda t="p.p." /></span></div>
         {csv && <textarea readOnly value={csv} rows={6} style={{ width: "100%" }} aria-label="Resumen en CSV" onFocus={e => e.currentTarget.select()} />}
       </section>
 

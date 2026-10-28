@@ -28,7 +28,7 @@ def t(sel): return f"[data-testid={sel}]"
 
 with sync_playwright() as p:
     nav = p.chromium.launch()
-    ctx = nav.new_context(viewport={"width": 1360, "height": 900}, locale="es-CO")
+    ctx = nav.new_context(viewport={"width": 1360, "height": 900}, locale="es-CO", permissions=["clipboard-read", "clipboard-write"])
     pg = ctx.new_page()
     pg.on("pageerror", lambda e: errores_consola.append(str(e)))
     pg.on("console", lambda m: errores_consola.append(m.text) if m.type == "error" and "ERR_TUNNEL" not in m.text and "Failed to load resource" not in m.text else None)
@@ -233,11 +233,59 @@ with sync_playwright() as p:
         pg.keyboard.press("Enter"); foco = pg.evaluate("document.activeElement.id"); ir("glosario"); g = txt("glosario")
         return primero == "Saltar al contenido" and foco == "contenido" and all(x in g for x in ["p.p.", "DoD", "DORA", "UAT"]), f"Primer foco: «{primero}» → foco en #{foco}; glosario con {g.count(chr(10)) // 2} líneas", ""
 
+    # --------- Simulador de escenarios
+    PRE_SIM = "Prototipo con datos ficticios; pantalla Simulador de escenarios"
+    @prueba("PF-33", "Simulador", "Situación actual coincide con el Panorama y respeta filtros", PRE_SIM, "Sin filtros; luego Campaña A", "Comparar personas, renuncias y tasa del simulador con el Panorama", "Mismos valores en ambos módulos, con y sin filtro")
+    def _():
+        ir("panorama"); n0, t0 = val("kpi-contratados"), val("kpi-tasa"); ir("simulador"); ok0 = txt("sim-n") == n0 and txt("sim-tasa") == t0
+        pg.select_option(t("f-campana"), index=1); pg.wait_for_timeout(150); n1, t1 = txt("sim-n"), txt("sim-tasa"); ir("panorama"); ok1 = val("kpi-contratados") == n1 and val("kpi-tasa") == t1
+        pg.click(t("limpiar-filtros")); ir("simulador")
+        return ok0 and ok1 and n1 != n0, f"Sin filtro: {n0} personas, {t0}; campaña A: {n1} personas, {t1} (iguales al Panorama)", ""
+
+    @prueba("PF-34", "Simulador", "Ejemplo de referencia con meta del 25 %", PRE_SIM, "Meta 25; costo 2.550.000", "Escribir 25 en la meta", "632 renuncias estimadas, 148 menos; $1.989.000.000, $1.611.600.000 y $377.400.000; gráficos actualizados")
+    def _():
+        pg.fill(t("sim-meta"), "25"); pg.wait_for_timeout(150)
+        r, d, cr, ce, dc = txt("res-renuncias"), txt("res-dif-renuncias"), txt("res-costo-ref"), txt("res-costo-esc"), txt("res-dif-costo")
+        graf = pg.locator(t("sim-graf-tasa")).get_attribute("aria-label")
+        pg.screenshot(path=os.path.join(CAP, "PF-34_simulador.png"), full_page=True)
+        ok = r == "632" and d.startswith("148") and "1.989.000.000" in cr and "1.611.600.000" in ce and "377.400.000" in dc and "25,0" in graf and "hipotética" in txt("sim-mensaje")
+        return ok, f"{r} estimadas; {d}; {cr} → {ce}; diferencia {dc}", "PF-34_simulador.png"
+
+    @prueba("PF-35", "Simulador", "El costo cambia montos y se validan entradas", PRE_SIM, "Costo 3000000; costo −5; meta 120; meta «abc»", "Cambiar el costo y luego ingresar valores inválidos", "Renuncias iguales con otro costo; mensajes de error y sin resultados con valores inválidos")
+    def _():
+        antes = txt("res-renuncias"); pg.fill(t("sim-costo"), "3000000"); pg.wait_for_timeout(100); despues, ce = txt("res-renuncias"), txt("res-costo-esc")
+        pg.fill(t("sim-costo"), "-5"); e1 = txt("sim-costo-error"); sin1 = pg.locator(t("sim-sin-resultado")).count()
+        pg.fill(t("sim-costo"), "2550000"); pg.fill(t("sim-meta"), "120"); e2 = txt("sim-meta-error"); pg.fill(t("sim-meta"), "abc"); e3 = txt("sim-meta-error"); sin2 = pg.locator(t("sim-sin-resultado")).count()
+        ok = antes == despues == "632" and "1.896.000.000" in ce and "negativo" in e1 and sin1 == 1 and "entre 0 y 100" in e2 and "número" in e3 and sin2 == 1
+        return ok, f"Con $3.000.000: {despues} renuncias, {ce}; «−5» → «{e1}»; «120» → «{e2}»", ""
+
+    @prueba("PF-36", "Simulador", "Meta mayor que la actual y restablecer", PRE_SIM, "Meta 40; luego «Restablecer escenario»", "Ingresar 40 y restablecer", "Se presenta como mayor rotación (no mejora); al restablecer la meta vuelve a la tasa actual con diferencia 0")
+    def _():
+        pg.fill(t("sim-meta"), "40"); m = txt("sim-mensaje"); pg.click(t("sim-restablecer")); pg.wait_for_timeout(100)
+        return "mayor rotación" in m.lower() and "no es una mejora" in m and pg.locator(t("sim-meta")).input_value() == "30,9" and txt("res-dif-renuncias") == "0", f"Meta 40 %: «{m.splitlines()[0][:60]}…»; restablecido a 30,9 % con diferencia 0", ""
+
+    @prueba("PF-37", "Simulador", "Guardar, comparar, eliminar y exportar escenarios", PRE_SIM, "Metas 28, 25 y 22", "Guardar tres escenarios, intentar un cuarto, eliminar uno y copiar el CSV", "Tabla con 3 escenarios; el cuarto se bloquea; al eliminar quedan 2; el CSV trae supuestos y resultados")
+    def _():
+        for m in ["28", "25", "22"]: pg.fill(t("sim-meta"), m); pg.click(t("sim-guardar"))
+        filas3 = pg.locator(t("sim-tabla") + " tbody tr").count(); bloq = pg.locator(t("sim-guardar")).is_disabled()
+        pg.click(t("sim-exportar")); pg.wait_for_timeout(200)
+        clip = pg.evaluate("navigator.clipboard.readText()") if not pg.locator("textarea").count() else pg.locator("textarea").input_value()
+        pg.locator(t("sim-eliminar")).first.click(); filas2 = pg.locator(t("sim-tabla") + " tbody tr").count()
+        ok = filas3 == 3 and bloq and filas2 == 2 and "632" in clip and "costo_por_reemplazo_cop" in clip and "hipotético" in clip
+        return ok, f"{filas3} guardados, cuarto bloqueado = {bloq}; tras eliminar: {filas2}; CSV con {clip.count(chr(10))} filas de datos", ""
+
+    @prueba("PF-38", "Simulador", "Teclado y población vacía", PRE_SIM, "Flecha izquierda en el deslizador; filtros sin registros", "Mover la meta con el teclado y combinar filtros vacíos", "La meta baja 1 punto con el teclado; sin personas muestra «No disponible» sin errores")
+    def _():
+        pg.click(t("sim-restablecer")); pg.locator(t("sim-meta-rango")).focus(); pg.keyboard.press("ArrowLeft"); pg.wait_for_timeout(100); mv = pg.locator(t("sim-meta")).input_value()
+        pg.select_option(t("f-desde"), "2026-04"); pg.select_option(t("f-hasta"), "2026-04"); pg.select_option(t("f-supervisor"), "SUP-15"); pg.wait_for_timeout(150)
+        vacio = txt("estado-vacio"); pg.click(t("limpiar-filtros"))
+        return mv == "30" and "No disponible" in vacio, f"Meta tras ← = {mv} %; selección vacía: «{vacio.splitlines()[0]}»", ""
+
     # --------- Adaptabilidad móvil
     @prueba("PF-24", "RNF-08", "Diseño adaptable a 400 px", PRE_DASH, "Viewport 400 × 860", "Abrir cada pantalla en ancho de teléfono", "Sin desplazamiento horizontal de la página")
     def _():
         m = nav.new_page(viewport={"width": 400, "height": 860}); m.goto(URL); peores = []
-        for r in ["panorama", "causas", "resumen", "semaforo", "seguimiento", "glosario"]:
+        for r in ["panorama", "causas", "resumen", "simulador", "semaforo", "seguimiento", "glosario"]:
             m.evaluate(f"location.hash='{r}'"); m.wait_for_timeout(300)
             peores.append(m.evaluate("document.documentElement.scrollWidth - window.innerWidth"))
         m.screenshot(path=os.path.join(CAP, "PF-24_movil.png"), full_page=True); m.close()

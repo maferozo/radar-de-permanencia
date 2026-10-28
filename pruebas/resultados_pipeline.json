@@ -1,6 +1,6 @@
 {
- "fecha": "2026-10-27T15:35:33",
- "entorno": "Python 3.13.18 · pandas 3.0.5 · Linux-6.18.44-fc-v165-x86_64-with-glibc2.39",
+ "fecha": "2026-10-27T20:13:01",
+ "entorno": "Python 3.13.18 · pandas 3.0.5 · Linux-6.18.44-fc-v180-x86_64-with-glibc2.39",
  "resultados": [
   {
    "id": "PT-08-01",

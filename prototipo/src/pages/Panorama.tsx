@@ -7,7 +7,7 @@ import { COSTOS_SIM, FILAS, CALIDAD } from "../data";
 
 const TOTAL = kpis(FILAS); // referencia: todas las cohortes con ventana completa, sin filtros
 
-export default function Panorama({ filas, costos, setCostos, nMin }: Contexto) {
+export default function Panorama({ filas, costos, setCostos, nMin, ir }: Contexto) {
   const k = useMemo(() => kpis(filas), [filas]);
   const coh = useMemo(() => porCohorte(filas), [filas]);
   const meses = useMemo(() => porMesAntiguedad(filas), [filas]);
@@ -42,6 +42,7 @@ export default function Panorama({ filas, costos, setCostos, nMin }: Contexto) {
           Las renuncias se concentran en el <b>mes {k.mesCritico} de antigüedad</b>{mesSel ? <> ({pct(mesSel.pct, 0)} del total)</> : null}.
         </p>
         <p className="sub">Es una medición histórica de cohortes que ya cumplieron 180 días de observación, no una predicción del futuro. No hay una meta institucional de rotación documentada, así que no se compara contra una meta.</p>
+        <div className="row"><button className="btn link" onClick={() => ir("simulador")} data-testid="ir-simulador">¿Y si la rotación bajara? Explorar escenarios →</button></div>
       </section>
 
       <div className="grid kpis">

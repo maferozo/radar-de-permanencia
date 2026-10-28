@@ -49,12 +49,12 @@ Para usar datos reales: copie los exportes a `datos_demo/bronce/AAAA-MM-DD/` con
 diccionario de datos, defina la sal con `export RADAR_SAL=...` (nunca en el repositorio) y ejecute
 `python3 pipeline/02_etl.py --bronce <carpeta> --corte AAAA-MM-DD`.
 
-## 4. Pruebas (71 automatizadas)
+## 4. Pruebas (81 automatizadas)
 
 ```bash
 python3 pruebas/test_pipeline.py            # 16 pruebas: ETL, calidad, anonimización, modelo, plan B, Power BI
-cd prototipo && npm run test:unit           # 23 pruebas: fórmulas, validaciones, consistencia Python ↔ prototipo
-cd .. && python3 pruebas/test_e2e.py        # 32 pruebas en navegador + mediciones de rendimiento
+cd prototipo && npm run test:unit           # 27 pruebas: fórmulas, validaciones, consistencia Python ↔ prototipo
+cd .. && python3 pruebas/test_e2e.py        # 38 pruebas en navegador + mediciones de rendimiento
 python3 pruebas/consolidar_resultados.py    # actualiza la pestaña Pruebas del prototipo (recompilar después)
 ```
 `test_e2e.py` requiere Playwright (`pip install playwright && python -m playwright install chromium`).
@@ -106,7 +106,7 @@ Incluye 4 páginas, 22 medidas DAX y 3 roles RLS. No se ha abierto en Desktop (s
 | Documento de cierre (DOCX y PDF) | Entregado como cierre técnico; no declara el proyecto cerrado |
 | Métricas DORA | Definidas; **sin despliegues medidos** |
 | Indicadores de rendimiento | Medidos en el prototipo; cumplen los objetivos propuestos |
-| Matriz de pruebas | 71/71 aprobadas (Anexo A del documento); UAT con el cliente pendiente |
+| Matriz de pruebas | 81/81 aprobadas (Anexo A del documento); UAT con el cliente pendiente |
 | Proyecto Power BI | Generado y verificado por prueba; **no abierto en Power BI Desktop** |
 | Cumplimiento Ley 1581 | Borrador del equipo; requiere revisión jurídica |
 | Acta de validación del cliente | En blanco, para firmar en la demo |
@@ -121,3 +121,11 @@ factor, semáforo con condiciones evaluadas y limitaciones, ayudas «?» con glo
 contenido» y un seguimiento ampliado (criterios del burndown, pruebas filtrables con UAT separada y
 trazabilidad RF → HU → CU → prueba). La lista completa de cambios y la guía para presentar en clase están en
 los anexos F y G de `documentacion/documento_cierre.pdf`.
+
+## 10. Simulador de escenarios
+
+Pantalla «Simulador de escenarios» (menú Dashboard). Aplica una meta de rotación temprana elegida por el
+usuario a la población de los filtros activos: renuncias estimadas = redondeo(N × meta), costo =
+renuncias × costo supuesto por reemplazo (inicia en COP 2.550.000, el supuesto del Panorama). Compara hasta
+3 escenarios y copia la comparación en CSV. Fórmulas en `prototipo/src/calc.ts` (`simularEscenario`,
+`validarMeta`, `validarCosto`). Los resultados son hipotéticos: no son ahorros garantizados.

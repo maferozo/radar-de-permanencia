@@ -1,6 +1,6 @@
 {
- "fecha": "2026-10-27T15:38:45",
- "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v165 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
+ "fecha": "2026-10-27T20:12:40",
+ "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v180 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
  "resultados": [
   {
    "id": "PF-01",
@@ -358,7 +358,79 @@
    "entrada": "Tecla Tab desde el inicio",
    "pasos": "Pulsar Tab, Enter y abrir Glosario",
    "esperado": "El primer foco es «Saltar al contenido» y lleva el foco al área principal; el glosario define las siglas",
-   "observado": "Primer foco: «Saltar al contenido» → foco en #contenido; glosario con 16 líneas",
+   "observado": "Primer foco: «Saltar al contenido» → foco en #contenido; glosario con 18 líneas",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-33",
+   "cu": "Simulador",
+   "nombre": "Situación actual coincide con el Panorama y respeta filtros",
+   "precondiciones": "Prototipo con datos ficticios; pantalla Simulador de escenarios",
+   "entrada": "Sin filtros; luego Campaña A",
+   "pasos": "Comparar personas, renuncias y tasa del simulador con el Panorama",
+   "esperado": "Mismos valores en ambos módulos, con y sin filtro",
+   "observado": "Sin filtro: 2.528 personas, 30,9 %; campaña A: 892 personas, 34,2 % (iguales al Panorama)",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-34",
+   "cu": "Simulador",
+   "nombre": "Ejemplo de referencia con meta del 25 %",
+   "precondiciones": "Prototipo con datos ficticios; pantalla Simulador de escenarios",
+   "entrada": "Meta 25; costo 2.550.000",
+   "pasos": "Escribir 25 en la meta",
+   "esperado": "632 renuncias estimadas, 148 menos; $1.989.000.000, $1.611.600.000 y $377.400.000; gráficos actualizados",
+   "observado": "632 estimadas; 148 menos; $ 1.989.000.000 → $ 1.611.600.000; diferencia $ 377.400.000 menos",
+   "estado": "Aprobada",
+   "evidencia": "PF-34_simulador.png"
+  },
+  {
+   "id": "PF-35",
+   "cu": "Simulador",
+   "nombre": "El costo cambia montos y se validan entradas",
+   "precondiciones": "Prototipo con datos ficticios; pantalla Simulador de escenarios",
+   "entrada": "Costo 3000000; costo −5; meta 120; meta «abc»",
+   "pasos": "Cambiar el costo y luego ingresar valores inválidos",
+   "esperado": "Renuncias iguales con otro costo; mensajes de error y sin resultados con valores inválidos",
+   "observado": "Con $3.000.000: 632 renuncias, $ 1.896.000.000; «−5» → «El costo por reemplazo no puede ser negativo.»; «120» → «La meta debe estar entre 0 y 100 %; se recibió 120.»",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-36",
+   "cu": "Simulador",
+   "nombre": "Meta mayor que la actual y restablecer",
+   "precondiciones": "Prototipo con datos ficticios; pantalla Simulador de escenarios",
+   "entrada": "Meta 40; luego «Restablecer escenario»",
+   "pasos": "Ingresar 40 y restablecer",
+   "esperado": "Se presenta como mayor rotación (no mejora); al restablecer la meta vuelve a la tasa actual con diferencia 0",
+   "observado": "Meta 40 %: «Escenario de mayor rotación. Este escenario representa una r…»; restablecido a 30,9 % con diferencia 0",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-37",
+   "cu": "Simulador",
+   "nombre": "Guardar, comparar, eliminar y exportar escenarios",
+   "precondiciones": "Prototipo con datos ficticios; pantalla Simulador de escenarios",
+   "entrada": "Metas 28, 25 y 22",
+   "pasos": "Guardar tres escenarios, intentar un cuarto, eliminar uno y copiar el CSV",
+   "esperado": "Tabla con 3 escenarios; el cuarto se bloquea; al eliminar quedan 2; el CSV trae supuestos y resultados",
+   "observado": "3 guardados, cuarto bloqueado = True; tras eliminar: 2; CSV con 3 filas de datos",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-38",
+   "cu": "Simulador",
+   "nombre": "Teclado y población vacía",
+   "precondiciones": "Prototipo con datos ficticios; pantalla Simulador de escenarios",
+   "entrada": "Flecha izquierda en el deslizador; filtros sin registros",
+   "pasos": "Mover la meta con el teclado y combinar filtros vacíos",
+   "esperado": "La meta baja 1 punto con el teclado; sin personas muestra «No disponible» sin errores",
+   "observado": "Meta tras ← = 30 %; selección vacía: «No disponible: no hay personas en la selección.»",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -370,7 +442,7 @@
    "entrada": "Viewport 400 × 860",
    "pasos": "Abrir cada pantalla en ancho de teléfono",
    "esperado": "Sin desplazamiento horizontal de la página",
-   "observado": "Desborde horizontal por pantalla (px): [0, 0, 0, 0, 0, 0]",
+   "observado": "Desborde horizontal por pantalla (px): [0, 0, 0, 0, 0, 0, 0]",
    "estado": "Aprobada",
    "evidencia": "PF-24_movil.png"
   },

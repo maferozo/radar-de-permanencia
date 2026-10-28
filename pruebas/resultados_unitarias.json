@@ -1,5 +1,5 @@
 {
- "fecha": "2026-10-27T20:38:06.997Z",
+ "fecha": "2026-10-28T01:11:38.610Z",
  "entorno": "Node v22.23.4",
  "resultados": [
   {
@@ -198,6 +198,42 @@
    "entrada": "Factores del resumen",
    "esperado": "Cada factor tiene recomendación, responsable sugerido e indicador",
    "observado": "5 factores con plan completo",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-24",
+   "cu": "Simulador",
+   "nombre": "Ejemplo de referencia del simulador",
+   "entrada": "N = 2.528, R = 780, meta 25 %, costo COP 2.550.000",
+   "esperado": "632 renuncias estimadas; 148 menos; COP 1.989.000.000, 1.611.600.000 y 377.400.000",
+   "observado": "632 estimadas (148 menos); 1989000000 − 1611600000 = 377400000",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-25",
+   "cu": "Simulador",
+   "nombre": "El costo cambia montos, no tasas ni renuncias",
+   "entrada": "Meta 25 % con costo 2.550.000 y 3.000.000; costo 0",
+   "esperado": "Mismas renuncias estimadas; montos proporcionales; costo 0 → montos 0",
+   "observado": "renuncias 632 = 632; costo B 1896000000; costo 0 → 0",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-26",
+   "cu": "Simulador",
+   "nombre": "Meta igual o mayor que la actual y población vacía",
+   "entrada": "Meta = 780/2528; meta 30,9 %; meta 40 %; N = 0",
+   "esperado": "Diferencia 0; mayor rotación no es mejora; N = 0 → sin resultado",
+   "observado": "igual: 0; 30,9 %: 0; 40 %: -231 (mayor rotación); N = 0: null",
+   "estado": "Aprobada"
+  },
+  {
+   "id": "PU-27",
+   "cu": "Simulador",
+   "nombre": "Validación de entradas",
+   "entrada": "Meta vacía, «abc», 120, «25,5»; costo −5, «2.550.000», vacío",
+   "esperado": "Rechaza vacíos, texto, fuera de rango y negativos; acepta coma decimal y separador de miles",
+   "observado": "«120» → La meta debe estar entre 0 y 100 %; se recibió 120.; «-5» → El costo por reemplazo no puede ser negativo.",
    "estado": "Aprobada"
   },
   {

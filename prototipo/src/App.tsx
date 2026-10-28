@@ -6,13 +6,15 @@ import Panorama from "./pages/Panorama";
 import Causas from "./pages/Causas";
 import Resumen from "./pages/Resumen";
 import Semaforo from "./pages/Semaforo";
+import Simulador from "./pages/Simulador";
 import Seguimiento from "./pages/Seguimiento";
 
-export type Ruta = "panorama" | "causas" | "resumen" | "semaforo" | "seguimiento" | "glosario";
+export type Ruta = "panorama" | "causas" | "resumen" | "simulador" | "semaforo" | "seguimiento" | "glosario";
 const RUTAS: { id: Ruta; nombre: string; q: string }[] = [
   { id: "panorama", nombre: "Panorama", q: "¿Qué está pasando?" },
   { id: "causas", nombre: "Causas", q: "¿Por qué se van?" },
   { id: "resumen", nombre: "Resumen y acciones", q: "¿Qué hacemos?" },
+  { id: "simulador", nombre: "Simulador de escenarios", q: "¿Y si alcanzamos una meta?" },
   { id: "semaforo", nombre: "Semáforo", q: "¿Se quedará?" },
 ];
 export const FILTROS_INICIALES: Filtros = { desde: COHORTES_VENTANA[0], hasta: COHORTES_VENTANA[COHORTES_VENTANA.length - 1], campana: TODOS, supervisor: TODOS };
@@ -41,8 +43,8 @@ export default function App() {
   const { filas, msFiltro } = useMemo(() => { const t0 = performance.now(); const r = filtrar(FILAS, filtros); return { filas: r, msFiltro: performance.now() - t0 }; }, [filtros]);
   const supervisores = filtros.campana === TODOS ? SUPERVISORES : SUPERVISORES.filter(s => SUP_CAMPANA[s] === filtros.campana);
   const ctx: Contexto = { filtros, filas, nMin, setNMin, costos, setCostos, ir, foco };
-  const conFiltros = ruta === "panorama" || ruta === "causas" || ruta === "resumen";
-  const info = RUTAS.find(r => r.id === ruta) ?? (ruta === "glosario" ? { nombre: "Glosario", q: "Términos y siglas que aparecen en el dashboard" } : { nombre: "Seguimiento del proyecto", q: "Avance del equipo: burndown, métricas DORA, rendimiento, pruebas, calidad de datos y trazabilidad" });
+  const conFiltros = ruta === "panorama" || ruta === "causas" || ruta === "resumen" || ruta === "simulador";
+  const info = ruta === "simulador" ? { nombre: "Simulador de escenarios", q: "Explora cómo cambiarían los resultados si alcanzas diferentes metas de permanencia" } : RUTAS.find(r => r.id === ruta) ?? (ruta === "glosario" ? { nombre: "Glosario", q: "Términos y siglas que aparecen en el dashboard" } : { nombre: "Seguimiento del proyecto", q: "Avance del equipo: burndown, métricas DORA, rendimiento, pruebas, calidad de datos y trazabilidad" });
   const nInc = filas.filter(f => f.ventana).length, nSin = filas.length - nInc;
   const chips = [`Cohortes ${filtros.desde} a ${filtros.hasta}`, filtros.campana === TODOS ? "Todas las campañas" : filtros.campana, filtros.supervisor === TODOS ? "Todos los supervisores" : `Supervisor ${filtros.supervisor}`];
   const sucio = JSON.stringify(filtros) !== JSON.stringify(FILTROS_INICIALES);
@@ -132,6 +134,7 @@ export default function App() {
         {ruta === "panorama" && <Panorama {...ctx} />}
         {ruta === "causas" && <Causas {...ctx} />}
         {ruta === "resumen" && <Resumen {...ctx} />}
+        {ruta === "simulador" && <Simulador {...ctx} />}
         {ruta === "semaforo" && <Semaforo />}
         {ruta === "seguimiento" && <Seguimiento />}
         {ruta === "glosario" && (

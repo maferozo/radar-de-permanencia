@@ -1,7 +1,7 @@
 // Pruebas unitarias de la lógica del prototipo. Ejecutar: npm run test:unit
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { decodificar, filtrar, kpis, porCohorte, validarCandidato, evaluar, burndown, estadoBurndown, dora, porGrupo, factores, motivos, contraste, reglasAlerta, costo, rankingFactores, PLAN, NOMBRE_VARIABLE, TODOS, Hechos, Coef, Candidato } from "../src/calc";
+import { decodificar, filtrar, kpis, porCohorte, validarCandidato, evaluar, burndown, estadoBurndown, dora, porGrupo, factores, motivos, contraste, reglasAlerta, costo, rankingFactores, PLAN, NOMBRE_VARIABLE, simularEscenario, validarMeta, validarCosto, TODOS, Hechos, Coef, Candidato } from "../src/calc";
 
 const RAIZ = join(new URL(".", import.meta.url).pathname, "..", "..");
 const hechos = JSON.parse(readFileSync(join(RAIZ, "prototipo/src/data/hechos.json"), "utf8")) as Hechos;
@@ -105,6 +105,24 @@ t("PU-22", "CU-05 / 13.10", "Condiciones evaluadas y justificación de cada regl
 });
 t("PU-23", "CU-04 / HU-11", "Plan de acción completo por factor", "Factores del resumen", "Cada factor tiene recomendación, responsable sugerido e indicador", () => {
   const f = factores(FILAS, 30); return [f.length >= 3 && f.every(x => x.recomendacion && PLAN[x.variable].responsable && PLAN[x.variable].indicador), `${f.length} factores con plan completo`];
+});
+t("PU-24", "Simulador", "Ejemplo de referencia del simulador", "N = 2.528, R = 780, meta 25 %, costo COP 2.550.000", "632 renuncias estimadas; 148 menos; COP 1.989.000.000, 1.611.600.000 y 377.400.000", () => {
+  const k = kpis(FILAS); const e = simularEscenario(k.contratados, k.renuncias, 0.25, 2550000)!;
+  const ok = k.contratados === 2528 && k.renuncias === 780 && e.renunciasEstimadas === 632 && e.difRenuncias === 148 && e.costoReferencia === 1989000000 && e.costoEscenario === 1611600000 && e.difCosto === 377400000 && e.tipo === "menor rotación";
+  return [ok, `${e.renunciasEstimadas} estimadas (${e.difRenuncias} menos); ${e.costoReferencia} − ${e.costoEscenario} = ${e.difCosto}`];
+});
+t("PU-25", "Simulador", "El costo cambia montos, no tasas ni renuncias", "Meta 25 % con costo 2.550.000 y 3.000.000; costo 0", "Mismas renuncias estimadas; montos proporcionales; costo 0 → montos 0", () => {
+  const a = simularEscenario(2528, 780, 0.25, 2550000)!, b = simularEscenario(2528, 780, 0.25, 3000000)!, c = simularEscenario(2528, 780, 0.25, 0)!;
+  return [a.renunciasEstimadas === b.renunciasEstimadas && a.meta === b.meta && b.costoEscenario === 632 * 3000000 && c.costoEscenario === 0 && c.difCosto === 0, `renuncias ${a.renunciasEstimadas} = ${b.renunciasEstimadas}; costo B ${b.costoEscenario}; costo 0 → ${c.costoEscenario}`];
+});
+t("PU-26", "Simulador", "Meta igual o mayor que la actual y población vacía", "Meta = 780/2528; meta 30,9 %; meta 40 %; N = 0", "Diferencia 0; mayor rotación no es mejora; N = 0 → sin resultado", () => {
+  const igual = simularEscenario(2528, 780, 780 / 2528, 2550000)!, redondeada = simularEscenario(2528, 780, 0.309, 2550000)!, mayor = simularEscenario(2528, 780, 0.4, 2550000)!, vacia = simularEscenario(0, 0, 0.25, 2550000);
+  return [igual.difRenuncias === 0 && redondeada.difRenuncias === 0 && mayor.tipo === "mayor rotación" && mayor.difRenuncias < 0 && mayor.difCosto < 0 && vacia === null, `igual: ${igual.difRenuncias}; 30,9 %: ${redondeada.difRenuncias}; 40 %: ${mayor.difRenuncias} (${mayor.tipo}); N = 0: ${vacia}`];
+});
+t("PU-27", "Simulador", "Validación de entradas", "Meta vacía, «abc», 120, «25,5»; costo −5, «2.550.000», vacío", "Rechaza vacíos, texto, fuera de rango y negativos; acepta coma decimal y separador de miles", () => {
+  const ok = "error" in validarMeta("") && "error" in validarMeta("abc") && "error" in validarMeta("120") && (validarMeta("25,5") as { valor: number }).valor === 0.255
+    && "error" in validarCosto("-5") && "error" in validarCosto("") && (validarCosto("2.550.000") as { valor: number }).valor === 2550000;
+  return [ok, `«120» → ${(validarMeta("120") as { error: string }).error}; «-5» → ${(validarCosto("-5") as { error: string }).error}`];
 });
 const filtroTodos = filtrar(FILAS, { desde: "", hasta: "", campana: TODOS, supervisor: TODOS });
 t("PU-17", "CU-02", "Limpiar filtros vuelve a la vista completa", "Filtros vacíos", "Mismo número de filas que el dataset", () => [filtroTodos.length === FILAS.length, `${filtroTodos.length} de ${FILAS.length}`]);

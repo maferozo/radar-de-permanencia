@@ -196,3 +196,11 @@ details.card > summary { list-style-position: inside; }
 table[data-testid="tabla-pruebas"] td { min-width: 110px; } table[data-testid="tabla-pruebas"] td:first-child, table[data-testid="tabla-pruebas"] td:nth-child(2) { min-width: 0; }
 .tbl-wrap { position: relative; } .sr { left: 0; top: 0; }
 @media (max-width: 860px) { .side { min-height: 0; } }
+/* ---- Simulador de escenarios ---- */
+.kpi-plain { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.kpi-plain .val { font-family: var(--font-num); font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.sim-form { display: grid; gap: 16px; }
+.sim-res { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px 18px; }
+.sim-res > div { display: flex; flex-direction: column; gap: 2px; border-bottom: 1px solid var(--line); padding-bottom: 8px; min-width: 0; }
+.sim-res b { font-family: var(--font-num); font-size: 1.15rem; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+input[type="range"] { accent-color: var(--accent); min-height: 34px; }
