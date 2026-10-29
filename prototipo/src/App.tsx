@@ -118,18 +118,14 @@ export default function App() {
               </select></div>
             <button className="btn" onClick={() => { setFiltros(FILTROS_INICIALES); setNMin(30); }} disabled={!sucio && nMin === 30} data-testid="limpiar-filtros">Restablecer filtros</button>
             <details className="avanzado">
-              <summary>Opciones avanzadas</summary>
+              <summary>Más opciones</summary>
               <div className="field" style={{ marginTop: 8 }}><label htmlFor="f-nmin">Mínimo de personas para comparar un grupo <Ayuda t="Mínimo por grupo" /></label>
                 <input id="f-nmin" type="number" min={5} max={500} value={nMin} onChange={e => setNMin(Math.max(5, Math.min(500, Number(e.target.value) || 5)))} style={{ width: 90 }} data-testid="f-nmin" />
-                <span className="sub">Afecta las comparaciones de Causas y Resumen. Valor recomendado: 30.</span>
               </div>
             </details>
             <div className="filtros-activos" aria-live="polite">
-              <span className="lbl">{chips.length ? "Filtros activos" : "Vista completa"}</span>
-              {chips.length ? chips.map(c => <span key={c} className="chip" data-testid="chip-filtro">{c}</span>) : <span className="chip neutral" data-testid="chip-filtro">Sin filtros: todas las personas con seis meses de seguimiento</span>}
-              <span className="sub" style={{ marginLeft: "auto" }} data-testid="tiempo-filtro">
-                <b className="num">{nInc.toLocaleString("es-CO")}</b> personas en el análisis{nSin > 0 && <> · {nSin.toLocaleString("es-CO")} aún no cumplen seis meses y no se incluyen</>}
-              </span>
+              {chips.length ? chips.map(c => <span key={c} className="chip" data-testid="chip-filtro">{c}</span>) : <span className="chip neutral" data-testid="chip-filtro">Sin filtros</span>}
+              <span className="sub" data-testid="tiempo-filtro"><b className="num">{nInc.toLocaleString("es-CO")}</b> personas analizadas <Ayuda t="Personas analizadas" /></span>
             </div>
           </div>
         )}

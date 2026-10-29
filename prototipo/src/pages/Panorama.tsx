@@ -43,44 +43,43 @@ export default function Panorama({ filas, costos, setCostos, nMin, ir }: Context
         <div className="card kpi" data-testid="kpi-contratados">
           <p className="lbl">Personas contratadas</p>
           <div className="val">{fmt(k.contratados)}</div>
-          <p className="sub">Con al menos seis meses desde su ingreso{filtrado ? ` · ${pct(k.contratados / TOTAL.contratados, 0)} del total` : ""}.</p>
+          <p className="sub">Con seis meses de seguimiento{filtrado ? ` · ${pct(k.contratados / TOTAL.contratados, 0)} del total` : ""}</p>
         </div>
         <div className="card kpi" data-testid="kpi-renuncias">
           <p className="lbl">Renunciaron antes de seis meses</p>
           <div className="val">{fmt(k.renuncias)}</div>
-          <p className="sub">Renuncias voluntarias. Los despidos ({fmt(k.despidos)}) no se cuentan.</p>
+          <p className="sub">Voluntarias · despidos aparte: {fmt(k.despidos)}</p>
         </div>
         <div className="card kpi destacado" data-testid="kpi-tasa">
           <p className="lbl">Rotación temprana <Ayuda t="Rotación temprana" /></p>
           <div className="val">{pct(k.tasa)}</div>
-          <p className="sub">de las personas contratadas renunció antes de seis meses.</p>
+          <p className="sub">renunció antes de seis meses</p>
           {filtrado && <p className="ctx">{difTotal >= 0 ? "+" : "−"}{dec1(Math.abs(difTotal))} p.p. frente al total ({pct(TOTAL.tasa)})</p>}
         </div>
         <div className="card kpi" data-testid="kpi-mes">
           <p className="lbl">Mes con más renuncias <Ayuda t="Mes con más renuncias" /></p>
           <div className="val">{k.mesCritico ? `Mes ${k.mesCritico}` : "—"}</div>
-          <p className="sub">{mesSel ? `${fmt(mesSel.renuncias)} renuncias, ${pct(mesSel.pct, 0)} del total.` : "—"}</p>
+          <p className="sub">{mesSel ? `${fmt(mesSel.renuncias)} renuncias (${pct(mesSel.pct, 0)})` : "—"}</p>
         </div>
       </div>
 
       <section className="card hallazgo" data-testid="interpretacion">
         <h2>Hallazgo principal</h2>
-        <ul className="hallazgos">
-          <li><b>{de100} de cada 100</b> personas contratadas renunciaron antes de cumplir seis meses.</li>
-          {mesSel && <li>El <b>mes {k.mesCritico}</b> después del ingreso concentra más renuncias ({pct(mesSel.pct, 0)}); los tres primeros meses suman {pct(primeros3, 0)}.</li>}
-          {top && <li>La diferencia más grande aparece en <b>{NOMBRE_VARIABLE[top.variable].toLowerCase()}: {top.grupo}</b> ({pct(top.tasa)} frente a {pct(top.general)}). Es una relación observada, no una causa demostrada.</li>}
-        </ul>
-        {primeros3 >= 0.5 && <p className="sugerencia"><span className="pill warn">Sugerencia por validar</span> Conviene revisar la inducción y el acompañamiento de los primeros meses.</p>}
-        <p className="sub">Es una medición histórica de personas que ya cumplieron seis meses, no una predicción del futuro. No hay una meta de rotación definida por la empresa con la cual comparar.</p>
-        <div className="row">
-          <button className="btn link" onClick={() => ir("causas")}>Ver qué se relaciona con las renuncias →</button>
-          <button className="btn link" onClick={() => ir("resumen")}>Ver qué puede hacer Recursos Humanos →</button>
-          <button className="btn link" onClick={() => ir("simulador")} data-testid="ir-simulador">¿Y si la rotación bajara? →</button>
+        <p className="lead"><b>{de100} de cada 100</b> personas renuncian antes de seis meses{mesSel ? <>, sobre todo en el <b>mes {k.mesCritico}</b> después del ingreso ({pct(mesSel.pct, 0)})</> : null}.</p>
+        {top && <p>La mayor diferencia está en <b>{NOMBRE_VARIABLE[top.variable].toLowerCase()}: {top.grupo}</b>, con {pct(top.tasa)} frente a {pct(top.general)}. Es una relación observada, no una causa demostrada <Ayuda t="Relación, no causa" />.</p>}
+        {primeros3 >= 0.5 && <p className="sugerencia"><span className="pill warn">Sugerencia por validar</span> Los tres primeros meses suman {pct(primeros3, 0)}: conviene revisar la inducción y el acompañamiento inicial.</p>}
+        <div className="hallazgo-pie">
+          <span className="sub">Medición histórica, no una predicción.</span>
+          <span className="enlaces">
+            <button className="btn link" onClick={() => ir("causas")}>Ver causas →</button>
+            <button className="btn link" onClick={() => ir("resumen")}>Ver acciones →</button>
+            <button className="btn link" onClick={() => ir("simulador")} data-testid="ir-simulador">Simular una meta →</button>
+          </span>
         </div>
       </section>
 
       <div className="grid two">
-        <Card title="¿Cambia la rotación según el mes de ingreso?" sub="Cada punto es el grupo de personas que ingresó ese mes. La línea punteada es el promedio.">
+        <Card title="¿Cambia la rotación según el mes de ingreso?" sub="Cada punto: personas que ingresaron ese mes.">
           <div className="chart" data-testid="graf-cohortes" role="img" aria-label={`Rotación temprana por mes de ingreso: más alta ${alta ? mesLargo(alta.cohorte) : ""} con ${pct(alta?.tasa)}, más baja ${baja ? mesLargo(baja.cohorte) : ""} con ${pct(baja?.tasa)}`}>
             <ResponsiveContainer>
               <LineChart data={coh} margin={{ top: 16, right: 16, bottom: 4, left: -8 }}>
@@ -93,12 +92,11 @@ export default function Panorama({ filas, costos, setCostos, nMin, ir }: Context
               </LineChart>
             </ResponsiveContainer>
           </div>
-          <div className="legend"><span><i className="sw" style={{ background: "var(--s1)" }} />Rotación temprana del mes de ingreso</span><span><i className="sw" style={{ background: "var(--fg-3)" }} />Promedio: {pct(k.tasa)}</span></div>
-          {coh.length > 1 && alta && baja && <p className="sub" data-testid="lectura-cohortes">Más alta: <b>{mesLargo(alta.cohorte)}</b> ({pct(alta.tasa)}). Más baja: <b>{mesLargo(baja.cohorte)}</b> ({pct(baja.tasa)}). Solo se comparan meses con al menos {nMin} personas.</p>}
+          <div className="legend"><span><i className="sw" style={{ background: "var(--s1)" }} />Rotación del mes de ingreso</span><span><i className="sw" style={{ background: "var(--fg-3)" }} />Promedio {pct(k.tasa)}</span>{coh.length > 1 && alta && baja && <span data-testid="lectura-cohortes">{`Más alta: ${mesCorto(alta.cohorte)} (${pct(alta.tasa)}) · más baja: ${mesCorto(baja.cohorte)} (${pct(baja.tasa)})`}</span>}</div>
           {coh.length === 1 && <p className="sub">Solo hay un mes de ingreso en la selección; amplíe el periodo para ver la tendencia.</p>}
         </Card>
 
-        <Card title="¿En qué mes después del ingreso renuncian más?" sub="Renuncias según los meses que la persona llevaba trabajando (mes 1 = primeros 30 días).">
+        <Card title="¿En qué mes después del ingreso renuncian más?" sub="Mes 1 = primeros 30 días de trabajo.">
           <div className="chart" data-testid="graf-meses" role="img" aria-label={`Renuncias por mes de antigüedad; el mes con más renuncias es el ${k.mesCritico}`}>
             <ResponsiveContainer>
               <BarChart data={meses} margin={{ top: 22, right: 8, bottom: 4, left: -16 }}>
@@ -121,7 +119,7 @@ export default function Panorama({ filas, costos, setCostos, nMin, ir }: Context
         <div className="economico-fila">
           <div style={{ minWidth: 0 }}>
             <h2>Impacto económico estimado</h2>
-            <p className="sub">{c === null ? "Sin datos de costo: el cliente no ha entregado el costo de reemplazar a una persona (HU-05)." : `Renuncias × ${cop(costos!.reclutamiento + costos!.formacion + costos!.improductivo)} por reemplazo (reclutamiento, formación y tiempo improductivo).`}</p>
+            <p className="sub">{c === null ? "Falta el costo de reemplazar a una persona (HU-05)." : <>Renuncias × {cop(costos!.reclutamiento + costos!.formacion + costos!.improductivo)} por reemplazo <Ayuda t="Costo supuesto" /></>}</p>
           </div>
           <div className="economico-val">
             {c === null ? <div className="val na">Sin datos de costo</div> : <div className="val" title={cop(c)}>{copMillones(c)}</div>}
@@ -144,27 +142,23 @@ export default function Panorama({ filas, costos, setCostos, nMin, ir }: Context
       </section>
 
       <details className="card" data-testid="incluidos-excluidos">
-        <summary>Datos que no se incluyeron en el análisis</summary>
-        <div className="tbl-wrap" style={{ marginTop: 10 }}><table>
-          <thead><tr><th>Grupo</th><th className="r">Personas</th><th>Por qué</th></tr></thead>
-          <tbody>
-            <tr><td>Incluidas en el análisis</td><td className="r">{fmt(k.contratados)}</td><td>Ingresaron hace al menos seis meses, así que se sabe si renunciaron en ese plazo.</td></tr>
-            <tr><td>Aún sin seis meses de seguimiento <Ayuda t="Seis meses de seguimiento" /></td><td className="r">{fmt(k.excluidosSinVentana)}</td><td>Ingresaron hace menos de 180 días: todavía no se sabe si renunciarán antes de los seis meses.</td></tr>
-            <tr><td>Despidos antes de seis meses</td><td className="r">{fmt(k.despidos)}</td><td>Cuentan como personas contratadas, pero no como renuncia, porque la definición solo incluye retiros voluntarios.</td></tr>
-            <tr><td>Registros con errores</td><td className="r">{fmt(excluidasEtl)}</td><td>Fecha de retiro anterior al ingreso o posterior al corte. Se excluyen de todo el análisis, sin importar los filtros. Además se eliminaron 15 registros duplicados.</td></tr>
-          </tbody>
-        </table></div>
-      </details>
-
-      <details className="card" data-testid="definiciones">
-        <summary>Cómo se calcula cada indicador</summary>
-        <dl className="glosario" style={{ marginTop: 10 }}>
-          <div><dt>Personas contratadas</dt><dd>Personas cuyo mes de ingreso tiene al menos 180 días de seguimiento a la fecha de corte de los datos.</dd></div>
-          <div><dt>Renunciaron antes de seis meses</dt><dd>Personas contratadas que renunciaron voluntariamente en sus primeros 180 días.</dd></div>
-          <div><dt>Rotación temprana</dt><dd>Renunciaron antes de seis meses ÷ personas contratadas.</dd></div>
-          <div><dt>Mes con más renuncias</dt><dd>Mes de antigüedad (1 a 6) en el que ocurrió el mayor número de esas renuncias.</dd></div>
-          <div><dt>Impacto económico estimado</dt><dd>Renuncias × costo supuesto de reemplazar a una persona. Es una estimación, no un costo contable.</dd></div>
-        </dl>
+        <summary>Detalles del cálculo: datos no incluidos y definiciones</summary>
+        <div className="detalle-calculo">
+          <div className="tbl-wrap"><table>
+            <thead><tr><th>Grupo</th><th className="r">Personas</th><th>Por qué</th></tr></thead>
+            <tbody>
+              <tr><td>Incluidas en el análisis</td><td className="r">{fmt(k.contratados)}</td><td>Ingresaron hace al menos seis meses.</td></tr>
+              <tr><td>Aún sin seis meses de seguimiento</td><td className="r">{fmt(k.excluidosSinVentana)}</td><td>Todavía no se sabe si renunciarán antes de los seis meses.</td></tr>
+              <tr><td>Despidos antes de seis meses</td><td className="r">{fmt(k.despidos)}</td><td>Cuentan como contratadas, no como renuncia.</td></tr>
+              <tr><td>Registros con errores</td><td className="r">{fmt(excluidasEtl)}</td><td>Fechas imposibles; se excluyen siempre. También se eliminaron 15 duplicados.</td></tr>
+            </tbody>
+          </table></div>
+          <dl className="glosario" data-testid="definiciones">
+            <div><dt>Rotación temprana</dt><dd>Renunciaron antes de seis meses ÷ personas contratadas con seis meses de seguimiento.</dd></div>
+            <div><dt>Mes con más renuncias</dt><dd>Mes de antigüedad (1 a 6) con más renuncias tempranas.</dd></div>
+            <div><dt>Impacto económico</dt><dd>Renuncias × costo supuesto de reemplazo. Es una estimación, no un costo contable.</dd></div>
+          </dl>
+        </div>
       </details>
       {toast && <div className="toast" role="status">{toast}</div>}
     </>

@@ -1,5 +1,5 @@
 {
- "fecha": "2026-10-29T18:32:15",
+ "fecha": "2026-10-29T18:50:56",
  "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v185 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
  "resultados": [
   {
@@ -34,7 +34,7 @@
    "entrada": "Cursor sobre un punto",
    "pasos": "Mover el cursor sobre el gráfico de cohortes",
    "esperado": "Tooltip con el mes de ingreso, la rotación temprana y las renuncias",
-   "observado": "Ingresaron en mayo 2025 · Rotación temprana: 32,2 % · 37 renuncias de 115 personas",
+   "observado": "Ingresaron en mayo 2025 · Rotación temprana: 32,2 % · 37 renuncias de 115 personas",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -82,7 +82,7 @@
    "entrada": "Mínimo por grupo = 30",
    "pasos": "Abrir Causas",
    "esperado": "Barras por supervisor con n; grupos pequeños en gris con aviso; conclusión de la prueba",
-   "observado": "1 supervisor(es) con menos de 30 personas en la selección. No se sacan conclusiones sobre ellos. | Conclusión: la prueba parece útil. Quienes obtienen 0–59 renuncian 16,2 p.p. más que quien",
+   "observado": "1 supervisor con menos de 30 personas: no se compara. | Conclusión: la prueba parece útil. Quienes obtienen 0–59 renuncian 16,2 p.p. más que quien",
    "estado": "Aprobada",
    "evidencia": "PF-07_causas.png"
   },
@@ -106,7 +106,7 @@
    "entrada": "—",
    "pasos": "Revisar la tarjeta de motivos",
    "esperado": "Top 5 motivos con porcentaje y coincidencias o contradicciones con HU-07 a HU-09",
-   "observado": "5 motivos; coincide Horario: Coincide con el factor «Distancia vivienda–trabajo: > 15 km» del resumen (+12,8 p.p.).",
+   "observado": "5 motivos; coincide",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -308,9 +308,9 @@
    "nombre": "Plan de acción por factor",
    "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
    "entrada": "—",
-   "pasos": "Abrir Resumen y acciones y desplegar las de menor prioridad",
-   "esperado": "Cada acción con qué encontramos, por qué importa, qué recomendamos y cómo verificarlo, más responsable y estado sin marcar como ejecutado",
-   "observado": "5 acciones con los 4 pasos (qué encontramos, por qué importa, qué recomendamos, cómo verificarlo), responsable y estado «Pendiente»",
+   "pasos": "Abrir Resumen y acciones y desplegar «Por qué importa y cómo verificarlo» en cada acción",
+   "esperado": "Cada acción muestra la recomendación y el estado «Pendiente»; el detalle desplegable trae qué encontramos, por qué importa, qué recomendamos, cómo verificarlo y el responsable",
+   "observado": "5 acciones: visible la recomendación y el estado «Pendiente»; al desplegar, los 4 pasos y el responsable",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -358,7 +358,7 @@
    "entrada": "Tecla Tab desde el inicio",
    "pasos": "Pulsar Tab, Enter y abrir Glosario",
    "esperado": "El primer foco es «Saltar al contenido» y lleva el foco al área principal; el glosario define las siglas",
-   "observado": "Primer foco: «Saltar al contenido» → foco en #contenido; glosario con 19 líneas",
+   "observado": "Primer foco: «Saltar al contenido» → foco en #contenido; glosario con 23 líneas",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -382,7 +382,7 @@
    "entrada": "Meta 25; costo 2.550.000",
    "pasos": "Escribir 25 en la meta",
    "esperado": "632 renuncias estimadas, 148 menos; $1.989.000.000, $1.611.600.000 y $377.400.000; gráficos actualizados",
-   "observado": "632 estimadas; 148 menos; $ 1.989.000.000 → $ 1.611.600.000; diferencia $ 377.400.000 menos",
+   "observado": "632 estimadas; 148 menos; $ 1.989.000.000 → $ 1.611.600.000; diferencia $ 377.400.000 menos",
    "estado": "Aprobada",
    "evidencia": "PF-34_simulador.png"
   },
@@ -394,7 +394,7 @@
    "entrada": "Costo 3000000; costo −5; meta 120; meta «abc»",
    "pasos": "Cambiar el costo y luego ingresar valores inválidos",
    "esperado": "Renuncias iguales con otro costo; mensajes de error y sin resultados con valores inválidos",
-   "observado": "Con $3.000.000: 632 renuncias, $ 1.896.000.000; «−5» → «El costo por reemplazo no puede ser negativo.»; «120» → «La meta debe estar entre 0 y 100 %; se recibió 120.»",
+   "observado": "Con $3.000.000: 632 renuncias, $ 1.896.000.000; «−5» → «El costo por reemplazo no puede ser negativo.»; «120» → «La meta debe estar entre 0 y 100 %; se recibió 120.»",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -442,7 +442,7 @@
    "entrada": "Campaña B",
    "pasos": "Leer el hallazgo, filtrar y volver a leerlo",
    "esperado": "El texto cambia con los datos filtrados y conserva el aviso de relación, no causa",
-   "observado": "Con campaña B: «25 de cada 100 personas contratadas renunciaron antes de cumplir seis …» (rotación 25,0 %)",
+   "observado": "Con campaña B: «…» (rotación 25,0 %)",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -454,7 +454,7 @@
    "entrada": "Mínimo por grupo = 50",
    "pasos": "Abrir «Opciones avanzadas», cambiar el mínimo y restablecer",
    "esperado": "Aparece el chip del filtro activo; «Restablecer filtros» vuelve a 30 y a «Sin filtros»",
-   "observado": "Chip: ['Mínimo 50 personas por grupo']; tras restablecer: mínimo 30, «Sin filtros: todas las persona…»",
+   "observado": "Chip: ['Mínimo 50 personas por grupo']; tras restablecer: mínimo 30, «Sin filtros…»",
    "estado": "Aprobada",
    "evidencia": ""
   },

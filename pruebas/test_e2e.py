@@ -34,8 +34,8 @@ with sync_playwright() as p:
     pg.on("console", lambda m: errores_consola.append(m.text) if m.type == "error" and "ERR_TUNNEL" not in m.text and "Failed to load resource" not in m.text else None)
     pg.goto(URL); pg.wait_for_selector(t("kpi-tasa"))
     def ir(r): pg.click(t("nav-" + r)); pg.wait_for_timeout(150)
-    def txt(s): return pg.locator(t(s)).inner_text()
-    def val(s): return pg.locator(t(s) + " .val").inner_text()
+    def txt(s): return pg.locator(t(s)).inner_text().replace("\xa0", " ")  # los porcentajes usan espacio no separable
+    def val(s): return pg.locator(t(s) + " .val").inner_text().replace("\xa0", " ")
 
     PRE_DASH = "Prototipo construido (dist/index.html) con datos ficticios cargados"
 
@@ -200,14 +200,15 @@ with sync_playwright() as p:
         pg.screenshot(path=os.path.join(CAP, "PF-27_ranking.png"))
         return filas == 8 and "Prioritario" in d and "Recomendación (hipótesis)" in d and "Limitaciones" in d and "Puntos porcentuales" in ay and cerrado, f"8 variables + fila de detalle; ayuda: «{ay[:60]}…»; se cierra con Escape", "PF-27_ranking.png"
 
-    @prueba("PF-28", "CU-04 / HU-11", "Plan de acción por factor", PRE_DASH, "—", "Abrir Resumen y acciones y desplegar las de menor prioridad", "Cada acción con qué encontramos, por qué importa, qué recomendamos y cómo verificarlo, más responsable y estado sin marcar como ejecutado")
+    @prueba("PF-28", "CU-04 / HU-11", "Plan de acción por factor", PRE_DASH, "—", "Abrir Resumen y acciones y desplegar «Por qué importa y cómo verificarlo» en cada acción", "Cada acción muestra la recomendación y el estado «Pendiente»; el detalle desplegable trae qué encontramos, por qué importa, qué recomendamos, cómo verificarlo y el responsable")
     def _():
         ir("resumen")
-        if pg.locator(".mas-factores > summary").count(): pg.click(".mas-factores > summary")
+        cerrado = pg.locator(t("factor")).first.inner_text()
+        for d in pg.locator(".accion-mas > summary").all(): d.click()
         fs = pg.locator(t("factor")).all_inner_texts()
         campos = ["QUÉ ENCONTRAMOS", "POR QUÉ IMPORTA", "QUÉ RECOMENDAMOS", "CÓMO VERIFICARLO", "RESPONSABLE SUGERIDO"]
-        ok = all(all(c in f.upper() for c in campos) for f in fs) and all("Pendiente: sin seguimiento registrado" in f for f in fs)
-        return ok, f"{len(fs)} acciones con los 4 pasos (qué encontramos, por qué importa, qué recomendamos, cómo verificarlo), responsable y estado «Pendiente»", ""
+        ok = all(all(c in f.upper() for c in campos) for f in fs) and all("Pendiente" in f for f in fs) and "4. CÓMO VERIFICARLO" not in cerrado.upper()
+        return ok, f"{len(fs)} acciones: visible la recomendación y el estado «Pendiente»; al desplegar, los 4 pasos y el responsable", ""
 
     @prueba("PF-29", "CU-05 / CU-06", "Semáforo explica reglas, condiciones y limitaciones", "Pantalla Semáforo", "Candidato de ejemplo", "Evaluar con el plan B y abrir «Limitaciones»", "4 condiciones con valor y Sí/No; cada regla con datos que la justifican; limitaciones visibles")
     def _():

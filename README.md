@@ -136,3 +136,9 @@ Textos en lenguaje sencillo, Panorama con 4 indicadores y un hallazgo principal 
 filtros, costo en una sección aparte, filtros con «Opciones avanzadas», acciones en cuatro pasos (qué
 encontramos, por qué importa, qué recomendamos, cómo verificarlo), leyenda de colores en el semáforo y el
 seguimiento del proyecto separado del análisis. Las fórmulas no cambiaron.
+
+## 12. Simplificación v1.4 (divulgación progresiva)
+
+Panorama, Causas y Resumen y acciones muestran primero los datos y las conclusiones; definiciones, fórmulas,
+supuestos, filtros avanzados y detalles técnicos quedan en ayudas «?» y apartados desplegables. Texto visible
+a 1360 px: Panorama 523 → 415 palabras, Causas 995 → 740, Resumen 718 → 461. Fórmulas sin cambios.

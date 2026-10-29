@@ -206,9 +206,9 @@ const RELACION: Record<string, Variable[]> = { "Horario": ["turno", "rangoDistan
 export function contraste(top: { motivo: string; pct: number }[], fs: Factor[]): { motivo: string; tipo: "coincide" | "contradice" | "sin relación"; texto: string }[] {
   return top.map(t => {
     const rel = RELACION[t.motivo] ?? []; const f = fs.find(x => rel.includes(x.variable));
-    if (!rel.length) return { motivo: t.motivo, tipo: "sin relación" as const, texto: "Motivo genérico; no se contrasta con un factor medido." };
-    if (f) return { motivo: t.motivo, tipo: "coincide" as const, texto: `Coincide con el factor «${NOMBRE_VARIABLE[f.variable]}: ${f.grupo}» del resumen (+${(f.diferencia * 100).toFixed(1).replace(".", ",")} p.p.).` };
-    return { motivo: t.motivo, tipo: "contradice" as const, texto: `Las personas lo declaran, pero los datos no muestran un factor asociado (${rel.map(v => NOMBRE_VARIABLE[v]).join(", ")}) entre los principales.` };
+    if (!rel.length) return { motivo: t.motivo, tipo: "sin relación" as const, texto: "motivo genérico, no se compara." };
+    if (f) return { motivo: t.motivo, tipo: "coincide" as const, texto: `coincide con ${NOMBRE_VARIABLE[f.variable].toLowerCase()}: ${f.grupo} (+${(f.diferencia * 100).toFixed(1).replace(".", ",")} p.p.).` };
+    return { motivo: t.motivo, tipo: "contradice" as const, texto: `los datos no lo confirman (${rel.map(v => NOMBRE_VARIABLE[v].toLowerCase()).join(", ")} no está entre los factores principales).` };
   });
 }
 

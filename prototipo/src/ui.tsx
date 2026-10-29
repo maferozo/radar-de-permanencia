@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 export const dec = (x: number, d = 1) => x.toLocaleString("es-CO", { minimumFractionDigits: d, maximumFractionDigits: d });
-export const pct = (x: number | null | undefined, d = 1) => (x === null || x === undefined || Number.isNaN(x) ? "—" : `${dec(x * 100, d)} %`);
+export const pct = (x: number | null | undefined, d = 1) => (x === null || x === undefined || Number.isNaN(x) ? "—" : `${dec(x * 100, d)}\u00a0%`);
 export const pp = (x: number) => `${x >= 0 ? "+" : "−"}${dec(Math.abs(x * 100))} p.p.`;
 export const fmt = (x: number | null | undefined, d = 0) => (x === null || x === undefined ? "—" : x.toLocaleString("es-CO", { maximumFractionDigits: d, minimumFractionDigits: d }));
 const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
@@ -77,6 +77,10 @@ export const GLOSARIO: Record<string, string> = {
   "Mes con más renuncias": "Mes después del ingreso (del 1 al 6) en el que ocurrió el mayor número de renuncias tempranas. Mes 1 = primeros 30 días.",
   "Mes de ingreso": "Grupo de personas que ingresó en el mismo mes. En análisis de datos también se llama «cohorte».",
   "Seis meses de seguimiento": "La persona ingresó hace al menos 180 días antes de la fecha de corte, así que ya se sabe si renunció en ese plazo. Quienes ingresaron después no entran en los porcentajes.",
+  "Personas analizadas": "Personas que ingresaron hace al menos seis meses y cumplen los filtros. Quienes ingresaron hace menos no se incluyen, porque todavía no se sabe si renunciarán antes de los seis meses.",
+  "Prioritario": "Prioritario: el grupo supera el promedio en más de 5 p.p. y tiene al menos el mínimo de personas. Diferencia leve: entre 2 y 5 p.p. No comparable: el grupo es demasiado pequeño.",
+  "Prueba estadística": "Se comparan el rango de puntaje más bajo y el más alto con una prueba de dos proporciones. Si p es menor que 0,05, la diferencia difícilmente se debe al azar.",
+  "Datos ficticios": "Todas las cifras se calcularon con datos inventados para la demostración. No describen a ninguna empresa real y deben repetirse con los datos del cliente.",
   "p.p.": "Puntos porcentuales: diferencia directa entre dos porcentajes. Si un grupo tiene 43,7 % y el promedio es 30,9 %, la diferencia es +12,8 p.p.",
   "Mínimo por grupo": "Cantidad mínima de personas que debe tener un grupo para compararlo con los demás. Con menos personas, un porcentaje alto o bajo puede deberse al azar.",
   "Relación, no causa": "Que un grupo renuncie más no prueba que esa característica provoque la renuncia. Puede haber otras razones. Por eso las acciones se presentan como hipótesis para evaluar.",
