@@ -148,7 +148,7 @@ export function factores(filas: Fila[], nMin: number, max = 5): Factor[] {
     if (!peor || peor.diferencia <= 0.02) continue; // solo diferencias de al menos 2 p.p.
     out.push({
       variable: v, grupo: peor.grupo, n: peor.n, tasa: peor.tasa, general, diferencia: peor.diferencia,
-      interpretacion: `De cada 100 personas del grupo «${peor.grupo}», ${Math.round(peor.tasa * 100)} renunciaron en sus primeros 6 meses, frente a ${Math.round(general * 100)} en promedio. Es una asociación observada, no prueba que el factor cause la renuncia.`,
+      interpretacion: `De cada 100 personas del grupo «${peor.grupo}», ${Math.round(peor.tasa * 100)} renunciaron antes de seis meses, frente a ${Math.round(general * 100)} en promedio. Es una relación observada, no una causa demostrada.`,
       recomendacion: RECOMENDACION[v],
     });
   }
@@ -169,7 +169,7 @@ export function rankingFactores(filas: Fila[], nMin: number): FilaRanking[] {
     if (!g) continue;
     const estado = !comp ? "no comparable" : comp.diferencia > 0.05 ? "prioritario" : comp.diferencia > 0.02 ? "leve" : "sin diferencia";
     const adv = [!comp ? `Ningún grupo alcanza ${nMin} personas.` : "", peq ? `${peq} grupo(s) con menos de ${nMin} personas no se comparan.` : "", v === "supervisor" ? "El supervisor no puede usarse para evaluar candidatos (se conoce después del ingreso)." : ""].filter(Boolean).join(" ");
-    out.push({ variable: v, grupo: g.grupo, n: g.n, renuncias: g.renuncias, tasa: g.tasa, general, diferencia: g.diferencia, estado, advertencia: adv || "Asociación observada; no prueba causalidad." });
+    out.push({ variable: v, grupo: g.grupo, n: g.n, renuncias: g.renuncias, tasa: g.tasa, general, diferencia: g.diferencia, estado, advertencia: adv || "Relación observada; no prueba que sea la causa." });
   }
   const orden = { prioritario: 0, leve: 1, "sin diferencia": 2, "no comparable": 3 };
   return out.sort((a, b) => orden[a.estado] - orden[b.estado] || b.diferencia - a.diferencia);
@@ -177,14 +177,14 @@ export function rankingFactores(filas: Fila[], nMin: number): FilaRanking[] {
 
 // Plan de acción (HU-11): responsable sugerido según la tabla de interesados del documento técnico, e indicador de seguimiento
 export const PLAN: Record<Variable, { responsable: string; indicador: string }> = {
-  supervisor: { responsable: "Gerencia de operaciones", indicador: "Tasa de rotación temprana del equipo del supervisor en las nuevas cohortes" },
-  rangoDistancia: { responsable: "Gerencia de RR. HH. y jefatura de reclutamiento", indicador: "Tasa de rotación temprana de personas a más de 15 km" },
-  turno: { responsable: "Gerencia de operaciones", indicador: "Tasa de rotación temprana por turno" },
-  rangoExperiencia: { responsable: "Gerencia de RR. HH. (formación)", indicador: "Tasa de rotación temprana de personas sin experiencia y renuncias en el mes crítico" },
-  rangoPuntaje: { responsable: "Jefatura de reclutamiento", indicador: "Tasa de rotación temprana por rango de puntaje" },
-  canal: { responsable: "Jefatura de reclutamiento", indicador: "Tasa de rotación temprana por canal de reclutamiento" },
-  campana: { responsable: "Gerencia de operaciones", indicador: "Tasa de rotación temprana de la campaña" },
-  educacion: { responsable: "Gerencia de RR. HH. (formación)", indicador: "Tasa de rotación temprana por nivel educativo" },
+  supervisor: { responsable: "Gerencia de operaciones", indicador: "Rotación temprana del equipo del supervisor" },
+  rangoDistancia: { responsable: "Gerencia de RR. HH. y jefatura de reclutamiento", indicador: "Rotación temprana de quienes viven a más de 15 km" },
+  turno: { responsable: "Gerencia de operaciones", indicador: "Rotación temprana por turno" },
+  rangoExperiencia: { responsable: "Gerencia de RR. HH. (formación)", indicador: "Rotación temprana de personas sin experiencia y renuncias en el mes con más renuncias" },
+  rangoPuntaje: { responsable: "Jefatura de reclutamiento", indicador: "Rotación temprana por rango de puntaje" },
+  canal: { responsable: "Jefatura de reclutamiento", indicador: "Rotación temprana por canal de reclutamiento" },
+  campana: { responsable: "Gerencia de operaciones", indicador: "Rotación temprana de la campaña" },
+  educacion: { responsable: "Gerencia de RR. HH. (formación)", indicador: "Rotación temprana por nivel educativo" },
 };
 
 // Top 3 perfiles (HU-09): grupos de variables de perfil con mayor tasa

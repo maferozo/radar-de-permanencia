@@ -1,6 +1,6 @@
 {
- "fecha": "2026-10-27T20:12:40",
- "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v180 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
+ "fecha": "2026-10-29T18:32:15",
+ "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v185 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
  "filas": [
   {
    "prueba": "Carga inicial hasta ver los indicadores",
@@ -8,10 +8,10 @@
    "registros": 3242,
    "errores": 0,
    "n": 10,
-   "min": 448.2710870000233,
-   "promedio": 473.5218187000015,
-   "mediana": 465.25526450000143,
-   "max": 504.04596100000276
+   "min": 438.7093880000066,
+   "promedio": 478.4399460999907,
+   "mediana": 477.6542185000494,
+   "max": 551.7377279999209
   },
   {
    "prueba": "Apertura de la pantalla «causas»",
@@ -19,10 +19,10 @@
    "registros": 3242,
    "errores": 0,
    "n": 10,
-   "min": 70.34989799998925,
-   "promedio": 89.68758609999838,
-   "mediana": 83.91340549999882,
-   "max": 116.19046699999558
+   "min": 72.86538300002121,
+   "promedio": 80.91548419998844,
+   "mediana": 79.34996800003091,
+   "max": 93.42909800000143
   },
   {
    "prueba": "Apertura de la pantalla «resumen»",
@@ -30,10 +30,10 @@
    "registros": 3242,
    "errores": 0,
    "n": 10,
-   "min": 42.32329299998128,
-   "promedio": 54.75830119999898,
-   "mediana": 52.390144000000305,
-   "max": 72.52174399999944
+   "min": 41.55819599998267,
+   "promedio": 54.925234899974384,
+   "mediana": 49.87959549998777,
+   "max": 76.68043000001035
   },
   {
    "prueba": "Apertura de la pantalla «semaforo»",
@@ -41,10 +41,10 @@
    "registros": 3242,
    "errores": 0,
    "n": 10,
-   "min": 42.17901399999846,
-   "promedio": 51.54566619999912,
-   "mediana": 47.44794399999819,
-   "max": 65.07029100001205
+   "min": 33.26254399996742,
+   "promedio": 44.27133050002112,
+   "mediana": 43.78289950005865,
+   "max": 60.26551299999028
   },
   {
    "prueba": "Apertura de la pantalla «seguimiento»",
@@ -52,10 +52,10 @@
    "registros": 3242,
    "errores": 0,
    "n": 10,
-   "min": 44.52922699999817,
-   "promedio": 58.312911900000586,
-   "mediana": 58.531170999998494,
-   "max": 70.46816299998682
+   "min": 42.12785499998972,
+   "promedio": 58.1518060999997,
+   "mediana": 53.216631999987385,
+   "max": 97.67774900001314
   },
   {
    "prueba": "Respuesta a un filtro (acción → visuales actualizados)",
@@ -63,10 +63,10 @@
    "registros": 3242,
    "errores": 0,
    "n": 20,
-   "min": 13.38487099999952,
-   "promedio": 19.272254050001436,
-   "mediana": 18.433552000004738,
-   "max": 30.392811000012898
+   "min": 16.66343300007611,
+   "promedio": 21.078239549990485,
+   "mediana": 20.664483500013375,
+   "max": 29.2469839999967
   },
   {
    "prueba": "Semáforo oficial, plan B (clic en «Evaluar» → resultado visible)",
@@ -74,20 +74,20 @@
    "registros": 1,
    "errores": 0,
    "n": 20,
-   "min": 33.071237000001474,
-   "promedio": 40.95510435000307,
-   "mediana": 40.13050000000362,
-   "max": 49.92211500001531
+   "min": 34.23049299999548,
+   "promedio": 39.574943200000234,
+   "mediana": 38.39641600006871,
+   "max": 50.63419400005387
   },
   {
    "prueba": "Recalcular visuales tras un filtro (50.000 registros) · cálculo interno",
    "umbral": 3000,
    "registros": 50000,
    "n": 10,
-   "min": 5.9,
-   "promedio": 13.93,
-   "mediana": 11.6,
-   "max": 33.2,
+   "min": 6.2,
+   "promedio": 12.6,
+   "mediana": 8.3,
+   "max": 39.4,
    "errores": 0
   },
   {
@@ -95,10 +95,10 @@
    "umbral": null,
    "registros": 50000,
    "n": 1,
-   "min": 2.1,
-   "promedio": 2.1,
-   "mediana": 2.1,
-   "max": 2.1,
+   "min": 2.3,
+   "promedio": 2.3,
+   "mediana": 2.3,
+   "max": 2.3,
    "errores": 0
   }
  ]

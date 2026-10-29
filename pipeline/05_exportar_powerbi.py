@@ -186,41 +186,41 @@ C = lambda t, p: (t, p, False)
 UNO = {"selection": [{"properties": {"singleSelect": {"expr": {"Literal": {"Value": "true"}}}}}],
        "data": [{"properties": {"mode": {"expr": {"Literal": {"Value": "'Dropdown'"}}}}}]}
 def filtros(y=70):
-    return [visual("slicer", 20, y, 300, 60, {"Values": [C("dim_cohorte", "cohorte_ingreso")]}, "Cohorte de ingreso"),
+    return [visual("slicer", 20, y, 300, 60, {"Values": [C("dim_cohorte", "cohorte_ingreso")]}, "Mes de ingreso"),
             visual("slicer", 330, y, 300, 60, {"Values": [C("dim_campana", "campana")]}, "Campaña"),
             visual("slicer", 640, y, 300, 60, {"Values": [C("dim_supervisor", "id_supervisor")]}, "Supervisor")]
 AVISO = "Datos ficticios de demostración (sección 4.2 del documento técnico). Solo datos agregados; sin nombres ni documentos."
 fac = ficha  # factores del resumen se calculan con el prototipo; aquí se listan los del dataset
-p1 = [texto(20, 10, 1240, 55, ["Panorama · ¿Qué está pasando?", AVISO])] + filtros() + [
-    visual("card", 20, 145, 240, 110, {"Values": [M("Contratados")]}, "Personas contratadas (ventana completa)"),
-    visual("card", 270, 145, 240, 110, {"Values": [M("Renuncias tempranas")]}, "Renuncias tempranas"),
-    visual("card", 520, 145, 240, 110, {"Values": [M("Tasa rotación temprana")]}, "Tasa de rotación temprana"),
-    visual("card", 770, 145, 240, 110, {"Values": [M("Mes crítico")]}, "Mes crítico de renuncia"),
-    visual("card", 1020, 145, 240, 110, {"Values": [M("Costo estimado")]}, "Costo estimado (supuestos simulados)"),
-    visual("lineChart", 20, 270, 620, 420, {"Category": [C("dim_cohorte", "cohorte_ingreso")], "Y": [M("Tasa rotación temprana")]}, "Tasa de rotación temprana por cohorte de ingreso"),
-    visual("clusteredColumnChart", 660, 270, 600, 420, {"Category": [C("dim_mes_antiguedad", "etiqueta")], "Y": [M("Renuncias tempranas")]}, "Renuncias tempranas por mes de antigüedad"),
+p1 = [texto(20, 10, 1240, 55, ["Panorama · Cuántas personas renuncian antes de seis meses y cuándo", AVISO])] + filtros() + [
+    visual("card", 20, 145, 240, 110, {"Values": [M("Contratados")]}, "Personas contratadas (con seis meses de seguimiento)"),
+    visual("card", 270, 145, 240, 110, {"Values": [M("Renuncias tempranas")]}, "Renunciaron antes de seis meses"),
+    visual("card", 520, 145, 240, 110, {"Values": [M("Tasa rotación temprana")]}, "Rotación temprana (% que renunció antes de seis meses)"),
+    visual("card", 770, 145, 240, 110, {"Values": [M("Mes crítico")]}, "Mes con más renuncias"),
+    visual("card", 1020, 145, 240, 110, {"Values": [M("Costo estimado")]}, "Impacto económico estimado (supuesto simulado)"),
+    visual("lineChart", 20, 270, 620, 420, {"Category": [C("dim_cohorte", "cohorte_ingreso")], "Y": [M("Tasa rotación temprana")]}, "¿Cambia la rotación según el mes de ingreso?"),
+    visual("clusteredColumnChart", 660, 270, 600, 420, {"Category": [C("dim_mes_antiguedad", "etiqueta")], "Y": [M("Renuncias tempranas")]}, "¿En qué mes después del ingreso renuncian más?"),
 ]
-p2 = [texto(20, 10, 1240, 55, ["Causas · ¿Por qué se van?", "Asociación, no causalidad. Supervisores con menos de 30 personas no se comparan (quedan en blanco)."])] + filtros() + [
-    visual("clusteredBarChart", 20, 145, 400, 560, {"Category": [C("dim_supervisor", "id_supervisor")], "Y": [M("Tasa (grupos comparables)")]}, "Rotación temprana por supervisor (n ≥ 30)"),
-    visual("clusteredColumnChart", 430, 145, 410, 270, {"Category": [C("fact_contrataciones", "rango_puntaje")], "Y": [M("Tasa rotación temprana")]}, "Rotación por puntaje de la prueba técnica"),
-    visual("clusteredColumnChart", 850, 145, 410, 270, {"Category": [C("fact_contrataciones", "rango_distancia")], "Y": [M("Tasa rotación temprana")]}, "Rotación por distancia"),
-    visual("tableEx", 430, 425, 410, 280, {"Values": [C("fact_contrataciones", "turno"), M("Contratados"), M("Tasa rotación temprana"), M("Diferencia vs. promedio"), M("Grupo comparable")]}, "Perfil: turno"),
-    visual("clusteredBarChart", 850, 425, 410, 280, {"Category": [C("fact_contrataciones", "motivo_retiro")], "Y": [M("% del motivo")]}, "Motivos declarados de renuncia (encuesta simulada)"),
+p2 = [texto(20, 10, 1240, 55, ["Causas · Qué se relaciona con las renuncias", "Muestra relaciones, no causas demostradas. Los supervisores con menos de 30 personas no se comparan (quedan en blanco)."])] + filtros() + [
+    visual("clusteredBarChart", 20, 145, 400, 560, {"Category": [C("dim_supervisor", "id_supervisor")], "Y": [M("Tasa (grupos comparables)")]}, "Renuncias por supervisor (equipos de 30 personas o más)"),
+    visual("clusteredColumnChart", 430, 145, 410, 270, {"Category": [C("fact_contrataciones", "rango_puntaje")], "Y": [M("Tasa rotación temprana")]}, "% que renunció según el puntaje de la prueba técnica"),
+    visual("clusteredColumnChart", 850, 145, 410, 270, {"Category": [C("fact_contrataciones", "rango_distancia")], "Y": [M("Tasa rotación temprana")]}, "% que renunció según la distancia vivienda–trabajo"),
+    visual("tableEx", 430, 425, 410, 280, {"Values": [C("fact_contrataciones", "turno"), M("Contratados"), M("Tasa rotación temprana"), M("Diferencia vs. promedio"), M("Grupo comparable")]}, "Turno: personas y % que renunció"),
+    visual("clusteredBarChart", 850, 425, 410, 280, {"Category": [C("fact_contrataciones", "motivo_retiro")], "Y": [M("% del motivo")]}, "Lo que dicen quienes renunciaron (encuesta simulada)"),
 ]
 # Resumen: factores calculados con la misma regla del prototipo
 import importlib.util, subprocess
 res_txt = json.load(open(os.path.join(R, "pruebas", "resultados_unitarias.json")))["resultados"]
 f5 = next((r["observado"] for r in res_txt if r["id"] == "PU-05"), "")
-p3 = [texto(20, 10, 1240, 140, ["Resumen y acciones · ¿Qué hacemos?",
-                                "Ejemplos simulados, no hallazgos comprobados. Factores ordenados por diferencia frente al promedio (regla del documento, sección 14.2):",
+p3 = [texto(20, 10, 1240, 140, ["Resumen y acciones · Qué puede hacer Recursos Humanos",
+                                "Calculado con datos ficticios. Grupos que más renuncian frente al promedio, del más al menos importante. Las acciones son hipótesis para evaluar:",
                                 f5,
-                                "Recomendaciones: auxilio de transporte y turnos compatibles (distancia); acompañamiento al supervisor SUP-03; nivelación técnica (puntaje bajo); revisar el canal redes sociales; mentor para personas sin experiencia."])] + [
+                                "Qué recomendamos: auxilio de transporte y turnos compatibles (distancia); acompañamiento al supervisor SUP-03; nivelación técnica (puntaje bajo); revisar el canal redes sociales; mentor para personas sin experiencia."])] + [
     visual("tableEx", 20, 160, 620, 270, {"Values": [C("fact_contrataciones", "rango_distancia"), M("Contratados"), M("Tasa rotación temprana"), M("Diferencia vs. promedio")]}, "Evidencia: distancia"),
     visual("tableEx", 650, 160, 610, 270, {"Values": [C("dim_supervisor", "id_supervisor"), M("Contratados"), M("Tasa rotación temprana"), M("Diferencia vs. promedio"), M("Grupo comparable")]}, "Evidencia: supervisor"),
     visual("tableEx", 20, 440, 620, 270, {"Values": [C("fact_contrataciones", "canal_reclutamiento"), M("Contratados"), M("Tasa rotación temprana"), M("Diferencia vs. promedio")]}, "Evidencia: canal de reclutamiento"),
     visual("tableEx", 650, 440, 610, 270, {"Values": [C("fact_contrataciones", "rango_experiencia"), M("Contratados"), M("Tasa rotación temprana"), M("Diferencia vs. promedio")]}, "Evidencia: experiencia previa"),
 ]
-p4 = [texto(20, 10, 1240, 55, ["Semáforo · ¿Se quedará?", "Semáforo oficial: plan B (reglas de alerta, sección 13.10). El modelo no se publica (CU-09 A1). No se guardan los datos del candidato."]),
+p4 = [texto(20, 10, 1240, 55, ["Semáforo de candidatos · Apoyo en la entrevista", "Reglas de alerta definidas (plan B). No predice el futuro ni reemplaza al reclutador. El modelo estadístico no se usa para decidir. No se guardan los datos del candidato."]),
       visual("slicer", 20, 75, 300, 80, {"Values": [C("Entrada Campaña", "campana")]}, "Campaña", UNO),
       visual("slicer", 330, 75, 300, 80, {"Values": [C("Entrada Turno", "Turno")]}, "Turno", UNO),
       visual("slicer", 640, 75, 300, 80, {"Values": [C("Entrada Nivel educativo", "Nivel educativo")]}, "Nivel educativo", UNO),

@@ -49,9 +49,9 @@ function GraficoGrupos({ grupos, general, alto = 260, horizontal = false, resalt
 
 function TablaGrupos({ grupos, nMin }: { grupos: Grupo[]; nMin: number }) {
   return (
-    <details><summary>Ver tabla</summary>
+    <details><summary>Ver los datos en tabla</summary>
       <div className="tbl-wrap" style={{ marginTop: 8 }}><table>
-        <thead><tr><th>Grupo</th><th className="r">Personas</th><th className="r">Renuncias</th><th className="r">Tasa</th><th className="r">Dif. vs. promedio</th><th>Comparable</th></tr></thead>
+        <thead><tr><th>Grupo</th><th className="r">Personas</th><th className="r">Renunciaron</th><th className="r">% que renunció</th><th className="r">Diferencia con el promedio</th><th>Se puede comparar</th></tr></thead>
         <tbody>{grupos.map(g => <tr key={g.grupo} className={g.suficiente ? "" : "dim"}><td>{g.grupo}</td><td className="r">{fmt(g.n)}</td><td className="r">{fmt(g.renuncias)}</td><td className="r">{pct(g.tasa)}</td><td className="r">{pp(g.diferencia)}</td><td>{g.suficiente ? "Sí" : `No (n < ${nMin})`}</td></tr>)}</tbody>
       </table></div>
     </details>
@@ -69,7 +69,7 @@ function Ranking({ filas, nMin, ir }: { filas: FilaRanking[]; nMin: number; ir: 
   const [abierta, setAbierta] = useState<Variable | null>(null);
   return (
     <div className="tbl-wrap"><table data-testid="ranking-factores">
-      <thead><tr><th>#</th><th>Factor y grupo con mayor tasa</th><th className="r">Personas</th><th className="r">Renuncias</th><th className="r">Tasa del grupo</th><th className="r">Promedio</th><th className="r">Diferencia</th><th>Lectura</th><th><span className="sr">Detalle</span></th></tr></thead>
+      <thead><tr><th>#</th><th>Factor y grupo con más renuncias</th><th className="r">Personas</th><th className="r">Renunciaron</th><th className="r">% que renunció</th><th className="r">Promedio</th><th className="r">Diferencia</th><th>Lectura</th><th><span className="sr">Detalle</span></th></tr></thead>
       <tbody>{filas.map((f, i) => {
         const [et, cls, expl] = LECTURA[f.estado]; const ab = abierta === f.variable;
         return (
@@ -121,19 +121,22 @@ export default function Causas({ filas, nMin, foco }: Contexto) {
   const cont = useMemo(() => contraste(mot, factores(filas, nMin)), [mot, filas, nMin]);
   const concl = conclusionPrueba(pun.grupos, nMin);
   const pequenos = sup.grupos.filter(g => !g.suficiente).length;
-  if (sup.general === null) return <Empty><b>Sin datos para esta selección.</b><br />Use «Limpiar filtros» para volver a la vista completa.</Empty>;
+  if (sup.general === null) return <Empty><b>Sin datos para esta selección.</b><br />Use «Restablecer filtros» para volver a ver a todas las personas.</Empty>;
 
+  const comparablesSup = sup.grupos.filter(g => g.suficiente);
+  const peorSup = [...comparablesSup].sort((a, b) => b.tasa - a.tasa)[0];
+  const supAltos = comparablesSup.filter(g => g.diferencia > 0.05).length;
   const peorPerfil = per.grupos.filter(g => g.suficiente && g.grupo !== "Sin dato").sort((a, b) => b.tasa - a.tasa)[0];
   return (
     <>
-      <div className="note">Las diferencias muestran <b>asociación</b> entre un factor y la renuncia temprana; no prueban que el factor la cause. Los grupos con menos de {nMin} personas aparecen en gris y no se comparan. Las diferencias se expresan en p.p. <Ayuda t="p.p." /></div>
+      <div className="note">Aquí se ve qué grupos <b>renuncian más que el promedio</b>. Es una relación, no una causa demostrada <Ayuda t="Relación, no causa" />. Los grupos con menos de {nMin} personas aparecen en gris y no se comparan. Las diferencias se expresan en p.p. <Ayuda t="p.p." /></div>
 
-      <Card title="¿Qué factores se asocian más con la renuncia temprana?" sub={`Para cada variable, el grupo con mayor diferencia frente al promedio (${pct(sup.general)}). Ordenado de mayor a menor prioridad.`} right={<Seccion tipo="descriptivo" />}>
+      <Card title="¿Qué factores se relacionan más con las renuncias?" sub={`Para cada factor, el grupo que más renuncia frente al promedio (${pct(sup.general)}). De mayor a menor diferencia.`} right={<Seccion tipo="descriptivo" />}>
         <Ranking filas={rank} nMin={nMin} ir={irVariable} />
         <p className="sub">Prioritario: más de 5 p.p. sobre el promedio en un grupo con al menos {nMin} personas. Diferencia leve: entre 2 y 5 p.p. Seleccione «Ver detalle» para la interpretación, la recomendación y las limitaciones.</p>
       </Card>
 
-      <Card id="sec-supervisor" title="Rotación temprana por supervisor" sub="Tasa del grupo a cargo, número de personas y comparación con el promedio general" right={<Seccion tipo="descriptivo" />}>
+      <Card id="sec-supervisor" title={peorSup ? `Supervisores: el equipo de ${peorSup.grupo} renuncia más (${pct(peorSup.tasa)})` : "Renuncias por supervisor"} sub={`Porcentaje del equipo de cada supervisor que renunció antes de seis meses. ${supAltos} supervisor(es) superan el promedio en más de 5 p.p. No prueba que el supervisor sea la causa.`} right={<Seccion tipo="descriptivo" />}>
         <GraficoGrupos grupos={sup.grupos} general={sup.general} horizontal alto={Math.max(180, sup.grupos.length * 26 + 40)} resaltar={sup.grupos.filter(g => g.suficiente && g.diferencia > 0.05).map(g => g.grupo)} testid="graf-supervisor" />
         <div className="legend"><span><i className="sw box" style={{ background: "var(--s2)" }} />Más de 5 p.p. sobre el promedio</span><span><i className="sw box" style={{ background: "var(--s1)" }} />Resto comparable</span><span><i className="sw box" style={{ background: "var(--muted-mark)" }} />Grupo pequeño (no se compara)</span></div>
         {pequenos > 0 && <div className="note warn" data-testid="aviso-grupo-pequeno">{pequenos} supervisor(es) con menos de {nMin} personas en la selección. No se sacan conclusiones sobre ellos.</div>}
@@ -141,7 +144,7 @@ export default function Causas({ filas, nMin, foco }: Contexto) {
       </Card>
 
       <div className="grid two">
-        <Card id="sec-puntaje" title="Rotación temprana por puntaje de la prueba técnica" sub="Rangos de puntaje de 0–59 a 90–100">
+        <Card id="sec-puntaje" title={concl.conclusion === "útil" ? "Prueba técnica: los puntajes bajos renuncian más" : concl.conclusion === "no útil" ? "Prueba técnica: sin diferencias claras entre puntajes" : "Prueba técnica: la evidencia no es suficiente"} sub="Porcentaje que renunció según el puntaje obtenido en la prueba de selección (0 a 100).">
           <GraficoGrupos grupos={pun.grupos} general={pun.general} testid="graf-puntaje" />
           <Seccion tipo="estadistico" />
           <div className={"note " + (concl.conclusion === "útil" ? "good" : concl.conclusion === "no útil" ? "crit" : "warn")} data-testid="conclusion-prueba">
@@ -150,25 +153,25 @@ export default function Causas({ filas, nMin, foco }: Contexto) {
           <TablaGrupos grupos={pun.grupos} nMin={nMin} />
         </Card>
 
-        <Card id="sec-perfil" title="Rotación temprana por perfil" right={
+        <Card id="sec-perfil" title={peorPerfil ? `${NOMBRE_VARIABLE[perfil]}: el grupo ${peorPerfil.grupo} renuncia más (${pct(peorPerfil.tasa)})` : `Renuncias por ${NOMBRE_VARIABLE[perfil].toLowerCase()}`} sub="Elija el factor que quiere comparar." right={
           <div className="field"><label htmlFor="sel-perfil">Variable</label>
             <select id="sel-perfil" value={perfil} onChange={e => setPerfil(e.target.value as Variable)} data-testid="sel-perfil">
               {PERFIL.map(v => <option key={v} value={v}>{NOMBRE_VARIABLE[v]}</option>)}
             </select></div>}>
           <GraficoGrupos grupos={per.grupos} general={per.general} resaltar={peorPerfil ? [peorPerfil.grupo] : []} testid="graf-perfil" />
-          {peorPerfil && <p className="sub">Mayor tasa en esta variable: <b>{peorPerfil.grupo}</b> ({pct(peorPerfil.tasa)}, n = {peorPerfil.n}).</p>}
+          {peorPerfil && <p className="sub">Grupo {peorPerfil.grupo}: {fmt(peorPerfil.n)} personas, {pp(peorPerfil.diferencia)} frente al promedio.</p>}
           <TablaGrupos grupos={per.grupos} nMin={nMin} />
         </Card>
       </div>
 
       <div className="grid two">
-        <Card title="Los 3 perfiles con mayor rotación temprana" sub="Entre distancia, turno, experiencia, educación y canal; solo grupos comparables">
+        <Card title="Los tres perfiles que más renuncian" sub="Entre distancia, turno, experiencia, nivel educativo y canal; solo grupos que se pueden comparar.">
           {top.length ? <div className="tbl-wrap"><table data-testid="tabla-top-perfiles">
-            <thead><tr><th>#</th><th>Perfil</th><th className="r">Personas</th><th className="r">Tasa</th><th className="r">Dif. vs. promedio</th></tr></thead>
+            <thead><tr><th>#</th><th>Perfil</th><th className="r">Personas</th><th className="r">% que renunció</th><th className="r">Diferencia</th></tr></thead>
             <tbody>{top.map((g, i) => <tr key={g.variable + g.grupo} className="hl"><td className="num">{i + 1}</td><td>{NOMBRE_VARIABLE[g.variable]}: <b>{g.grupo}</b></td><td className="r">{fmt(g.n)}</td><td className="r">{pct(g.tasa)}</td><td className="r">{pp(g.diferencia)}</td></tr>)}</tbody>
           </table></div> : <Empty>No hay perfiles con al menos {nMin} personas en la selección.</Empty>}
         </Card>
-        <Card title="Motivos declarados de renuncia" sub="Top 5 entre renuncias tempranas que respondieron la encuesta de salida" right={<Seccion tipo="simulado" />}>
+        <Card title={mot.length ? `Lo que dicen quienes renunciaron: «${mot[0].motivo}» es el motivo más mencionado` : "Motivos de renuncia"} sub="Los cinco motivos más frecuentes en la encuesta de salida, y si coinciden con lo que muestran los datos." right={<Seccion tipo="simulado" />}>
           {mot.length ? <>
             <div className="chart sm" data-testid="graf-motivos">
               <ResponsiveContainer>

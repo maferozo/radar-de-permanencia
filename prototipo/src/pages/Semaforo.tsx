@@ -58,8 +58,8 @@ export default function Semaforo() {
         {!CRIT.cumple_equidad && <> y no pasa la revisión de equidad</>}. Las reglas del plan B superan a la referencia y pasan la revisión de equidad en las {EA.n.toLocaleString("es-CO")} personas evaluadas (brecha máxima {Math.max(...EA.plan_b_brechas.map(b => Math.max(b.brecha_recall_pp, b.brecha_fp_pp))).toFixed(1).replace(".", ",")} p.p.), aunque detectan pocas renuncias (recall {pct(EA.plan_b.recall, 0)}). Datos ficticios; reglas y umbrales pendientes de validar con el cliente.</p></details>
       </div>
       <div className="tabs" role="tablist" aria-label="Método de evaluación">
-        <button role="tab" aria-selected={modo === "reglas"} onClick={() => { setModo("reglas"); setRes(null); }} data-testid="modo-reglas">Plan B: reglas de alerta (oficial)</button>
-        <button role="tab" aria-selected={modo === "modelo"} onClick={() => { setModo("modelo"); setRes(null); }} data-testid="modo-modelo">Modelo de regresión logística (no publicado, solo comparación)</button>
+        <button role="tab" aria-selected={modo === "reglas"} onClick={() => { setModo("reglas"); setRes(null); }} data-testid="modo-reglas">Reglas de alerta (semáforo oficial)</button>
+        <button role="tab" aria-selected={modo === "modelo"} onClick={() => { setModo("modelo"); setRes(null); }} data-testid="modo-modelo">Modelo estadístico (solo para comparar)</button>
       </div>
 
       <div className="grid two">
@@ -85,6 +85,12 @@ export default function Semaforo() {
               <button className="btn" type="button" onClick={() => { setForm(EJEMPLO); setEsEjemplo(true); setRes(null); setErrores([]); }}>Cargar ejemplo</button>
             </div>
           </form>
+          <div className="leyenda-semaforo" data-testid="leyenda-colores">
+            <span className="lbl">Qué significa cada color</span>
+            <p><i className="dot rojo" aria-hidden="true" /><b>Rojo:</b> se cumplen dos señales a la vez (distancia mayor a 15 km con turno nocturno o rotativo, o sin experiencia con puntaje menor a 60).</p>
+            <p><i className="dot amarillo" aria-hidden="true" /><b>Amarillo:</b> aparece una sola señal (distancia mayor a 15 km o sin experiencia).</p>
+            <p><i className="dot verde" aria-hidden="true" /><b>Verde:</b> ninguna señal de alerta. No garantiza que la persona se quede.</p>
+          </div>
           <details><summary>Variables que la herramienta no usa</summary>
             <p className="sub" style={{ marginTop: 6 }}>Por equidad (HU-15): edad, sexo, estado civil, estrato y sus aproximaciones, como barrio o dirección. Por fuga de información: supervisor, desempeño, ausencias y cualquier dato posterior al ingreso. Tampoco se piden nombres ni documentos.</p>
           </details>
@@ -101,15 +107,15 @@ export default function Semaforo() {
           )}
         </Card>
 
-        <Card title="Resultado" sub={res ? `Calculado en ${res.ms.toFixed(2).replace(".", ",")} ms · ${res.modo === "modelo" ? "modelo de demostración" : "reglas de alerta"}` : "Complete el formulario y seleccione «Evaluar candidato»."}>
-          {!res ? <div className="empty">El resultado aparecerá aquí con el nivel de alerta, las reglas o factores que lo explican, la acción sugerida y las limitaciones.</div> : (
+        <Card title="Resultado" sub={res ? (res.modo === "modelo" ? "Según el modelo estadístico (no publicado)" : "Según las reglas de alerta") : "Complete el formulario y seleccione «Evaluar candidato»."}>
+          {!res ? <div className="empty">El resultado aparecerá aquí: el color, las reglas que lo explican, la acción sugerida y las limitaciones.</div> : (
             <div style={{ display: "grid", gap: 14 }} data-testid="resultado">
               <div className="light">
                 <Lampara color={color!} />
                 <div>
                   {res.ev && <><span className="lbl">Probabilidad estimada de renuncia temprana</span><div className="prob" data-testid="probabilidad">{pct(res.ev.probabilidad)}</div></>}
                   <span className={"pill " + (color === "rojo" ? "crit" : color === "amarillo" ? "warn" : "good")} data-testid="color">
-                    {color === "rojo" ? "Riesgo alto · rojo" : color === "amarillo" ? "Riesgo medio · amarillo" : "Riesgo bajo · verde"}
+                    {color === "rojo" ? "Alerta alta · rojo" : color === "amarillo" ? "Alerta media · amarillo" : "Sin alertas · verde"}
                   </span>
                   <p className="sub" style={{ marginTop: 4 }}>{res.ev ? "Modelo no publicado: solo para comparar. No usar para decidir." : "Semáforo oficial: reglas de alerta del plan B (13.10), pendientes de validación con el cliente."}</p>
                 </div>
@@ -165,7 +171,7 @@ export default function Semaforo() {
         </Card>
       </div>
 
-      <Card title={modo === "reglas" ? "Confiabilidad del semáforo (plan B)" : "Confiabilidad del modelo (no publicado)"} sub={modo === "reglas" ? `Reglas fijas evaluadas en las ${EA.n.toLocaleString("es-CO")} personas de cohortes con ventana completa · datos ficticios` : "Evaluado con cohortes que el modelo no usó para aprender (partición temporal) · datos ficticios"}
+      <Card title={modo === "reglas" ? "Confiabilidad del semáforo (plan B)" : "Confiabilidad del modelo (no publicado)"} sub={modo === "reglas" ? `Reglas fijas evaluadas en las ${EA.n.toLocaleString("es-CO")} personas con seis meses de seguimiento · datos ficticios` : "Evaluado con meses de ingreso que el modelo no usó para aprender (partición temporal) · datos ficticios"}
         right={<button className="btn" onClick={() => setVerDetalle(v => !v)} data-testid="ver-detalle">{verDetalle ? "Ocultar detalle" : "Ver detalle"}</button>}>
         {(() => { const m = modo === "reglas" ? EA.plan_b : lr; return (
         <div className="grid kpis" data-testid="confiabilidad">

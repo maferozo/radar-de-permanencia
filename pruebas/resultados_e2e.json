@@ -1,6 +1,6 @@
 {
- "fecha": "2026-10-27T20:12:40",
- "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v180 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
+ "fecha": "2026-10-29T18:32:15",
+ "entorno": "Chromium 153.0.8010.12 headless (Playwright) · Linux 6.18.44-fc-v185 · 2 CPU · contenedor en la nube, sin red externa (fuentes de Google no cargan)",
  "resultados": [
   {
    "id": "PF-01",
@@ -29,12 +29,12 @@
   {
    "id": "PF-03",
    "cu": "CU-01",
-   "nombre": "Detalle de cohorte al pasar el cursor",
+   "nombre": "Detalle del mes de ingreso al pasar el cursor",
    "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
    "entrada": "Cursor sobre un punto",
    "pasos": "Mover el cursor sobre el gráfico de cohortes",
-   "esperado": "Tooltip con tasa, renuncias y contratados",
-   "observado": "Cohorte 2025-05 · Tasa: 32,2 % · 37 renuncias de 115 contratados",
+   "esperado": "Tooltip con el mes de ingreso, la rotación temprana y las renuncias",
+   "observado": "Ingresaron en mayo 2025 · Rotación temprana: 32,2 % · 37 renuncias de 115 personas",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -127,7 +127,7 @@
    "cu": "CU-04",
    "nombre": "Ir al gráfico que respalda el factor",
    "precondiciones": "Resumen abierto",
-   "entrada": "Botón «Ver en Causas» del factor 1",
+   "entrada": "Botón «Ver el detalle en Causas» del factor 1",
    "pasos": "Seleccionar el botón",
    "esperado": "Navega a Causas con la sección del factor",
    "observado": "Pantalla: Causas; variable de perfil: rangoDistancia",
@@ -142,7 +142,7 @@
    "entrada": "Candidato ficticio de ejemplo (Noche, 18 km, 0 meses, puntaje 58)",
    "pasos": "Abrir Semáforo, elegir la pestaña del modelo y evaluar",
    "esperado": "Probabilidad, color, 3 factores y aviso de decisión humana",
-   "observado": "80,7 % · Riesgo alto · rojo · aviso visible",
+   "observado": "80,7 % · Alerta alta · rojo · aviso visible",
    "estado": "Aprobada",
    "evidencia": "PF-12_semaforo.png"
   },
@@ -202,7 +202,7 @@
    "entrada": "Rojo desde 95 %, amarillo desde 90 %",
    "pasos": "Evaluar con umbrales altos",
    "esperado": "La misma probabilidad pasa a verde",
-   "observado": "Color con umbrales 90/95: Riesgo bajo · verde",
+   "observado": "Color con umbrales 90/95: Sin alertas · verde",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -226,7 +226,7 @@
    "entrada": "Candidato de ejemplo",
    "pasos": "Elegir «Plan B» y evaluar",
    "esperado": "Semáforo por reglas, sin probabilidad, con reglas activadas, acción sugerida y aviso humano",
-   "observado": "Riesgo alto · rojo; Distancia mayor a 15 km y turno nocturno o rotativo.",
+   "observado": "Alerta alta · rojo; Distancia mayor a 15 km y turno nocturno o rotativo.",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -250,7 +250,7 @@
    "entrada": "—",
    "pasos": "Abrir cada pantalla y usar «Volver al panorama»",
    "esperado": "Cada pantalla abre y el botón regresa a Panorama",
-   "observado": "Panorama → Causas → Resumen y acciones → Semáforo → Seguimiento del proyecto → Panorama",
+   "observado": "Panorama → Causas → Resumen y acciones → Semáforo de candidatos → Seguimiento del proyecto → Panorama",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -281,12 +281,12 @@
   {
    "id": "PF-26",
    "cu": "CU-01 / CU-02",
-   "nombre": "Lectura rápida, filtros activos e incluidos/excluidos",
+   "nombre": "Hallazgo principal, filtros activos y datos no incluidos",
    "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
    "entrada": "Campaña A",
-   "pasos": "Abrir Panorama, leer la interpretación, aplicar un filtro y abrir «¿Quiénes entran…?»",
-   "esperado": "Frase «31 de cada 100»; chips con los filtros activos; tabla de incluidos y excluidos con motivo",
-   "observado": "Interpretación visible; chips: Cohortes 2024-07 a 2026-04 | Campaña A · Telecomunicaciones | Todos los supervisores; contexto de la tasa: «+3,3 p.p. frente al total (30,9 %)»",
+   "pasos": "Abrir Panorama, leer el hallazgo principal, aplicar un filtro y abrir «Datos que no se incluyeron»",
+   "esperado": "Frase «31 de cada 100»; «Sin filtros» o chips con los filtros activos; tabla de datos no incluidos con motivo",
+   "observado": "Hallazgo principal visible; chips: Campaña A · Telecomunicaciones; contexto de la tasa: «+3,3 p.p. frente al total (30,9 %)»",
    "estado": "Aprobada",
    "evidencia": "PF-26_panorama_lectura.png"
   },
@@ -308,9 +308,9 @@
    "nombre": "Plan de acción por factor",
    "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
    "entrada": "—",
-   "pasos": "Abrir Resumen y acciones",
-   "esperado": "Cada factor con hallazgo, evidencia, interpretación, acción, responsable, plazo, indicador y estado sin marcar como ejecutado",
-   "observado": "5 factores con los 8 campos; estado «Pendiente: sin seguimiento registrado»",
+   "pasos": "Abrir Resumen y acciones y desplegar las de menor prioridad",
+   "esperado": "Cada acción con qué encontramos, por qué importa, qué recomendamos y cómo verificarlo, más responsable y estado sin marcar como ejecutado",
+   "observado": "5 acciones con los 4 pasos (qué encontramos, por qué importa, qué recomendamos, cómo verificarlo), responsable y estado «Pendiente»",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -334,7 +334,7 @@
    "entrada": "Estado = Fallida; luego Todas",
    "pasos": "Filtrar la matriz y revisar la tabla de UAT",
    "esperado": "Con «Fallida» no hay filas (mensaje vacío); UAT con 16 historias pendientes",
-   "observado": "71 de 71 pruebas; filtro «Fallida» → 0 filas; UAT: 16 de 16 pendientes",
+   "observado": "84 de 84 pruebas; filtro «Fallida» → 0 filas; UAT: 16 de 16 pendientes",
    "estado": "Aprobada",
    "evidencia": "PF-30_pruebas.png"
   },
@@ -358,7 +358,7 @@
    "entrada": "Tecla Tab desde el inicio",
    "pasos": "Pulsar Tab, Enter y abrir Glosario",
    "esperado": "El primer foco es «Saltar al contenido» y lleva el foco al área principal; el glosario define las siglas",
-   "observado": "Primer foco: «Saltar al contenido» → foco en #contenido; glosario con 18 líneas",
+   "observado": "Primer foco: «Saltar al contenido» → foco en #contenido; glosario con 19 líneas",
    "estado": "Aprobada",
    "evidencia": ""
   },
@@ -431,6 +431,42 @@
    "pasos": "Mover la meta con el teclado y combinar filtros vacíos",
    "esperado": "La meta baja 1 punto con el teclado; sin personas muestra «No disponible» sin errores",
    "observado": "Meta tras ← = 30 %; selección vacía: «No disponible: no hay personas en la selección.»",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-39",
+   "cu": "CU-01 / CU-02",
+   "nombre": "El hallazgo principal se recalcula con los filtros",
+   "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
+   "entrada": "Campaña B",
+   "pasos": "Leer el hallazgo, filtrar y volver a leerlo",
+   "esperado": "El texto cambia con los datos filtrados y conserva el aviso de relación, no causa",
+   "observado": "Con campaña B: «25 de cada 100 personas contratadas renunciaron antes de cumplir seis …» (rotación 25,0 %)",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-40",
+   "cu": "CU-02",
+   "nombre": "Opciones avanzadas y restablecer filtros",
+   "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
+   "entrada": "Mínimo por grupo = 50",
+   "pasos": "Abrir «Opciones avanzadas», cambiar el mínimo y restablecer",
+   "esperado": "Aparece el chip del filtro activo; «Restablecer filtros» vuelve a 30 y a «Sin filtros»",
+   "observado": "Chip: ['Mínimo 50 personas por grupo']; tras restablecer: mínimo 30, «Sin filtros: todas las persona…»",
+   "estado": "Aprobada",
+   "evidencia": ""
+  },
+  {
+   "id": "PF-41",
+   "cu": "Navegación",
+   "nombre": "Seguimiento del proyecto separado del análisis de Recursos Humanos",
+   "precondiciones": "Prototipo construido (dist/index.html) con datos ficticios cargados",
+   "entrada": "—",
+   "pasos": "Revisar el menú y el texto de las pantallas de análisis",
+   "esperado": "Seguimiento en su propio grupo «Equipo del proyecto»; las pantallas de análisis no muestran métricas de software (DORA, burndown, sprints)",
+   "observado": "Grupo «Equipo del proyecto» en el menú; términos de software en pantallas de análisis: ninguno",
    "estado": "Aprobada",
    "evidencia": ""
   },

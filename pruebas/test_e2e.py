@@ -53,10 +53,10 @@ with sync_playwright() as p:
         pg.reload(); pg.wait_for_selector(t("kpi-tasa"))
         return "$" in c1 and "1.989" in c1 and "Sin datos de costo" in c2, f"Con supuestos: {c1}; sin supuestos: «Sin datos de costo»", ""
 
-    @prueba("PF-03", "CU-01", "Detalle de cohorte al pasar el cursor", PRE_DASH, "Cursor sobre un punto", "Mover el cursor sobre el gráfico de cohortes", "Tooltip con tasa, renuncias y contratados")
+    @prueba("PF-03", "CU-01", "Detalle del mes de ingreso al pasar el cursor", PRE_DASH, "Cursor sobre un punto", "Mover el cursor sobre el gráfico de cohortes", "Tooltip con el mes de ingreso, la rotación temprana y las renuncias")
     def _():
         pg.locator(t("graf-cohortes")).scroll_into_view_if_needed(); box = pg.locator(t("graf-cohortes")).bounding_box(); pg.mouse.move(box["x"] + box["width"] * 0.5, box["y"] + box["height"] * 0.5); pg.wait_for_timeout(200)
-        tip = pg.locator(".tooltip").first.inner_text(); return "Cohorte" in tip and "renuncias de" in tip, tip.replace("\n", " · "), ""
+        tip = pg.locator(".tooltip").first.inner_text(); return "Ingresaron en" in tip and "renuncias de" in tip, tip.replace("\n", " · "), ""
 
     @prueba("PF-04", "CU-02", "Aplicar filtro de campaña", PRE_DASH, "Campaña A · Telecomunicaciones", "Seleccionar la campaña", "Todos los visuales se recalculan")
     def _():
@@ -100,10 +100,10 @@ with sync_playwright() as p:
     def _():
         ir("resumen"); n = pg.locator(t("factor")).count(); f1 = pg.locator(t("factor")).first.inner_text()
         pg.screenshot(path=os.path.join(CAP, "PF-10_resumen.png"), full_page=True)
-        ok = 3 <= n <= 5 and "Recomendación" in f1 and "tasa general" in f1.lower() and pg.locator(t("aviso-simulado")).is_visible()
+        ok = 3 <= n <= 5 and "qué recomendamos" in f1.lower() and "promedio" in f1.lower() and pg.locator(t("aviso-simulado")).is_visible()
         return ok, f"{n} factores; primero: " + [l for l in f1.splitlines() if ":" in l][0], "PF-10_resumen.png"
 
-    @prueba("PF-11", "CU-04", "Ir al gráfico que respalda el factor", "Resumen abierto", "Botón «Ver en Causas» del factor 1", "Seleccionar el botón", "Navega a Causas con la sección del factor")
+    @prueba("PF-11", "CU-04", "Ir al gráfico que respalda el factor", "Resumen abierto", "Botón «Ver el detalle en Causas» del factor 1", "Seleccionar el botón", "Navega a Causas con la sección del factor")
     def _():
         pg.locator(t("ver-grafico")).first.click(); pg.wait_for_timeout(400)
         return txt("titulo-pantalla") == "Causas" and pg.url.endswith("#causas"), f"Pantalla: {txt('titulo-pantalla')}; variable de perfil: {pg.locator(t('sel-perfil')).input_value()}", ""
@@ -183,14 +183,14 @@ with sync_playwright() as p:
         return n == 4, f"{n} de 4 métricas en «Sin despliegues medidos»", "PF-23_dora.png"
 
     # --------- Mejoras de claridad (v1.2)
-    @prueba("PF-26", "CU-01 / CU-02", "Lectura rápida, filtros activos e incluidos/excluidos", PRE_DASH, "Campaña A", "Abrir Panorama, leer la interpretación, aplicar un filtro y abrir «¿Quiénes entran…?»", "Frase «31 de cada 100»; chips con los filtros activos; tabla de incluidos y excluidos con motivo")
+    @prueba("PF-26", "CU-01 / CU-02", "Hallazgo principal, filtros activos y datos no incluidos", PRE_DASH, "Campaña A", "Abrir Panorama, leer el hallazgo principal, aplicar un filtro y abrir «Datos que no se incluyeron»", "Frase «31 de cada 100»; «Sin filtros» o chips con los filtros activos; tabla de datos no incluidos con motivo")
     def _():
         ir("panorama"); i = txt("interpretacion"); c0 = pg.locator(t("chip-filtro")).all_text_contents()
         pg.select_option(t("f-campana"), index=1); pg.wait_for_timeout(150); c1 = pg.locator(t("chip-filtro")).all_text_contents(); ctx = txt("kpi-tasa")
         pg.click(t("incluidos-excluidos") + " summary"); tb = txt("incluidos-excluidos"); pg.click(t("limpiar-filtros"))
         pg.screenshot(path=os.path.join(CAP, "PF-26_panorama_lectura.png"), full_page=True)
-        ok = "31 de cada 100" in i and "no una predicción" in i and "Todas las campañas" in c0 and any("Campaña A" in x for x in c1) and "frente al total" in ctx and "cohortes recientes" in tb
-        return ok, f"Interpretación visible; chips: {' | '.join(c1)}; contexto de la tasa: «{ctx.splitlines()[-1]}»", "PF-26_panorama_lectura.png"
+        ok = "31 de cada 100" in i and "no una predicción" in i and any("Sin filtros" in x for x in c0) and any("Campaña A" in x for x in c1) and "frente al total" in ctx and "seis meses de seguimiento" in tb
+        return ok, f"Hallazgo principal visible; chips: {' | '.join(c1)}; contexto de la tasa: «{ctx.splitlines()[-1]}»", "PF-26_panorama_lectura.png"
 
     @prueba("PF-27", "CU-03", "Ranking de factores con interpretación, recomendación y limitaciones", PRE_DASH, "Mínimo por grupo = 30", "Abrir Causas, «Ver detalle» del factor 1 y la ayuda de «p.p.»", "8 variables ordenadas; detalle con dato descriptivo, recomendación (hipótesis) y limitaciones; ayuda explica p.p.")
     def _():
@@ -200,12 +200,14 @@ with sync_playwright() as p:
         pg.screenshot(path=os.path.join(CAP, "PF-27_ranking.png"))
         return filas == 8 and "Prioritario" in d and "Recomendación (hipótesis)" in d and "Limitaciones" in d and "Puntos porcentuales" in ay and cerrado, f"8 variables + fila de detalle; ayuda: «{ay[:60]}…»; se cierra con Escape", "PF-27_ranking.png"
 
-    @prueba("PF-28", "CU-04 / HU-11", "Plan de acción por factor", PRE_DASH, "—", "Abrir Resumen y acciones", "Cada factor con hallazgo, evidencia, interpretación, acción, responsable, plazo, indicador y estado sin marcar como ejecutado")
+    @prueba("PF-28", "CU-04 / HU-11", "Plan de acción por factor", PRE_DASH, "—", "Abrir Resumen y acciones y desplegar las de menor prioridad", "Cada acción con qué encontramos, por qué importa, qué recomendamos y cómo verificarlo, más responsable y estado sin marcar como ejecutado")
     def _():
-        ir("resumen"); fs = pg.locator(t("factor")).all_inner_texts()
-        campos = ["HALLAZGO", "EVIDENCIA", "INTERPRETACIÓN", "RECOMENDACIÓN", "RESPONSABLE SUGERIDO", "PLAZO SUGERIDO", "INDICADOR DE SEGUIMIENTO", "ESTADO"]
+        ir("resumen")
+        if pg.locator(".mas-factores > summary").count(): pg.click(".mas-factores > summary")
+        fs = pg.locator(t("factor")).all_inner_texts()
+        campos = ["QUÉ ENCONTRAMOS", "POR QUÉ IMPORTA", "QUÉ RECOMENDAMOS", "CÓMO VERIFICARLO", "RESPONSABLE SUGERIDO"]
         ok = all(all(c in f.upper() for c in campos) for f in fs) and all("Pendiente: sin seguimiento registrado" in f for f in fs)
-        return ok, f"{len(fs)} factores con los 8 campos; estado «Pendiente: sin seguimiento registrado»", ""
+        return ok, f"{len(fs)} acciones con los 4 pasos (qué encontramos, por qué importa, qué recomendamos, cómo verificarlo), responsable y estado «Pendiente»", ""
 
     @prueba("PF-29", "CU-05 / CU-06", "Semáforo explica reglas, condiciones y limitaciones", "Pantalla Semáforo", "Candidato de ejemplo", "Evaluar con el plan B y abrir «Limitaciones»", "4 condiciones con valor y Sí/No; cada regla con datos que la justifican; limitaciones visibles")
     def _():
@@ -280,6 +282,27 @@ with sync_playwright() as p:
         pg.select_option(t("f-desde"), "2026-04"); pg.select_option(t("f-hasta"), "2026-04"); pg.select_option(t("f-supervisor"), "SUP-15"); pg.wait_for_timeout(150)
         vacio = txt("estado-vacio"); pg.click(t("limpiar-filtros"))
         return mv == "30" and "No disponible" in vacio, f"Meta tras ← = {mv} %; selección vacía: «{vacio.splitlines()[0]}»", ""
+
+    # --------- Rediseño v1.3
+    @prueba("PF-39", "CU-01 / CU-02", "El hallazgo principal se recalcula con los filtros", PRE_DASH, "Campaña B", "Leer el hallazgo, filtrar y volver a leerlo", "El texto cambia con los datos filtrados y conserva el aviso de relación, no causa")
+    def _():
+        ir("panorama"); a = txt("interpretacion"); pg.select_option(t("f-campana"), index=2); pg.wait_for_timeout(150); b = txt("interpretacion"); tasa = val("kpi-tasa"); pg.click(t("limpiar-filtros"))
+        n = re.search(r"(\d+) de cada 100", b)
+        return a != b and n is not None and abs(int(n.group(1)) - round(float(tasa.replace(" %", "").replace(",", ".")))) <= 0 and "no una causa demostrada" in b, f"Con campaña B: «{b.splitlines()[1][:70]}…» (rotación {tasa})", ""
+
+    @prueba("PF-40", "CU-02", "Opciones avanzadas y restablecer filtros", PRE_DASH, "Mínimo por grupo = 50", "Abrir «Opciones avanzadas», cambiar el mínimo y restablecer", "Aparece el chip del filtro activo; «Restablecer filtros» vuelve a 30 y a «Sin filtros»")
+    def _():
+        pg.click(".avanzado > summary"); pg.fill(t("f-nmin"), "50"); pg.wait_for_timeout(150); c = pg.locator(t("chip-filtro")).all_text_contents()
+        pg.click(t("limpiar-filtros")); pg.wait_for_timeout(150); c2 = pg.locator(t("chip-filtro")).all_text_contents(); v = pg.locator(t("f-nmin")).input_value(); pg.click(".avanzado > summary")
+        return any("Mínimo 50" in x for x in c) and v == "30" and any("Sin filtros" in x for x in c2), f"Chip: {c}; tras restablecer: mínimo {v}, «{c2[0][:30]}…»", ""
+
+    @prueba("PF-41", "Navegación", "Seguimiento del proyecto separado del análisis de Recursos Humanos", PRE_DASH, "—", "Revisar el menú y el texto de las pantallas de análisis", "Seguimiento en su propio grupo «Equipo del proyecto»; las pantallas de análisis no muestran métricas de software (DORA, burndown, sprints)")
+    def _():
+        menu = pg.locator(".nav").inner_text(); fuga = []
+        for r in ["panorama", "causas", "resumen", "simulador", "semaforo"]:
+            ir(r); m = pg.locator("main").inner_text()
+            fuga += [f"{r}:{w}" for w in ["DORA", "burndown", "Burndown", "sprint", "Sprint"] if w in m]
+        return "EQUIPO DEL PROYECTO" in menu.upper() and not fuga, f"Grupo «Equipo del proyecto» en el menú; términos de software en pantallas de análisis: {fuga or 'ninguno'}", ""
 
     # --------- Adaptabilidad móvil
     @prueba("PF-24", "RNF-08", "Diseño adaptable a 400 px", PRE_DASH, "Viewport 400 × 860", "Abrir cada pantalla en ancho de teléfono", "Sin desplazamiento horizontal de la página")

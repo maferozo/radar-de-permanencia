@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, LabelList } from "recharts";
 import { kpis, simularEscenario, validarMeta, validarCosto, Escenario, TODOS } from "../calc";
 import type { Contexto } from "../App";
-import { Card, Empty, Tip, pct, fmt, cop, copMillones, Ayuda, copiar, aCsv, useToast } from "../ui";
+import { Card, Empty, Tip, pct, fmt, cop, copMillones, Ayuda, copiar, aCsv, useToast, mesLargo } from "../ui";
 import { COSTOS_SIM, CALIDAD } from "../data";
 
 const MAX_GUARDADOS = 3;
@@ -29,10 +29,10 @@ export default function Simulador({ filas, filtros, costos, ir }: Contexto) {
   const meta = metaTxt === null ? k.tasa : "valor" in vm ? vm.valor : null;
   const costo = "valor" in vc ? vc.valor : null;
   const e = k.contratados && meta !== null && costo !== null ? simularEscenario(k.contratados, k.renuncias, meta, costo) : null;
-  const poblacion = `Cohortes ${filtros.desde} a ${filtros.hasta} · ${filtros.campana === TODOS ? "todas las campañas" : filtros.campana} · ${filtros.supervisor === TODOS ? "todos los supervisores" : filtros.supervisor}`;
+  const poblacion = `Ingreso de ${mesLargo(filtros.desde)} a ${mesLargo(filtros.hasta)} · ${filtros.campana === TODOS ? "todas las campañas" : filtros.campana} · ${filtros.supervisor === TODOS ? "todos los supervisores" : filtros.supervisor}`;
   const excluidasEtl = (CALIDAD.reglas as { regla: string; registros_afectados: number }[]).find(r => r.regla === "Coherencia de fechas")?.registros_afectados ?? 0;
 
-  if (!k.contratados) return <Empty><b>No disponible: no hay personas en la selección.</b><br />El simulador necesita al menos una persona de cohortes con 180 días de observación. Use «Limpiar filtros» para volver a la vista completa.</Empty>;
+  if (!k.contratados) return <Empty><b>No disponible: no hay personas en la selección.</b><br />El simulador necesita al menos una persona con seis meses de seguimiento. Use «Restablecer filtros» para volver a ver a todas las personas.</Empty>;
 
   const restablecer = () => { setMetaTxt(null); setCostoTxt(null); setToast("Escenario restablecido a la situación actual"); };
   const guardar = () => {
@@ -66,13 +66,13 @@ export default function Simulador({ filas, filtros, costos, ir }: Contexto) {
 
       <Card title="Situación actual" sub={`Población de referencia según los filtros activos: ${poblacion}.`}>
         <div className="grid kpis" data-testid="sim-actual">
-          <div className="kpi-plain"><p className="lbl">Personas incluidas</p><div className="val" data-testid="sim-n">{fmt(k.contratados)}</div><p className="sub">Cohortes con 180 días de observación</p></div>
+          <div className="kpi-plain"><p className="lbl">Personas incluidas</p><div className="val" data-testid="sim-n">{fmt(k.contratados)}</div><p className="sub">Con seis meses de seguimiento</p></div>
           <div className="kpi-plain"><p className="lbl">Renuncias tempranas</p><div className="val" data-testid="sim-r">{fmt(k.renuncias)}</div><p className="sub">Observadas en esa población</p></div>
           <div className="kpi-plain"><p className="lbl">Tasa actual</p><div className="val" data-testid="sim-tasa">{pct(k.tasa)}</div><p className="sub">Renuncias ÷ personas incluidas</p></div>
           <div className="kpi-plain"><p className="lbl">Costo supuesto por reemplazo <Ayuda t="Costo supuesto" /></p><div className="val" style={{ fontSize: "1.15rem" }}>{cop(costoBase)}</div><p className="sub">{costoEsSimulado ? "Supuesto simulado del equipo, sin validar" : "Supuesto ingresado en el Panorama, sin validar"}</p></div>
           <div className="kpi-plain"><p className="lbl">Costo asociado a las renuncias</p><div className="val" style={{ fontSize: "1.15rem" }} title={cop(k.renuncias * costoBase)}>{copMillones(k.renuncias * costoBase)}</div><p className="sub">Estimado con el supuesto; no es un costo real</p></div>
         </div>
-        <p className="sub">{fmt(k.excluidosSinVentana)} personas de cohortes recientes quedan fuera porque aún no cumplen 180 días; además, el proceso de calidad excluyó {excluidasEtl} registros con fechas imposibles en todo el conjunto.</p>
+        <p className="sub">{fmt(k.excluidosSinVentana)} personas quedan fuera porque aún no cumplen seis meses desde su ingreso; además, el proceso de calidad excluyó {excluidasEtl} registros con fechas imposibles en todo el conjunto.</p>
       </Card>
 
       <div className="grid two">
